@@ -1,32 +1,73 @@
+const Usuario = require('../models/Usuario')
+const bcrypt = require('bcryptjs')
+
+const crearUsuario = async(req, res) => {
+
+    const { email , password } = req.body
+
+    try {
+    
+        let usuario = await Usuario.findOne({email})
+
+        if(usuario) {
+            return res.status(400).json({
+                ok: false,
+                status: "ya existe un usuario con ese correo",
+            })
+        }
+        
+        usuario = new Usuario(req.body); //Creo la instancia
 
 
+        //ENCRIPTAR CONTRASEÑA
+        const salt = bcrypt.genSaltSync()
+        usuario.password = bcrypt.hashSync(password,salt);
 
-const crearUsuario = (req, res) => {
+        //Guardo todo en la base de datos
+        await usuario.save()
 
-    const {name, email, password} = req.body;
+        return res.status(201).json({
+            ok: true,
+            status: "registro",
+            uid: usuario.id,
+            name: usuario.name
+        })
 
-    res.status(200).json({
-        ok: true,
-        status: "register",
-        name,
-        email,
-        password
-    })
+    
+    } catch (error) {
 
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+        console.log(error)
+    }
 }
 
 
-const login = (req, res) => {
-
-    const {email, password} = req.body;
+const login = async(req, res) => {
 
 
-    res.status(200).json({
-        ok: true,
-        status: "login",
-        email,
-        password
-    })
+    try {
+
+        const usuario = new Usuario(req.body); //Creo la instancia
+
+        await usuario.save()
+    
+    
+        res.status(201).json({
+            ok: true,
+            status: "login",
+        })
+    
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+        console.log(error)
+    }
 }
 
 
