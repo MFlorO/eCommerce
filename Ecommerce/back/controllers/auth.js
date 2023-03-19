@@ -1,5 +1,6 @@
 const Usuario = require('../models/Usuario')
 const bcrypt = require('bcryptjs')
+const generarJWT = require('../helpers/jwt')
 
 const crearUsuario = async(req, res) => {
 
@@ -26,11 +27,16 @@ const crearUsuario = async(req, res) => {
         //Guardo todo en la base de datos
         await usuario.save()
 
+        //GENERAR NUESTRO JSON WEB TOKEN
+        const token = await generarJWT(usuario.uid, usuario.name);
+
+
         return res.status(201).json({
             ok: true,
             status: "registro",
             uid: usuario.id,
-            name: usuario.name
+            name: usuario.name,
+            token
         })
 
     
@@ -43,23 +49,49 @@ const crearUsuario = async(req, res) => {
         console.log(error)
     }
 }
+
+
+
 
 
 const login = async(req, res) => {
 
+    const { email , password } = req.body
+
 
     try {
 
-        const usuario = new Usuario(req.body); //Creo la instancia
+        let usuario = await Usuario.findOne({email})
 
-        await usuario.save()
-    
-    
-        res.status(201).json({
+        if(!usuario) {
+            return res.status(400).json({
+                ok: false,
+                status: "Usuario y contraseña no son correctos",
+            })
+        }
+
+        //CONFIRMAR CONTRASEÑA ENCRYPTADA
+        const validPassword = bcrypt.compareSync(password,usuario.password)
+
+        if(!validPassword){
+            return res.status(400).json({
+                ok: false,
+                status: "Contraseña incorrecta",
+            })
+        }
+
+        //GENERAR JSON WEB TOKEN
+
+        const token = await generarJWT(usuario.uid, usuario.name);
+
+        return res.status(201).json({
             ok: true,
             status: "login",
+            uid: usuario.id,
+            name: usuario.name,
+            token
         })
-    
+
     } catch (error) {
 
         res.status(500).json({
@@ -69,6 +101,11 @@ const login = async(req, res) => {
         console.log(error)
     }
 }
+
+
+
+
+
 
 
 module.exports = {
