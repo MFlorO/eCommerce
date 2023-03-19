@@ -1,15 +1,25 @@
 const express = require('express');
 require('dotenv').config();
-
 const { PORT } = process.env;
+
+const dbConnection = require('./database/config');
+
+
+
+
 
 
 
 //Cear el servidor express
 const app = express()
 
+//BASE DE DATOS
+dbConnection();
+
 //Lectura y parseo del body
 app.use(express.json()); 
+
+
 
 //Rutas
 app.use('/api/auth', require('./routes/auth'));
