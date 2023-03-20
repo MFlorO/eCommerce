@@ -76,19 +76,6 @@ Categoria.belongsToMany(Producto, {
 });
 
 
-// Publisher.hasMany(Book, {
-//   foreignKey: 'bookId',
-//   sourceKey: 'id',
-//   onDelete: 'CASCADE',
-//   onUpdate: 'CASCADE',
-// });
-// Book.belongsTo(Publisher, {
-//   foreignKey: 'bookId',
-//   targetKey: 'id',
-//   onDelete: 'CASCADE',
-//   onUpdate: 'CASCADE',
-// });
-
 
 
 
