@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: true,
         defaultValue: null,
+      },
+      oferta: {
+        type: DataTypes.FLOAT,
+        allowNull: true,
       }
 
     },
