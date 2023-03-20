@@ -9,17 +9,10 @@ const morgan = require('morgan');
 
 const routes = require('./routes/index');
 
-// const dbConnection = require('./database/config');
-
-
-
 
 //Cear el servidor express
 const app = express()
 
-
-//BASE DE DATOS
-// dbConnection();
 
 
 //Cors y otros
