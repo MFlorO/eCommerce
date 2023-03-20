@@ -55,8 +55,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const {
   Producto, 
   Categoria, 
+  Modelo,
   Usuario,
-  Review,
 } = sequelize.models;
 
 
@@ -71,6 +71,18 @@ Producto.belongsToMany(Categoria, {
 });
 Categoria.belongsToMany(Producto, {
   through: 'producto_categoria',
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE',
+});
+
+
+Producto.belongsToMany(Modelo, {
+  through: 'producto_modelo',
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE',
+});
+Modelo.belongsToMany(Producto, {
+  through: 'producto_modelo',
   onDelete: 'CASCADE',
   onUpdate: 'CASCADE',
 });

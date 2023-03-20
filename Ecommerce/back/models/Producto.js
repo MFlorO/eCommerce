@@ -33,29 +33,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: true,
         defaultValue: null,
-      },
-
-      //  ########### REVEEER ########
-      color:{
-				type: DataTypes.STRING,
-				allowNull:true,
-			},
-      talle:{
-        type: DataTypes.STRING,
-				allowNull:true,
-			},
-
-      stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
-
-      // currentStock: {
-			// 	type: DataTypes.INTEGER,
-			// 	allowNull:false,
-			// 	defaultValue:0,
-			// },
+      }
 
     },
     {
