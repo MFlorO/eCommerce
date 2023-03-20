@@ -1,6 +1,10 @@
-const Usuario = require('../models/Usuario')
+const { Usuario } = require("../database/db");
 const bcrypt = require('bcryptjs')
 const generarJWT = require('../helpers/jwt')
+
+
+
+
 
 const crearUsuario = async(req, res) => {
 
@@ -8,16 +12,17 @@ const crearUsuario = async(req, res) => {
 
     try {
     
-        let usuario = await Usuario.findOne({email})
+        const usuarioEmail = await Usuario.findOne({ email })
 
-        if(usuario) {
+
+        if(usuarioEmail) {
             return res.status(400).json({
                 ok: false,
                 status: "ya existe un usuario con ese correo",
             })
         }
         
-        usuario = new Usuario(req.body); //Creo la instancia
+        const usuario = new Usuario(req.body); //Creo la instancia
 
 
         //ENCRIPTAR CONTRASEÑA
@@ -27,6 +32,7 @@ const crearUsuario = async(req, res) => {
         //Guardo todo en la base de datos
         await usuario.save()
 
+
         //GENERAR NUESTRO JSON WEB TOKEN
         const token = await generarJWT(usuario.uid, usuario.name);
 
@@ -34,8 +40,7 @@ const crearUsuario = async(req, res) => {
         return res.status(201).json({
             ok: true,
             status: "registro",
-            uid: usuario.id,
-            name: usuario.name,
+            usuario,
             token
         })
 
@@ -61,14 +66,19 @@ const login = async(req, res) => {
 
     try {
 
-        let usuario = await Usuario.findOne({email})
+        const usuario = await Usuario.findOne({ email })
 
         if(!usuario) {
             return res.status(400).json({
                 ok: false,
-                status: "Usuario y contraseña no son correctos",
+                status: "Usuario y/o contraseña no son correctos",
             })
         }
+
+
+        console.log(usuario)
+
+
 
         //CONFIRMAR CONTRASEÑA ENCRYPTADA
         const validPassword = bcrypt.compareSync(password,usuario.password)
@@ -87,8 +97,7 @@ const login = async(req, res) => {
         return res.status(201).json({
             ok: true,
             status: "login",
-            uid: usuario.id,
-            name: usuario.name,
+            usuario,
             token
         })
 
