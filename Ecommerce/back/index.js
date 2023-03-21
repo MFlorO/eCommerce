@@ -11,6 +11,6 @@ const { PORT } = process.env;
 //#############    SINCRONIZO LOS MODELOS. En desarrollo usamos "force:true"   #############//
 conn.sync({ force: true }).then(() => {
   app.listen(`${PORT || 3001}`, () => {
-    console.log(`%s listening at ${PORT || 3001}`); // eslint-disable-line no-console
+    console.log(`% listening at ${PORT || 3001}`); // eslint-disable-line no-console
   });
 });
