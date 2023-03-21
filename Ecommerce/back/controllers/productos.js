@@ -1,4 +1,4 @@
-const { Producto, Categoria } = require("../database/db");
+const { Producto, Categoria, Color, Talle } = require("../database/db");
 
 
 
@@ -14,10 +14,21 @@ exports.getProductos = async(req, res) => {
         const productos = await Producto.findAll({
             order:['codigo'],
             include: [{
-                model: Categoria, 
+                model: Categoria,
                 attributes: ['id',"nombre","isActive"],
                 through: { attributes: [] }
-            }]
+            },
+            {
+                model: Color,
+                attributes: ['id',"nombre"],
+                through: { attributes: [] }
+            },
+            {
+                model: Talle,
+                attributes: ['id',"nombre"],
+                through: { attributes: [] }
+            }
+        ]
         });
 
         if (productos)  return res.status(201).json({
@@ -50,12 +61,12 @@ exports.getProductos = async(req, res) => {
 
 exports.crearProducto = async(req, res) => {
 
-    const { codigo } = req.body
+    const { codigo, idCategoria, idColor, idTalle } = req.body
 
 
     try {
     
-        const codigoRepetido = await Producto.findOne({ codigo })
+        const codigoRepetido = await Producto.findOne({ where: {codigo} })
 
 
         if(codigoRepetido) {
@@ -65,7 +76,32 @@ exports.crearProducto = async(req, res) => {
             })
         }
         
-        const producto = await Producto.create(req.body)
+        const producto = await Producto.create(req.body);
+
+
+
+
+        //UNIR LAS DIFERENTES TABLAS
+
+        if(idCategoria){ //UNIR CATEGORIA CON PRODUCTO
+            const categoria = await Categoria.findOne({ Where:{ idCategoria} }) 
+
+            categoria.addProducto(producto)  
+        }
+
+
+        if(idColor){ //UNIR COLOR CON PRODUCTO
+            const color = await Color.findOne({ Where:{ idColor} }) 
+
+            color.addProducto(producto)   
+        }
+
+        
+        if(idTalle){ //UNIR TALLE CON PRODUCTO
+            const talle = await Talle.findOne({ Where:{ idTalle} }) 
+
+            talle.addProducto(producto)  
+        }
 
 
 
@@ -86,31 +122,3 @@ exports.crearProducto = async(req, res) => {
     }
 }
 
-
-
-
-
-
-// app.post('/productos', async (req, res) => {
-//     try {
-//       // Extrae los datos del cuerpo de la solicitud
-//       const { nombre, descripcion, precio, stock, talleId, colorId } = req.body;
-  
-//       // Crea el producto en la base de datos con Sequelize
-//       const producto = await Producto.create({
-//         nombre,
-//         descripcion,
-//         precio,
-//         stock,
-//         talleId,
-//         colorId,
-//       });
-  
-//       // Retorna una respuesta con el producto creado
-//       res.json(producto);
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ mensaje: 'Error al crear el producto' });
-//     }
-//   });
-  
