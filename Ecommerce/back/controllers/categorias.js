@@ -12,11 +12,11 @@ exports.getCategorias = async(req, res) => {
       
         if (categorias)  return res.status(201).json({
             ok: true,
-            status: "crearCategoria",
+            status: "todasLasCategorias",
             categorias
         })
         
-        return res.status(404).json({
+        return res.status(400).json({
             ok: false,
             status: 'No se encontraron las categorias'
         });
