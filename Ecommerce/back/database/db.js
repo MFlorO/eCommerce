@@ -55,8 +55,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const {
   Producto, 
   Categoria, 
-  Modelo,
-  Usuario,
+  Color,
+  Talle,
 } = sequelize.models;
 
 
@@ -76,17 +76,28 @@ Categoria.belongsToMany(Producto, {
 });
 
 
-Producto.belongsToMany(Modelo, {
-  through: 'producto_modelo',
+Producto.belongsToMany(Color, {
+  through: 'producto_color',
   onDelete: 'CASCADE',
   onUpdate: 'CASCADE',
 });
-Modelo.belongsToMany(Producto, {
-  through: 'producto_modelo',
+Color.belongsToMany(Producto, {
+  through: 'producto_color',
   onDelete: 'CASCADE',
   onUpdate: 'CASCADE',
 });
 
+
+Producto.belongsToMany(Talle, {
+  through: 'producto_talle',
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE',
+});
+Talle.belongsToMany(Producto, {
+  through: 'producto_talle',
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE',
+});
 
 
 
