@@ -7,31 +7,31 @@ const { Producto, Categoria, Color, Talle } = require("../database/db");
 
 
 
-exports.getProductos = async(req, res) => {
+exports.getProductos = async (req, res) => {
 
     try {
-    
+
         const productos = await Producto.findAll({
-            order:['codigo'],
+            order: ['codigo'],
             include: [{
                 model: Categoria,
-                attributes: ['id',"nombre","isActive"],
+                attributes: ['id', "nombre", "isActive"],
                 through: { attributes: [] }
             },
             {
                 model: Color,
-                attributes: ['id',"nombre"],
+                attributes: ['id', "nombre"],
                 through: { attributes: [] }
             },
             {
                 model: Talle,
-                attributes: ['id',"nombre"],
+                attributes: ['id', "nombre"],
                 through: { attributes: [] }
             }
-        ]
+            ]
         });
 
-        if (productos)  return res.status(201).json({
+        if (productos) return res.status(201).json({
             ok: true,
             status: "crearProducto",
             productos
@@ -41,8 +41,8 @@ exports.getProductos = async(req, res) => {
             ok: false,
             status: 'No se encontraron los productos'
         });
-    
-    } catch (error){
+
+    } catch (error) {
 
         res.status(500).json({
             ok: false,
@@ -59,49 +59,56 @@ exports.getProductos = async(req, res) => {
 // ------------ POST ------------ //
 
 
-exports.crearProducto = async(req, res) => {
+exports.crearProducto = async (req, res) => {
 
     const { codigo, idCategoria, idColor, idTalle } = req.body
 
 
     try {
-    
-        const codigoRepetido = await Producto.findOne({ where: {codigo} })
+
+        const codigoRepetido = await Producto.findOne({ where: { codigo } })
 
 
-        if(codigoRepetido) {
+        if (codigoRepetido) {
             return res.status(400).json({
                 ok: false,
                 status: "ya existe un producto con ese código",
             })
         }
-        
+
         const producto = await Producto.create(req.body);
 
 
 
+        //##### UNIR LAS DIFERENTES TABLAS #####
 
-        //UNIR LAS DIFERENTES TABLAS
+        idCategoria.map(async c => { //UNIR CATEGORIA CON PRODUCTO
 
-        if(idCategoria){ //UNIR CATEGORIA CON PRODUCTO
-            const categoria = await Categoria.findOne({ Where:{ idCategoria} }) 
+            if (c !== null || c !== undefined) {
 
-            categoria.addProducto(producto)  
+                const categoria = await Categoria.findByPk(c)
+
+                if (categoria) producto.addCategoria(categoria)
+            }
+
+        })
+
+
+        if (idColor !== null || idColor !== undefined) {  //UNIR COLOR CON PRODUCTO
+
+            const color = await Color.findOne({ Where: { idColor } })
+
+            color.addProducto(producto)
         }
 
 
-        if(idColor){ //UNIR COLOR CON PRODUCTO
-            const color = await Color.findOne({ Where:{ idColor} }) 
 
-            color.addProducto(producto)   
+        if (idTalle !== null || idTalle !== undefined) {   //UNIR TALLE CON PRODUCTO
+            const talle = await Talle.findOne({ Where: { idTalle } })
+
+            talle.addProducto(producto)
         }
 
-        
-        if(idTalle){ //UNIR TALLE CON PRODUCTO
-            const talle = await Talle.findOne({ Where:{ idTalle} }) 
-
-            talle.addProducto(producto)  
-        }
 
 
 
@@ -111,7 +118,7 @@ exports.crearProducto = async(req, res) => {
             producto
         })
 
-    
+
     } catch (error) {
 
         res.status(500).json({
