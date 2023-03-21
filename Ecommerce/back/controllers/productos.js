@@ -91,3 +91,26 @@ exports.crearProducto = async(req, res) => {
 
 
 
+// app.post('/productos', async (req, res) => {
+//     try {
+//       // Extrae los datos del cuerpo de la solicitud
+//       const { nombre, descripcion, precio, stock, talleId, colorId } = req.body;
+  
+//       // Crea el producto en la base de datos con Sequelize
+//       const producto = await Producto.create({
+//         nombre,
+//         descripcion,
+//         precio,
+//         stock,
+//         talleId,
+//         colorId,
+//       });
+  
+//       // Retorna una respuesta con el producto creado
+//       res.json(producto);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ mensaje: 'Error al crear el producto' });
+//     }
+//   });
+  

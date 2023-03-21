@@ -1,24 +1,24 @@
-const { Producto, Categoria } = require("../database/db");
+const { Talle } = require("../database/db");
 
 
 
 // ------------ GET ------------ //
 
-exports.getCategorias = async(req, res) => {
+exports.getTalles = async(req, res) => {
 
     try {
 
-        const categorias = await Categoria.findAll({ order: [['nombre', 'ASC']] });
+        const talles = await Talle.findAll({ order: [['nombre', 'ASC']] });
       
-        if (categorias)  return res.status(201).json({
+        if (talles)  return res.status(201).json({
             ok: true,
-            status: "todasLasCategorias",
-            categorias
+            status: "todosLosTalles",
+            talles
         })
         
         return res.status(400).json({
             ok: false,
-            status: 'No se encontraron las categorias'
+            status: 'No se encontraron los talles'
         });
 
 
@@ -38,25 +38,25 @@ exports.getCategorias = async(req, res) => {
 // ------------ POST ------------ //
 
 
-exports.crearCategoria = async(req, res) => {
+exports.crearTalles = async(req, res) => {
 
     const { nombre } = req.body
 
 
     try {
 
-        const nombreRepetido = await Categoria.findOne({ where: {nombre} })
+        const nombreRepetido = await Talle.findOne({ where: {nombre} })
 
 
         if(nombreRepetido) {
             return res.status(400).json({
                 ok: false,
-                status: "ya existe una categoría con ese nombre",
+                status: "ya existe ese talle",
             })
         }
 
     
-        let [categoria, created] = await Categoria.findOrCreate({
+        let [talle, created] = await Talle.findOrCreate({
             where: { nombre },
             defaults: { nombre }
         });
@@ -65,14 +65,14 @@ exports.crearCategoria = async(req, res) => {
         if(created) {
             return res.status(201).json({
                 ok: true,
-                status: "categoría creada con éxito",
-                categoria
+                status: "talle creada con éxito",
+                talle
             })
         }
         
         return res.status(400).json({
             ok: false,
-            status: "No se pudo crear la categoria",
+            status: "No se pudo crear el talle",
         })
 
     
