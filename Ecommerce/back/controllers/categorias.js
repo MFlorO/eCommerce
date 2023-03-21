@@ -1,4 +1,4 @@
-const { Producto, Categoria } = require("../database/db");
+const { Categoria } = require("../database/db");
 
 
 
