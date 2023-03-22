@@ -1,10 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import EccomerceApp from "./EcommerceApp";
+import "./styles.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+import { Provider } from "react-redux";
+import { store } from "~/redux";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <Provider store={store}>    {/* Redux va aca porque queremos que las rutas también puedan acceder al store global */}
+      <BrowserRouter>
+        <EccomerceApp />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
+);
