@@ -1,4 +1,4 @@
-const { Producto, Categoria, Color, Talle } = require("../database/db");
+const { Producto, Categoria, Modelo, ModeloVariante, Talle } = require("../database/db");
 
 
 
@@ -13,21 +13,16 @@ exports.getProductos = async (req, res) => {
 
         const productos = await Producto.findAll({
             order: ['codigo'],
-            include: [{
+            include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
                 model: Categoria,
-                attributes: ['id', "nombre", "isActive"],
-                through: { attributes: [] }
-            },
-            {
-                model: Color,
                 attributes: ['id', "nombre"],
                 through: { attributes: [] }
-            },
-            {
-                model: Talle,
-                attributes: ['id', "nombre"],
-                through: { attributes: [] }
-            }
+             },
+             {
+                model: Modelo,
+                include: [{model: ModeloVariante}]
+                
+             }
             ]
         });
 
@@ -80,8 +75,7 @@ exports.crearProducto = async (req, res) => {
 
 
 
-        //##### UNIR LAS DIFERENTES TABLAS #####
-
+    
         idCategoria.map(async c => { //UNIR CATEGORIA CON PRODUCTO
 
             if (c !== null || c !== undefined) {
@@ -92,25 +86,6 @@ exports.crearProducto = async (req, res) => {
             }
 
         })
-
-
-        if (idColor !== null || idColor !== undefined) {  //UNIR COLOR CON PRODUCTO
-
-            const color = await Color.findOne({ Where: { idColor } })
-
-            color.addProducto(producto)
-        }
-
-
-
-        if (idTalle !== null || idTalle !== undefined) {   //UNIR TALLE CON PRODUCTO
-            const talle = await Talle.findOne({ Where: { idTalle } })
-
-            talle.addProducto(producto)
-        }
-
-
-
 
         return res.status(201).json({
             ok: true,
