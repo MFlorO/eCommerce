@@ -78,6 +78,8 @@ Categoria.belongsToMany(Producto, {
   onUpdate: 'CASCADE',
 });
 
+
+//#############   RELACION 1 A MUCHOS - CREO LA RELACION POR LA LLAVE FORANEA  #############//
 Producto.hasMany(Modelo);
 Modelo.belongsTo(Producto);
 
