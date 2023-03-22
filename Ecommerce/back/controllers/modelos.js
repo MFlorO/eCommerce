@@ -8,13 +8,11 @@ exports.getModelos = async(req, res) => {
 
     try {
 
-        const modelos = await Modelos.findAll({
-            include: [{ model: Producto }]
-        });
+        const modelos = await Modelo.findAll();
       
-        if (modelos)  return res.status(201).json({
+        if (modelos.length > 0)  return res.status(201).json({
             ok: true,
-            status: "todosLosmodelos",
+            status: "Todos los modelos",
             modelos
         })
         
@@ -37,29 +35,36 @@ exports.getModelos = async(req, res) => {
 
 
 
+
+
+
+
 // ------------ POST ------------ //
 
 
 exports.crearModelos = async(req, res) => {
 
-    const { color, productoCodigo } = req.body   //codigo -> id producto
+    const { color, productoCodigo } = req.body   //productoCodigo -> id del producto que contiene el modelo
 
 
     try {
 
         const producto = await Producto.findByPk(productoCodigo);
 
-        if (!producto) return res.status(404).json({ message: 'Producto no encontrado' });
+        if (!producto) return res.status(404).json({
+            ok: false,
+            status: 'Productono encontrado'
+        });
 
     
         const modelo = await Modelo.create( {
             color,
-            productoCodigo: producto.codigo
+            productoCodigo
         });
     
         return res.status(201).json({
             ok: true,
-            status: "color creada con éxito",
+            status: "Color creado con éxito",
             modelo
         });
         

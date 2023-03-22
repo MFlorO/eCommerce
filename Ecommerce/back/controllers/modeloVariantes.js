@@ -17,7 +17,7 @@ exports.getModeloVariantes = async(req, res) => {
        
          if (modelosVariantes)  return res.status(201).json({
              ok: true,
-             status: "todosLosmodelosVariantes",
+             status: "Todos los modelos variantes",
              modelosVariantes
          })
          
@@ -51,22 +51,25 @@ exports.getModeloVariantes = async(req, res) => {
      try {
  
  
-         const modelo = await Modelo.findByPk(modeloId);
+        const modelo = await Modelo.findByPk(modeloId);
  
-         if (!modelo) return res.status(404).json({ message: 'Producto no encontrado' });
+        if (!modelo) return res.status(404).json({
+            ok: false,
+            status: 'Modelo no encontrado'
+        });
          
      
-         const modeloVariantes = await ModeloVariante.create( {
+        const modeloVariantes = await ModeloVariante.create( {
              talle,
              stock,
              modeloId: modelo.id
-         });
+        });
      
-         return res.status(201).json({
+        return res.status(201).json({
              ok: true,
-             status: "color creada con éxito",
+             status: "talle y stock creado con éxito",
              modeloVariantes
-         });
+        });
          
  
      
