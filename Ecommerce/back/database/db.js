@@ -20,6 +20,7 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 });
 
 
+
 //#############   VERIFICA SI MI CONEXION SE HIZO DE FORMA CORRECTA   #############//
 
 sequelize.authenticate()
@@ -29,6 +30,7 @@ sequelize.authenticate()
 .catch( err => {
   console.log(err)
 })
+
 
 
 
@@ -51,14 +53,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 
 
+
 //#############   sequelize.models tiene los modelos como propiedades - los relaciono con destructuring  #############//
+
 const {
   Producto, 
   Categoria, 
-  Color,
-  Talle,
+  Modelo,
+  ModeloVariante, 
 } = sequelize.models;
-
 
 
 
@@ -75,32 +78,13 @@ Categoria.belongsToMany(Producto, {
   onUpdate: 'CASCADE',
 });
 
+Producto.hasMany(Modelo);
+Modelo.belongsTo(Producto);
 
-Producto.belongsToMany(Color, {
-  through: 'producto_color',
-  onDelete: 'CASCADE',
-  onUpdate: 'CASCADE',
-});
-Color.belongsToMany(Producto, {
-  through: 'producto_color',
-  onDelete: 'CASCADE',
-  onUpdate: 'CASCADE',
-});
+Modelo.hasMany(ModeloVariante);
+ModeloVariante.belongsTo(Modelo);
 
-
-Producto.belongsToMany(Talle, {
-  through: 'producto_talle',
-  onDelete: 'CASCADE',
-  onUpdate: 'CASCADE',
-});
-Talle.belongsToMany(Producto, {
-  through: 'producto_talle',
-  onDelete: 'CASCADE',
-  onUpdate: 'CASCADE',
-});
-
-
-
+  
 
 
 
