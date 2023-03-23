@@ -1,8 +1,8 @@
-
+import { AdminLayOut } from "../layout"
 
 const Productos = () => {
   return (
-    <div>Productos</div>
+    <AdminLayOut>Productos</AdminLayOut>
   )
 }
 

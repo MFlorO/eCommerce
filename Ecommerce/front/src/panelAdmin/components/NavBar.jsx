@@ -2,11 +2,13 @@ import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 // import AppBar from '@mui/material/AppBar';
 import { Box, Typography, IconButton, Badge, Toolbar } from "@mui/material";
-import { Home } from "@mui/icons-material/";
+import SettingsIcon from '@mui/icons-material/Settings';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { drawerWidth } from "../layout/AdminLayOut";
+
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
-  zIndex: theme.zIndex.drawer - 10,
-  width: "100wv",
+  width: `calc(100% - (${drawerWidth}px + 2rem))`,
   // transition: theme.transitions.create(['width', 'margin'], {
   //   easing: theme.transitions.easing.sharp,
   //   duration: theme.transitions.duration.leavingScreen,
@@ -16,28 +18,25 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
 const NavBar = () => {
   return (
     <AppBar position="absolute">
-      <Toolbar
-        sx={{
-          pr: "24px", // keep right padding when drawer closed
-          background: "red",
-          height: "3rem",
-        }}
-      >
+      <Toolbar sx={{height:'6rem'}}  >
         <Box display="flex" flexDirection="row" justifyContent="end">
+
           <Typography
             component="h1"
             variant="h6"
             color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
+            // noWrap
+            // sx={{ flexGrow: 1 }}
           >
             Dashboard
           </Typography>
+
+          <IconButton><SettingsIcon /></IconButton>
+
           <IconButton color="inherit">
-            <Badge badgeContent={4}>
-              <Home />
-            </Badge>
+            <Badge badgeContent={4}><NotificationsIcon/></Badge>
           </IconButton>
+
         </Box>
       </Toolbar>
     </AppBar>

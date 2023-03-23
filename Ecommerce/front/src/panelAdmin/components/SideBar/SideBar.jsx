@@ -16,8 +16,10 @@ const Drawer = styled(MuiDrawer)(
       zIndex: 10,
       position: 'relative',
       marginLeft: '2rem',
+      marginTop: '2rem',
       whiteSpace: 'nowrap',
       width: drawerWidth,
+      height: 'max-content',
       borderRadius: '30px 0px 0px 30px',
       border: '1px solid #E0E0E0',
       // transition: theme.transitions.create('width', {

@@ -1,8 +1,8 @@
-
+import { AdminLayOut } from "../layout"
 
 const Ordenes = () => {
   return (
-    <div>Ordenes</div>
+    <AdminLayOut>Ordenes</AdminLayOut>
   )
 }
 
