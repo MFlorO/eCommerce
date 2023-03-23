@@ -1,41 +1,35 @@
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import MuiAppBar from "@mui/material/AppBar";
-// import AppBar from '@mui/material/AppBar';
-import { Box, Typography, IconButton, Badge, Toolbar } from "@mui/material";
+import AppBar from '@mui/material/AppBar';
+import { Box, IconButton, Badge, Toolbar } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { drawerWidth } from "../layout/AdminLayOut";
+import SearchIcon from '@mui/icons-material/Search';
 
-
-const AppBar = styled(MuiAppBar)(({ theme }) => ({
-  width: `calc(100% - (${drawerWidth}px + 2rem))`,
-  // transition: theme.transitions.create(['width', 'margin'], {
-  //   easing: theme.transitions.easing.sharp,
-  //   duration: theme.transitions.duration.leavingScreen,
-  // }),
-}));
 
 const NavBar = () => {
   return (
-    <AppBar position="absolute">
-      <Toolbar sx={{height:'6rem'}}  >
-        <Box display="flex" flexDirection="row" justifyContent="end">
+    <AppBar position="absolute" sx={{width: '80%', boxShadow:'none', background:'none'}}>
+      <Toolbar sx={{height:'7rem'}} >
+        <Box sx={{display:"flex", width: '100%', flexDirection:"row", justifyContent:"flex-end"}}>
+          
+         <Box sx={{display:"flex", width: '70%', flexDirection:"row", alignItems:'center'}}>
+          aca van las rutas
+         </Box>
 
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            // noWrap
-            // sx={{ flexGrow: 1 }}
-          >
-            Dashboard
-          </Typography>
 
-          <IconButton><SettingsIcon /></IconButton>
+         <Box sx={{display:"flex", width: '30%', flexDirection:"row", justifyContent:"space-around", alignItems:'center' }}>
+           <Box sx={{ display: 'flex', width:'20rem'}}>
+             <SearchIcon sx={{color:'white'}}/>
+             <input style={{borderRadius:'10px', height:'2rem', border:'2px solid #FFFFFF', background:'none'}}/>
+           </Box>
 
-          <IconButton color="inherit">
-            <Badge badgeContent={4}><NotificationsIcon/></Badge>
-          </IconButton>
+           <IconButton sx={{color:'white'}}>
+             <Badge badgeContent={4}><NotificationsIcon /></Badge>
+           </IconButton>
+
+           <IconButton sx={{color:'white'}}>
+            <SettingsIcon />
+           </IconButton>
+         </Box>
 
         </Box>
       </Toolbar>
