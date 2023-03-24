@@ -7,7 +7,7 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PersonIcon from "@mui/icons-material/Person";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-
+import AppsIcon from '@mui/icons-material/Apps';
 
 
 const ItemsPrincipales = () => {
@@ -34,6 +34,8 @@ const ItemsPrincipales = () => {
      {listas("", <CastIcon />, "Dashboard")}
       
      { listas("productos", <InventoryIcon  />, "Productos" ) }
+
+     { listas("categorias", <AppsIcon  />, "Categorias" ) }
 
      { listas("usuarios", <PersonIcon  />, "Usuarios" ) }
 

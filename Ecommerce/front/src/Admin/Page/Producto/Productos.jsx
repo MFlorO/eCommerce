@@ -23,9 +23,6 @@ const Productos = () => {
       </Paper>
     </Grid>
 
-
-
-
     </Grid>
     </Container>
   </AdminLayOut>

@@ -1,21 +1,13 @@
-// import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ListItemButton, ListItemIcon, ListItemText, ListSubheader, Typography } from "@mui/material/";
-import CloseIcon from "@mui/icons-material/Close";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
+import SettingsIcon from '@mui/icons-material/Settings';
 
 
 const ItemsSecundarios = () => {
 
   const navigate = useNavigate();
-
-
-  // useEffect(() => {
-  //   navigate;
-  // }, []);
-
 
 
   const listas = (navigateDireccion, icono, texto) => {
@@ -38,7 +30,7 @@ const ItemsSecundarios = () => {
 
       {listas("perfil", <AccountCircleIcon />, "Perfil")}
 
-      {listas("login", <CloseIcon color='error'/>, "Cerrar Sesión")}
+      {listas("login", <SettingsIcon color='error'/>, "Cerrar Sesión")}
 
     </>
   );

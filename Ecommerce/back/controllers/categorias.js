@@ -12,7 +12,6 @@ exports.getCategorias = async(req, res) => {
             order: [['nombre', 'ASC']],
             include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
                 model: Producto,
-                // attributes: ['id', "nombre"],
                 through: { attributes: [] }
              },
             ]
