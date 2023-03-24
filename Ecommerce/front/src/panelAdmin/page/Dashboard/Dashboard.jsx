@@ -2,7 +2,7 @@ import { AdminLayOut } from "../../layout";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { heightNavbar } from "../../layout/AdminLayOut";
+// import { heightNavbar } from "../../layout/AdminLayOut";
 
 import OrdenesRecientes from "./OrdenesRecientes";
 import Graficos from "./Graficos";
@@ -12,6 +12,7 @@ const Dashboard = () => {
     <AdminLayOut>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
+
           {/* Recent Deposits */}
           <Grid item xs={12} md={4} lg={3}>
             <Paper
@@ -75,6 +76,7 @@ const Dashboard = () => {
               <OrdenesRecientes />
             </Paper>
           </Grid>
+          
         </Grid>
 
         {/* <Copyright sx={{ pt: 4 }} /> */}

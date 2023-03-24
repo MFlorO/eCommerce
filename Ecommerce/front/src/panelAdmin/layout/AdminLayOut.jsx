@@ -21,7 +21,7 @@ function AdminLayOut({ children }) {
 
         <Box
           sx={{ minHeight: "300vh", width: '82%', display: "flex", flexDirection: "column", justifyContent: 'space-between', // alignItem: 'center'
-           mt:'7rem', p:'1rem'
+           mt: `${heightNavbar}rem`, p:'1rem'
           }}
         >
 
