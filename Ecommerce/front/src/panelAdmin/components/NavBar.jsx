@@ -3,13 +3,14 @@ import { Box, IconButton, Badge, Toolbar } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
+import { heightNavbar } from '../layout/AdminLayOut';
 
 
 const NavBar = () => {
   return (
-    <AppBar position="absolute" sx={{width: '80%', boxShadow:'none', background:'none'}}>
-      <Toolbar sx={{height:'7rem'}} >
-        <Box sx={{display:"flex", width: '100%', flexDirection:"row", justifyContent:"flex-end"}}>
+    <AppBar sx={{position: 'absolute', width: '80%', boxShadow:'none', background:'none'}}>
+      <Toolbar sx={{height: `${heightNavbar}rem`}} >
+        <Box sx={{display:"flex", width: '100%', flexDirection:"row", justifyContent:"flex-end",p:'1rem'}}>
           
          <Box sx={{display:"flex", width: '70%', flexDirection:"row", alignItems:'center'}}>
           aca van las rutas

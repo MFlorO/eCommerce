@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 
 const Footer = () => {
   return (
-    <Box sx={{display:'flex', width: "100%", height:'4rem', alignSelf:'flex-end', justifyContent:'center', alignItems:'center'}}>
+    <Box sx={{display:'flex', width: "100%", height:'4rem', alignSelf:'end', justifyContent:'center', mt:'2rem'}}>
       <Typography variant="body2" color="text.secondary" align="center">
         {"Copyright © "}
         <Link color="inherit" href=""> Your Website </Link>
