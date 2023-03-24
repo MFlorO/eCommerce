@@ -38,7 +38,7 @@ const ItemsSecundarios = () => {
 
       {listas("perfil", <AccountCircleIcon />, "Perfil")}
 
-      {listas("/login", <CloseIcon color='error'/>, "Cerrar Sesión")}
+      {listas("login", <CloseIcon color='error'/>, "Cerrar Sesión")}
 
     </>
   );

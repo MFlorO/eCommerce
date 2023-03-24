@@ -57,11 +57,11 @@ function preventDefault(event) {
 
 
 
-export default function Orders() {
+export default function OrdenesRecientes() {
   return (
     <>
 
-      <Typography component="h2" variant="h6" color="primary" gutterBottom>Recent Orders</Typography>
+      <Typography component="h2" variant="h6" >Ordenes recientes</Typography>
 
       <Table size="small">
         <TableHead>

@@ -10,7 +10,7 @@ function AdminLayOut({ children }) {
   return (
       <Box
         sx={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between",
-         background: 'linear-gradient(#595959, #FFFFFF)'
+         background: '#EBEAEA'
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", width: '18%', alignItems:'center'}} >

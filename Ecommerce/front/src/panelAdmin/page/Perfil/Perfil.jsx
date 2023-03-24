@@ -1,4 +1,4 @@
-import { AdminLayOut } from "../layout"
+import { AdminLayOut } from "../../layout"
 
 const Perfil = () => {
   return (
