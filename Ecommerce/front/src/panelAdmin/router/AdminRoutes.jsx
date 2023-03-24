@@ -1,15 +1,27 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AdminLayOut } from "../layout";
+import { Dashboard, Usuarios, Facturacion, Ordenes, Productos, Perfil } from "../page";
 
 
 
 const AdminRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<AdminLayOut />}/>
+
+      <Route path="/*" element={<AdminLayOut />}/>
+
+      {/* ITEMS PRINCIPALES */}
+      <Route path="/" element={<Dashboard />}/>
+      <Route path="/productos" element={<Productos />}/>
+      <Route path="/usuarios" element={<Usuarios />}/>
+      <Route path="/facturacion" element={<Facturacion />}/>
+      <Route path="/ordenes" element={<Ordenes />}/>
+
+      {/* ITEMS SECUNDARIOS */}
+      <Route path="/perfil" element={<Perfil />}/>
 
       {/* Ruta defecto */}
-      <Route path="/" element={<Navigate to="/" />}/>
+      <Route path="/" element={<Navigate to="/dashboard/admin/" />}/>
     </Routes>
   )
 }
