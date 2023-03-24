@@ -1,4 +1,4 @@
-const { Categoria } = require("../database/db");
+const { Categoria, Producto } = require("../database/db");
 
 
 
@@ -8,7 +8,15 @@ exports.getCategorias = async(req, res) => {
 
     try {
 
-        const categorias = await Categoria.findAll({ order: [['nombre', 'ASC']] });
+        const categorias = await Categoria.findAll({ 
+            order: [['nombre', 'ASC']],
+            include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
+                model: Producto,
+                // attributes: ['id', "nombre"],
+                through: { attributes: [] }
+             },
+            ]
+        });
       
         if (categorias)  return res.status(201).json({
             ok: true,
