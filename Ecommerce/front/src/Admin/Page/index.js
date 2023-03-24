@@ -3,4 +3,4 @@ export * from './Facturacion';
 export * from './Ordenes';
 export * from './Perfil';
 export * from './Producto';
-export * from './Usuarios';
+export { default as Usuarios } from './Usuarios/Usuarios';

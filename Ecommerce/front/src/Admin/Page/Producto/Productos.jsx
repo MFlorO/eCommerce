@@ -1,4 +1,4 @@
-import { AdminLayOut } from "../../layout"
+import { AdminLayOut } from "../../../Admin/layout"
 import { Container, Grid, Paper, Button } from "@mui/material";
 
 
@@ -13,12 +13,6 @@ return (
         <Button>CREAR PRODUCTO</Button>
       </Paper>
     </Grid>
-
-    {/* <Grid item xs={12} md={4} lg={2}>
-      <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 100 }}>
-        <Button>CREAR PRODUCTO</Button>
-      </Paper>
-    </Grid> */}
 
     <Grid item xs={12} md={4} lg={12}>
       <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 300 }}>

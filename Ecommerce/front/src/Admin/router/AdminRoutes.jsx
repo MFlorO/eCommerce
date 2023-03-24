@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AdminLayOut } from "../layout";
-import { Dashboard, Usuarios, Facturacion, Ordenes, Productos, Perfil } from "../page";
+import { Dashboard, Usuarios, Facturacion, Ordenes, Productos, Perfil } from "../Page";
 
 
 

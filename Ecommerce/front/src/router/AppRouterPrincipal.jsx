@@ -1,8 +1,5 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-
-// import { Loading } from "~/ui";
-
-import AdminRoutes from "~/panelAdmin/router/AdminRoutes";
+import { Route, Routes } from "react-router-dom";
+import { AdminRoutes } from "~/Admin/";
 
 
 
@@ -11,9 +8,7 @@ const AppRouterPrincipal = () => {
 
   return (
     <Routes>
-
       <Route path="/dashboard/admin/*" element={ <AdminRoutes /> } />
-
     </Routes>
   );
 };
