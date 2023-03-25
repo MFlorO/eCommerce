@@ -1,17 +1,21 @@
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
 
 import { ListItemButton, ListItemText, Switch} from "@mui/material/";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack } from "@mui/system";
 
+import { UpdateCategorias } from '~/redux/slice/admin/thunks';
 
 
+const ListaCategorias = ({ id, nombre, isActive }) => {
 
-const ListaCategorias = ({ nombre, isActive }) => {
+  const dispatch = useDispatch()
+
   const [checked, setChecked] = useState(true);
 
-  const handleToggle = (value) => () => {
+  // const handleToggle = (value) => () => {
     // const currentIndex = checked.indexOf(value);
     // const newChecked = [...checked];
     // if (currentIndex === -1) {
@@ -20,7 +24,10 @@ const ListaCategorias = ({ nombre, isActive }) => {
     //   newChecked.splice(currentIndex, 1);
     // }
     // setChecked(newChecked);
-  };
+  // };
+
+  
+  const onClickEdit = (body) => dispatch(UpdateCategorias(body))
 
   return (
     <>
@@ -35,7 +42,7 @@ const ListaCategorias = ({ nombre, isActive }) => {
           //   }}
         />
 
-        <ListItemButton>
+        <ListItemButton onClick={() => onClickEdit({id,nombre})}>
           <EditIcon />
         </ListItemButton>
 
