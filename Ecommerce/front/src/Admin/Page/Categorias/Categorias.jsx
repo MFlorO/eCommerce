@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ListaCategorias } from './components';
 import { AdminLayOut } from "~/Admin/layout"
 
-import { startGetCategorias } from '~/redux/slice/admin/thunks';
+import { startGetTodasCategorias } from '~/redux/slice/admin/thunks';
 
 import { Container, Grid, Paper, Button, List, ListSubheader, ListItem } from "@mui/material";
 
@@ -18,7 +18,7 @@ const Categorias = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(startGetCategorias(categorias))
+    dispatch(startGetTodasCategorias(categorias))
   }, [])
   
   const navigate = useNavigate()
