@@ -49,10 +49,11 @@ exports.crearCategoria = async(req, res) => {
 
     const { nombre } = req.body
 
+    const nombreMayuscula = nombre.toUpperCase()
 
     try {
 
-        const nombreRepetido = await Categoria.findOne({ where: {nombre} })
+        const nombreRepetido = await Categoria.findOne({ where: {nombre: nombreMayuscula} })
 
 
         if(nombreRepetido) {
@@ -64,8 +65,8 @@ exports.crearCategoria = async(req, res) => {
 
     
         let [categoria, created] = await Categoria.findOrCreate({
-            where: { nombre },
-            defaults: { nombre }
+            where: { nombre: nombreMayuscula },
+            // defaults: { nombre }
         });
 
 
@@ -93,3 +94,58 @@ exports.crearCategoria = async(req, res) => {
     }
 }
 
+
+
+
+// ------------ PUT ------------ //
+
+
+exports.editCategoria = async(req, res) => {
+
+    const { id, nombre } = req.body
+    
+    const nombreMayuscula = nombre.toUpperCase()
+
+    try {
+
+        const categoriaExistente = await Categoria.findByPk(id)
+        const nombreRepetido = await Categoria.findOne({ where: {nombre: nombreMayuscula} })
+    
+        if(categoriaExistente === null) {
+            return res.status(400).json({
+                ok: false,
+                status: "No se encontró la categoría",
+            })
+        }
+
+        if(nombreRepetido) {
+            return res.status(400).json({
+                ok: false,
+                status: "ya existe una categoría con ese nombre",
+            })
+        }
+
+    
+        await Categoria.update({ 
+            nombre: nombreMayuscula
+        },
+        { where: {id:id}  }
+        );
+
+
+         return res.status(201).json({
+            ok: true,
+            status: "categoría modificada con éxito",
+        })
+        
+
+    
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+        console.log(error)
+    }
+}

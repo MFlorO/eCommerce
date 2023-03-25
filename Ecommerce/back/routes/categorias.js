@@ -4,12 +4,13 @@
 
 const { Router } = require('express');
 const router = Router();
-const { getCategorias, crearCategoria } = require('../controllers/categorias');
+const { getCategorias, crearCategoria, editCategoria } = require('../controllers/categorias');
 
 
 
 router.get('/', getCategorias)
-router.post('/crearCategoria', crearCategoria );
+router.post('/', crearCategoria );
+router.put('/', editCategoria)
 
 
 
