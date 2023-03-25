@@ -1,4 +1,7 @@
 import { AdminLayOut } from "~/Admin/layout"
+import { validacionFormulario } from "~/functions";
+import { useForm } from "~/Hook";
+
 import { Grid, Paper, FormControl, Input, TextField } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 // import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
@@ -6,8 +9,25 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 
 
-
 const CrearProducto = () => {
+
+  const { codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria, idColor, idTalle, 
+  onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
+
+
+  const formValid = () => {
+    if (Object.keys(errorFormValid).length > 0) return true
+
+    return false
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(startLoginWithEmailPassword({
+     codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria, idColor, idTalle 
+    }));
+    onResetForm();
+  }
 
   return (
     <AdminLayOut>
@@ -16,7 +36,7 @@ const CrearProducto = () => {
       <Grid item xs={6} >
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
        
-        <FormControl variant="standard"  sx={{ p: 2, display: "flex", flexDirection: "column", justifyContent:'center',  gap:'1rem'}}>
+        <FormControl variant="standard"  sx={{ p: 2, display: "flex", flexDirection: "column", justifyContent:'center',  gap:'1rem'}} onSubmit={onSubmit}>
 
           <TextField
             InputProps={{
@@ -28,8 +48,8 @@ const CrearProducto = () => {
 
             label="Codigo"
             name="codigo" 
-            // value={email} 
-            // onChange={onInputChange} 
+            value={codigo} 
+            onChange={onInputChange} 
           />
 
           
@@ -42,8 +62,8 @@ const CrearProducto = () => {
               )}}
             label="Nombre"
             name="nombre" 
-            // value={email} 
-            // onChange={onInputChange} 
+            value={nombre} 
+            onChange={onInputChange} 
           />
 
           
@@ -58,8 +78,8 @@ const CrearProducto = () => {
             rows={4}
             label="Descripción"
             name="descripcion" 
-            // value={email} 
-            // onChange={onInputChange} 
+            value={descripcion} 
+            onChange={onInputChange} 
           />
 
           
@@ -73,8 +93,8 @@ const CrearProducto = () => {
             type='number'
             label="Precio"
             name="precio" 
-            // value={email} 
-            // onChange={onInputChange} 
+            value={precio} 
+            onChange={onInputChange} 
           />
 
           
@@ -82,8 +102,8 @@ const CrearProducto = () => {
             type='file'
             label="Imagen"
             name="imagen" 
-            // value={email} 
-            // onChange={onInputChange} 
+            value={imagen} 
+            onChange={onInputChange} 
           />
           
           <TextField
@@ -97,8 +117,8 @@ const CrearProducto = () => {
             type='date'
             label="Fecha de publicación"
             name="fecha" 
-            // value={email} 
-            // onChange={onInputChange} 
+            value={fecha} 
+            onChange={onInputChange} 
           />
 
           
@@ -113,8 +133,8 @@ const CrearProducto = () => {
             type='number'
             label="Puntaje"
             name="puntaje" 
-            // value={email} 
-            // onChange={onInputChange} 
+            value={puntaje} 
+            onChange={onInputChange} 
           />
 
           <TextField
@@ -127,9 +147,9 @@ const CrearProducto = () => {
               )}}
             select
             label="Categoría"
-            name="categoria" 
-            // value={email} 
-            // onChange={onInputChange} 
+            name="idCategoria" 
+            value={idCategoria} 
+            onChange={onInputChange} 
           />
 
           <TextField
@@ -142,9 +162,9 @@ const CrearProducto = () => {
               )}}
             select
             label="Color"
-            name="color" 
-            // value={email} 
-            // onChange={onInputChange} 
+            name="idColor" 
+            value={idColor} 
+            onChange={onInputChange} 
           />
 
           <TextField
@@ -157,9 +177,9 @@ const CrearProducto = () => {
               )}}
             select
             label="Talle"
-            name="talle" 
-            // value={email} 
-            // onChange={onInputChange} 
+            name="idTalle" 
+            value={idTalle} 
+            onChange={onInputChange} 
           />
 
           
