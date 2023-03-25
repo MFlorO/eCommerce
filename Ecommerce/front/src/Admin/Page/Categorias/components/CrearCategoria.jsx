@@ -1,11 +1,12 @@
 import { AdminLayOut } from "~/Admin/layout"
-import { Grid, Paper, FormControl, TextField, Typography, Button } from "@mui/material";
+import { Grid, Paper, TextField, Typography, Button } from "@mui/material";
 import { useForm } from "~/Hook";
 import { validacionFormulario } from "~/functions";
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-// import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useDispatch } from "react-redux";
 
 
 
@@ -16,8 +17,9 @@ const formData = {
 
 
 
-
 const CrearCategoria = () => {
+
+  const dispatch = useDispatch()
 
   const { nombre, onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
   
@@ -28,9 +30,10 @@ const CrearCategoria = () => {
     return false
   }
 
+
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(startLoginWithEmailPassword({nombre}));
+    // dispatch(startLoginWithEmailPassword(nombre.toUpperCase()));
     onResetForm();
   }
 
@@ -42,15 +45,14 @@ const CrearCategoria = () => {
       <Grid item xs={6}>
         <Paper sx={{ p: 2, display: "flex", justifyContent:'center', alignItems:'center'}}>
        
-        <FormControl variant="standard" sx={{ gap:'1.5rem'}} onSubmit={onSubmit}>
+        <form style={{ display:'flex', flexDirection:'column', gap:'1.5rem'}} onSubmit={onSubmit}>
 
           <Typography component="h5" variant="h6" textAlign='center'>CREAR UNA CATEGORIA</Typography>
           
           <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
+            InputProps={{ startAdornment: ( 
+                <InputAdornment>
+                  {!errorFormValid.nombre ? <CheckCircleIcon color="success"/> : <CancelRoundedIcon color="error"/>}
                 </InputAdornment>
               )}}
             label="Nombre"
@@ -61,10 +63,9 @@ const CrearCategoria = () => {
             helperText={errorFormValid.nombre}
           />
 
-          <Button variant="contained">CREAR</Button>
+          <Button variant="contained" type="submit" disabled={formValid()}>CREAR</Button>
 
-          
-        </FormControl>
+        </form>
 
         </Paper>
       </Grid>
