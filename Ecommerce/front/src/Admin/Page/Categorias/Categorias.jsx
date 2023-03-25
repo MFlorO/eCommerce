@@ -6,7 +6,7 @@ import { AdminLayOut } from "~/Admin/layout"
 
 import { startGetCategorias } from '~/redux/slice/admin/thunks';
 
-import { Container, Grid, Paper, Button, List, ListSubheader, ListItem, Stack } from "@mui/material";
+import { Container, Grid, Paper, Button, List, ListSubheader, ListItem } from "@mui/material";
 
 
 
@@ -53,4 +53,4 @@ const Categorias = () => {
   )
 }
 
-export default Categorias
+export default Categorias;

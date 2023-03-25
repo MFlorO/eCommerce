@@ -14,7 +14,7 @@ const Dashboard = () => {
         <Grid container spacing={3}>
 
           {/* Recent Deposits */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={4} >
             <Paper
               sx={{
                 p: 2,
@@ -29,7 +29,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* Recent Deposits */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={4} >
             <Paper
               sx={{
                 p: 2,
@@ -44,7 +44,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* Recent Deposits */}
-          <Grid item xs={12} md={4} lg={3}>
+          <Grid item xs={12} md={4} lg={4}>
             <Paper
               sx={{
                 p: 2,
@@ -58,7 +58,7 @@ const Dashboard = () => {
             </Paper>
           </Grid>
 
-          <Grid item xs={12} md={8} lg={9}>
+          <Grid item xs={12} >
             <Paper
               sx={{
                 p: 2,

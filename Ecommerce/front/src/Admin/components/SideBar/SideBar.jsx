@@ -1,7 +1,7 @@
 import { ItemsPrincipales, ItemsSecundarios } from './ListItems';
 import { heightNavbar } from '../../layout/AdminLayOut';
 
-import { Box, Toolbar, Divider, List } from '@mui/material/Box';
+import { Box, Toolbar, Divider, List } from '@mui/material';
 
 
 
