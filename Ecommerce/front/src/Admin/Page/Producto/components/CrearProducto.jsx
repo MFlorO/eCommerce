@@ -1,15 +1,26 @@
+// import { useDispatch } from "react-redux";
 import { AdminLayOut } from "~/Admin/layout"
-import { validacionFormulario } from "~/functions";
 import { useForm } from "~/Hook";
+import { validacionFormulario } from "~/functions";
 
-import { Grid, Paper, FormControl, Input, TextField } from "@mui/material";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-// import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import InputAdornment from '@mui/material/InputAdornment';
+import { Grid, Paper, Button, Input, TextField } from "@mui/material";
+
+
+const formData = {
+  codigo: '',
+  nombre: '',
+  precio: 0,
+  descripcion: '',
+  imagen: '',
+  fecha: '',
+  puntaje: 0,
+}
 
 
 
 const CrearProducto = () => {
+
+  // const dispatch = useDispatch()
 
   const { codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria, idColor, idTalle, 
   onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
@@ -23,9 +34,7 @@ const CrearProducto = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(startLoginWithEmailPassword({
-     codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria, idColor, idTalle 
-    }));
+    // dispatch(startLoginWithEmailPassword({ codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria, idColor, idTalle }));
     onResetForm();
   }
 
@@ -36,60 +45,41 @@ const CrearProducto = () => {
       <Grid item xs={6} >
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
        
-        <FormControl variant="standard"  sx={{ p: 2, display: "flex", flexDirection: "column", justifyContent:'center',  gap:'1rem'}} onSubmit={onSubmit}>
+        <form style={{ p: 2, display: "flex", flexDirection: "column", justifyContent:'center',  gap:'1rem'}} onSubmit={onSubmit}>
 
           <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
-
             label="Codigo"
             name="codigo" 
             value={codigo} 
             onChange={onInputChange} 
+            error={formValid()}
+            helperText={errorFormValid.codigo}
           />
 
           
           <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
             label="Nombre"
             name="nombre" 
             value={nombre} 
             onChange={onInputChange} 
+            error={formValid()}
+            helperText={errorFormValid.nombre}
           />
 
           
           <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
             multiline
             rows={4}
             label="Descripción"
             name="descripcion" 
             value={descripcion} 
             onChange={onInputChange} 
+            error={formValid()}
+            helperText={errorFormValid.descripcion}
           />
 
           
           <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
             type='number'
             label="Precio"
             name="precio" 
@@ -107,13 +97,11 @@ const CrearProducto = () => {
           />
           
           <TextField
-            id="input-with-icon-textfield"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
+            InputProps={{ startAdornment: ( 
+              <InputAdornment>
+                {!errorFormValid.nombre ? <CheckCircleIcon color="success"/> : <CancelRoundedIcon color="error"/>}
+              </InputAdornment>
+            )}}
             type='date'
             label="Fecha de publicación"
             name="fecha" 
@@ -123,13 +111,11 @@ const CrearProducto = () => {
 
           
           <TextField
-            id="input-with-icon-textfield"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
+            InputProps={{ startAdornment: ( 
+              <InputAdornment>
+                {!errorFormValid.nombre ? <CheckCircleIcon color="success"/> : <CancelRoundedIcon color="error"/>}
+              </InputAdornment>
+            )}}
             type='number'
             label="Puntaje"
             name="puntaje" 
@@ -138,13 +124,6 @@ const CrearProducto = () => {
           />
 
           <TextField
-            id="input-with-icon-textfield"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
             select
             label="Categoría"
             name="idCategoria" 
@@ -153,13 +132,6 @@ const CrearProducto = () => {
           />
 
           <TextField
-            id="input-with-icon-textfield"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
             select
             label="Color"
             name="idColor" 
@@ -168,13 +140,6 @@ const CrearProducto = () => {
           />
 
           <TextField
-            id="input-with-icon-textfield"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="end">
-                  <CheckCircleIcon />
-                </InputAdornment>
-              )}}
             select
             label="Talle"
             name="idTalle" 
@@ -182,8 +147,10 @@ const CrearProducto = () => {
             onChange={onInputChange} 
           />
 
+        <Button variant="contained" type="submit" disabled={formValid()}>CREAR</Button>
+
           
-        </FormControl>
+        </form>
 
         </Paper>
       </Grid>

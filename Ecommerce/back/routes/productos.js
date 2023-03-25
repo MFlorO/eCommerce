@@ -11,7 +11,7 @@ const { crearProducto, getProductos } = require('../controllers/productos');
 
 
 router.get('/', getProductos)
-router.post('/crearProducto', crearProducto );
+router.post('/', crearProducto );
 
 
 
