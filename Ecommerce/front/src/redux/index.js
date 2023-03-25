@@ -1,2 +1,2 @@
-export * from './panelAdmin';
+export * from './slice';
 export * from './store/store';

@@ -4,35 +4,32 @@ import Footer from "../components/Footer";
 
 import Box from "@mui/material/Box";
 
+
+
 export const heightNavbar = 7
 
-function AdminLayOut({ children }) {
+
+const AdminLayOut = ({ children }) => {
+  
   return (
-      <Box
-        sx={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between",
-         background: '#EBEAEA'
-        }}
+    <Box sx={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", background: '#EBEAEA' }}>
+
+      <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", width: '18%', alignItems:'center'}} >
+        <SideBar />
+      </Box>
+
+      <NavBar />
+
+      <Box sx={{ minHeight:'100vh', maxHeight: "max-content", width: '82%', display: "flex", flexDirection: "column", 
+          justifyContent: 'space-between', mt: `${heightNavbar}rem`, paddingRight:'2rem' }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", width: '18%', alignItems:'center'}} >
-          <SideBar />
-        </Box>
-
-        <NavBar />
-
-        <Box
-          sx={{ minHeight: "300vh", width: '82%', display: "flex", flexDirection: "column", justifyContent: 'space-between', // alignItem: 'center'
-           mt: `${heightNavbar}rem`, p:'1rem'
-          }}
-        >
-
-          <Box>
-            {children}
-          </Box> 
+          <Box>{children}</Box> 
 
           <Footer />
-        </Box>
 
       </Box>
+
+    </Box>
   );
 }
 

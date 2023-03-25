@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { panelAdminSlice } from '../panelAdmin'
+import { adminSlice } from '../slice/admin'
+
 
 export const store = configureStore({
   reducer: {
-    panelAdmin: panelAdminSlice.reducer
+    admin: adminSlice.reducer
   },
 })
