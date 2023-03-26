@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { AdminLayOut } from "~/Admin/layout"
-import { startGetTodosProductos } from '~/redux/slice/admin/thunks';
+import useProductos from '~/Hook/useProductos';
 
 import { ListaProductos } from './components';
 import { Container, Grid, Paper, Button, Box, Stack } from "@mui/material";
@@ -11,14 +9,9 @@ import AddIcon from '@mui/icons-material/Add';
 
 const Productos = () => {
 
-  const { productos } = useSelector( state => state.admin)
+ const productos = useProductos()
 
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(startGetTodosProductos(productos))
-  }, [])
-  
+ console.log(productos)
 
  const navigate = useNavigate()
 
@@ -34,7 +27,7 @@ const Productos = () => {
           <Button onClick={() => navigate(`/dashboard/admin/productos/crearProducto`) }><AddIcon />{""} Crear Producto</Button>
         </Stack>
 
-        {productos.payload?.map(p => (
+        {productos?.payload?.map(p => (
             <Box key={p.codigo}>
               <ListaProductos {...p} />
             </Box>
