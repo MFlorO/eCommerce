@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCategoria } from "~/Hook";
 import { useNavigate } from "react-router-dom";
 import { ListaCategorias } from './components';
 import { AdminLayOut } from "~/Admin/layout"
-import { startGetTodasCategorias } from '~/redux/slice/admin/thunks';
+
 
 import { Container, Grid, Paper, Button, List, ListSubheader, ListItem, Stack } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
@@ -13,13 +12,9 @@ import AddIcon from '@mui/icons-material/Add';
 
 const Categorias = () => {
 
-  const { categorias } = useSelector( state => state.admin)
 
-  const dispatch = useDispatch()
+  const categorias = useCategoria()
 
-  useEffect(() => {
-    dispatch(startGetTodasCategorias(categorias))
-  }, [])
   
   const navigate = useNavigate()
   
@@ -37,7 +32,7 @@ const Categorias = () => {
 
         <List sx={{ width: '100%'}} subheader={<ListSubheader>Lista de Categorías</ListSubheader>} >
 
-          {categorias.payload?.map(c => (
+          {categorias?.payload?.map(c => (
             <ListItem key={c.id}>
               <ListaCategorias {...c} />
             </ListItem>
