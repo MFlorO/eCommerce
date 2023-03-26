@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 
-import { ListItemButton, ListItemText, Switch} from "@mui/material/";
+import { Button, ListItemButton, ListItemText, Switch} from "@mui/material/";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack } from "@mui/system";
@@ -42,13 +42,8 @@ const ListaCategorias = ({ id, nombre, isActive }) => {
           //   }}
         />
 
-        <ListItemButton onClick={() => onClickEdit({id,nombre})}>
-          <EditIcon />
-        </ListItemButton>
-
-        <ListItemButton>
-          <DeleteIcon />
-        </ListItemButton>
+        <Button onClick={() => onClickEdit({id,nombre})}><EditIcon /></Button>
+        <Button><DeleteIcon /></Button>
 
         </Stack>
 
