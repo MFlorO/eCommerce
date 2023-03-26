@@ -11,8 +11,6 @@ const Productos = () => {
 
  const productos = useProductos()
 
- console.log(productos)
-
  const navigate = useNavigate()
 
  return (
