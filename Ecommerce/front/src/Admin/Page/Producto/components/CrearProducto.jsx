@@ -2,8 +2,14 @@
 import { AdminLayOut } from "~/Admin/layout"
 import { useForm } from "~/Hook";
 import { validacionFormulario } from "~/functions";
+import CrearModelosProductos from "./CrearModelosProductos";
+import { useCategoria } from "~/Hook";
 
-import { Grid, Paper, Button, Input, TextField } from "@mui/material";
+import { Grid, Paper, Button, Input, TextField, Typography, Select, MenuItem, Menu } from "@mui/material";
+// import CheckCircleIcon from "@mui/icons-material/CheckCircle"
+// import CancelRoundedIcon from "@mui/icons-material/CancelRounded"
+
+
 
 
 const formData = {
@@ -14,6 +20,7 @@ const formData = {
   imagen: '',
   fecha: '',
   puntaje: 0,
+  idCategoria: []
 }
 
 
@@ -22,10 +29,12 @@ const CrearProducto = () => {
 
   // const dispatch = useDispatch()
 
-  const { codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria, idColor, idTalle, 
+  const { codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria, idColor, idTalle, idStock,
   onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
+  
 
-
+  const categorias = useCategoria()
+  
   const formValid = () => {
     if (Object.keys(errorFormValid).length > 0) return true
 
@@ -97,13 +106,7 @@ const CrearProducto = () => {
           />
           
           <TextField
-            InputProps={{ startAdornment: ( 
-              <InputAdornment>
-                {!errorFormValid.nombre ? <CheckCircleIcon color="success"/> : <CancelRoundedIcon color="error"/>}
-              </InputAdornment>
-            )}}
             type='date'
-            label="Fecha de publicación"
             name="fecha" 
             value={fecha} 
             onChange={onInputChange} 
@@ -111,11 +114,6 @@ const CrearProducto = () => {
 
           
           <TextField
-            InputProps={{ startAdornment: ( 
-              <InputAdornment>
-                {!errorFormValid.nombre ? <CheckCircleIcon color="success"/> : <CancelRoundedIcon color="error"/>}
-              </InputAdornment>
-            )}}
             type='number'
             label="Puntaje"
             name="puntaje" 
@@ -123,30 +121,24 @@ const CrearProducto = () => {
             onChange={onInputChange} 
           />
 
-          <TextField
-            select
+          <Select
             label="Categoría"
             name="idCategoria" 
-            value={idCategoria} 
+            value={idCategoria}
             onChange={onInputChange} 
-          />
+          >
+            <MenuItem defaultValue={'none'}></MenuItem>
+            {categorias?.payload?.map( c => <MenuItem value={c.id} key={c.id}>{c.nombre}</MenuItem>)}
+          </Select>
 
-          <TextField
-            select
-            label="Color"
-            name="idColor" 
-            value={idColor} 
-            onChange={onInputChange} 
-          />
+          <Typography>Categorias Elegidas:</Typography>
+          <ul>
+            {idCategoria?.map( c => <li key={c}>{c}</li>)}
+          </ul>
+          
+          {/* <CrearModelosProductos idColor={idColor} idTalle={idTalle} idStock={idStock} onInputChange={onInputChange}/> */}
 
-          <TextField
-            select
-            label="Talle"
-            name="idTalle" 
-            value={idTalle} 
-            onChange={onInputChange} 
-          />
-
+          
         <Button variant="contained" type="submit" disabled={formValid()}>CREAR</Button>
 
           
