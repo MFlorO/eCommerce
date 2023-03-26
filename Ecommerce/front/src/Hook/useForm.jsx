@@ -9,11 +9,24 @@ export const useForm = ( initialForm = {}, validate ) => {
     const [ errorFormValid, seterrorFormValid ] = useState( {} );
 
     const onInputChange = ({ target }) => {
+
         const { name, value } = target;
 
-        setFormState({ ...formState, [ name ]: value });
+        if(name === "idCategoria"){
 
-        seterrorFormValid(validate ({...formState, [ name ]:value }));
+            if(!formState.idCategoria.includes(value)){
+      
+              setFormState({ ...formState, 
+                 [name] : [...formState.idCategoria, value] 
+              });
+            }
+             
+          }else{
+
+            setFormState({ ...formState, [ name ]: value });
+    
+            seterrorFormValid(validate ({...formState, [ name ]:value }));
+          }
     }
 
     const onResetForm = () => setFormState( initialForm );
