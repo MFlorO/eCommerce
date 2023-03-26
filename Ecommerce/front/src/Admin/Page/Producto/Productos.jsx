@@ -19,7 +19,7 @@ const Productos = () => {
     <Grid container spacing={3}>
 
     <Grid item xs={12} >
-       <Paper sx={{ p: 2,display: "flex", flexDirection: "column", maxHeight: '30rem', height:'max-content', justifyContent:'center' }}>
+       <Paper sx={{ p: 2,display: "flex", flexDirection: "column", height:'max-content', justifyContent:'center' }}>
         
         <Stack sx={{flexDirection:"row"}}>
           <Button onClick={() => navigate(`/dashboard/admin/productos/crearProducto`) }><AddIcon />{""} Crear Producto</Button>

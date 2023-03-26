@@ -1,35 +1,65 @@
-import { IconButton, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material/";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import {Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material/";
+
+
+const titulo = ["Código","Nombre", "Descripción", "Precio", "Imagen", "Fecha de Publicación", "Puntaje", "Oferta"]
 
 
 
 
 const TablaProducto = (p) => {
+
+  const {codigo, nombre, descripcion, precio, imagen, fechaPublicacion, puntaje, oferta} = p
+
+  const filas = {codigo, nombre, descripcion, precio, imagen, fechaPublicacion, puntaje, oferta}
+
+
   return (
-    <Stack flexDirection="row">
-    <TableContainer>
+    <TableContainer  sx={{ width: '100%', overflow: 'hidden' }}>
     <Table>
 
         <TableHead>
          <TableRow>
-            {Object.keys(p)?.map ( encabezado => <TableCell>{encabezado}</TableCell>)}
-            <TableCell>EDITAR</TableCell>
-            <TableCell>ELIMINAR</TableCell>
+            {titulo.map ( t => <TableCell key={t}>{t}</TableCell>)}
+            <TableCell>Categoría</TableCell>    
+            <TableCell align="center">Modelo</TableCell>     
           </TableRow>
         </TableHead>
 
+
         <TableBody>
-         <TableRow >
-          {Object.values(p)?.map(row => <TableCell>{row}</TableCell> )}
-             <TableCell><IconButton><EditIcon /></IconButton></TableCell>
-             <TableCell><IconButton><DeleteIcon /></IconButton></TableCell>
+         <TableRow>
+          {Object.values(filas)?.map((row) => <TableCell key={row}>{row}</TableCell> )}
+          {p.categoria?.map((c) => <TableCell key={c.id}>{c.nombre}</TableCell> ) }
+          <TableCell>   {/* MODELOS */}
+
+            <Stack flexDirection='row' justifyContent='space-between' borderBottom='1px solid #E0E0E0' sx={{width:'7rem'}}>
+              <Typography variant='p'>Color</Typography>
+              <Typography variant='p'>Talle</Typography> 
+              <Typography variant='p'>Stock</Typography>
+            </Stack>
+
+            {p.modelos?.map((m) => 
+              <Stack flexDirection='row' justifyContent='space-between' borderBottom='1px solid #E0E0E0' sx={{width:'7rem'}} key={m.id}>
+                 <Stack width={'50%'}><Typography>{m.color}</Typography></Stack>
+
+                 <Stack width={'50%'}>
+                  {m.modeloVariantes.map( mv => (
+                    <Stack flexDirection='row' justifyContent='space-between' key={mv.id}>              
+                      <Typography>{mv.talle}</Typography> 
+                      <Typography>{mv.stock}</Typography> 
+                      </Stack>
+                  ))}
+                  </Stack>
+
+                </Stack>
+              )}
+               </TableCell>  
+
          </TableRow>
         </TableBody>
 
     </Table>
     </TableContainer>
-    </Stack>
   );
 };
 
