@@ -20,7 +20,7 @@ const AdminLayOut = ({ children }) => {
 
       <NavBar />
 
-      <Box sx={{ minHeight:'100vh', maxHeight: "max-content", width: '82%', display: "flex", flexDirection: "column", 
+      <Box sx={{ minHeight:'100vh', height: "max-content", width: '82%', display: "flex", flexDirection: "column", 
           justifyContent: 'space-between', mt: `${heightNavbar}rem`, paddingRight:'2rem' }}
       >
           <Box>{children}</Box> 
