@@ -3,10 +3,7 @@ import { Grid, Paper, TextField } from "@mui/material";
 import { useForm } from "~/Hook";
 import { validacionFormulario } from "~/functions";
 
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import InputAdornment from '@mui/material/InputAdornment';
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CategoriaLayOut from "../../../layout/CategoriaLayOut";
 
@@ -21,7 +18,7 @@ const formData = {
 
 const CrearCategoria = () => {
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
@@ -52,11 +49,6 @@ const CrearCategoria = () => {
 
         <CategoriaLayOut titulo='CREAR UNA CATEGORIA' boton='CREAR' onSubmit={onSubmit}>
          <TextField
-            InputProps={{ startAdornment: ( 
-                <InputAdornment>
-                  {!errorFormValid.nombre ? <CheckCircleIcon color="success"/> : <CancelRoundedIcon color="error"/>}
-                </InputAdornment>
-              )}}
             label="Nombre"
             name="nombre" 
             value={nombre} 
