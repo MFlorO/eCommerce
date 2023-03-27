@@ -1,33 +1,18 @@
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+import EditCategoria from "./EditCategoria";
 
-import { Button, ListItemButton, ListItemText, Switch} from "@mui/material/";
+import { Button, ListItemText, Switch, Stack} from "@mui/material/";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Stack } from "@mui/system";
 
-import { UpdateCategorias } from '~/redux/slice/admin/thunks';
 
 
 const ListaCategorias = ({ id, nombre, isActive }) => {
 
-  const dispatch = useDispatch()
+  const [modal, setModal] = useState(false);
 
-  const [checked, setChecked] = useState(true);
-
-  // const handleToggle = (value) => () => {
-    // const currentIndex = checked.indexOf(value);
-    // const newChecked = [...checked];
-    // if (currentIndex === -1) {
-    //   newChecked.push(value);
-    // } else {
-    //   newChecked.splice(currentIndex, 1);
-    // }
-    // setChecked(newChecked);
-  // };
-
-  
-  const onClickEdit = (body) => dispatch(UpdateCategorias(body))
+  // const dispatch = useDispatch()
 
   return (
     <>
@@ -35,6 +20,7 @@ const ListaCategorias = ({ id, nombre, isActive }) => {
 
         <Stack flexDirection='row'>
           <Switch
+          
           //   onChange={handleToggle('wifi')}
           //   checked={checked.indexOf('wifi') !== -1}
           //   inputProps={{
@@ -42,7 +28,9 @@ const ListaCategorias = ({ id, nombre, isActive }) => {
           //   }}
         />
 
-        <Button onClick={() => onClickEdit({id,nombre})}><EditIcon /></Button>
+        <Button onClick={() => setModal(true)}><EditIcon /></Button>
+        <EditCategoria modal={modal} setModal={setModal}/>
+
         <Button><DeleteIcon /></Button>
 
         </Stack>
