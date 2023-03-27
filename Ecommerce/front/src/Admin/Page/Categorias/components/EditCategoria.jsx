@@ -1,0 +1,70 @@
+// import { useDispatch } from 'react-redux';
+// import { UpdateCategorias } from '~/redux/slice/admin/thunks';
+import CategoriaLayOut from "../../../layout/CategoriaLayOut";
+import { validacionFormulario } from "~/functions";
+import { useForm } from "~/Hook";
+
+
+import { Box, TextField, Modal} from '@mui/material';
+
+
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
+  
+const formData = {
+    nombre: ''
+  }
+  
+
+const EditCategoria = ({modal, setModal}) => {
+
+    const { nombre, onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
+    // const dispatch = useDispatch()
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        // dispatch(UpdateCategorias);
+        onResetForm();
+        setModal(false) 
+      }
+
+    const formValid = () => {
+     if (Object.keys(errorFormValid).length > 0) return true
+     return false
+    }
+
+  return (
+    <div>
+      <Modal
+        open={modal}
+        onClose={() => setModal(false)}
+      >
+        <Box sx={style}>
+        <CategoriaLayOut titulo='MODIFICAR CATEGORIA' boton='MODIFICAR' onSubmit={onSubmit}>
+         <TextField
+            label="Nombre"
+            name="nombre" 
+            value={nombre} 
+            onChange={onInputChange} 
+            error={formValid()}
+            helperText={errorFormValid.nombre}
+          />
+        </CategoriaLayOut>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
+export default EditCategoria
