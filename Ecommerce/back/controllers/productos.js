@@ -28,7 +28,7 @@ exports.getProductos = async (req, res) => {
 
         if (productos) return res.status(201).json({
             ok: true,
-            status: "crearProducto",
+            status: "getProducto",
             productos
         })
 
