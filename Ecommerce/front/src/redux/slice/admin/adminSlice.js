@@ -3,13 +3,18 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   categorias: [],
   productos: [],
-  producto: {}
+  producto: {},
+  status: null
 }
 
 export const adminSlice = createSlice({
   name: 'admin',
   initialState,
   reducers: {
+
+    getStatus : (state,{payload}) => {
+      state.status = payload
+    },
     
     getCategorias : (state, payload) => {
       state.categorias = payload
@@ -25,7 +30,6 @@ export const adminSlice = createSlice({
 
     deleteCategoria: (state, payload) => {
       state.categorias = state.categorias.filter(c  => c.id !== payload)
-      getCategorias()
     },
 
     getProductos: (state, payload) => {
@@ -34,6 +38,10 @@ export const adminSlice = createSlice({
 
     getProducto: (state, payload) => {
       state.producto = payload
+    },
+
+    postProducto: (state, payload) => {
+      state.productos.push(payload)
     },
 
     postModeloProductoId : (state,payload) => {
@@ -48,4 +56,7 @@ export const adminSlice = createSlice({
 })
 
 // Action creators function  --> Son funciones que se disparan. Ya estan asociadas a las acciones del reducer
-export const { getCategorias, postCatgoria, updateCatgoria, deleteCategoria, getProductos, getProducto, postModeloProductoId, deleteModelo } = adminSlice.actions;
+export const { getStatus,getCategorias, postCatgoria, updateCatgoria, deleteCategoria, 
+  getProductos, getProducto, postProducto, postModeloProductoId, deleteModelo,
+   
+} = adminSlice.actions;

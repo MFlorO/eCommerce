@@ -1,4 +1,7 @@
-import { getCategorias, postCatgoria, updateCatgoria, deleteCategoria, getProductos, getProducto, postModeloProductoId, deleteModelo } from "./adminSlice"
+import { getStatus, getCategorias, postCatgoria, updateCatgoria, deleteCategoria, 
+    getProductos, getProducto, postProducto, postModeloProductoId, deleteModelo,
+    
+ } from "./adminSlice"
 
 
 export const startGetTodasCategorias = () => {
@@ -32,10 +35,12 @@ export const PostCategorias = (body) => {
 
         const data = await response.json()
 
-        if ( !data.ok ) return console.log(data.status);
+        const { status } = data
+
+        if ( !data.ok ) return await dispatch(getStatus({status}));
 
         await dispatch(postCatgoria(data))
-        await dispatch(startGetTodasCategorias())
+        await dispatch(getStatus(data))
     }
 }
 
@@ -116,6 +121,40 @@ export const getProductoID = (codigo) => {
         if ( !ok ) return dispatch( status );
 
         await dispatch( getProducto(productoId) )
+    }
+}
+
+
+export const PostProducto = (body) => {
+
+    const {codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria } = body;
+    
+    return async( body, dispatch ) => {
+
+        const response = await fetch('http://localhost:3001/api/productos', {
+            method: 'POST',
+            mode: 'cors', 
+            headers:{ 'Content-Type': 'application/json'  },
+            body: JSON.stringify({
+                codigo: codigo,
+                nombre: nombre,
+                precio: precio,
+                descripcion: descripcion,
+                imagen: imagen,
+                fecha: fecha,
+                puntaje: puntaje, 
+                idCategoria: idCategoria
+              })
+        })
+
+        const data = await response.json()
+
+        const { status } = data
+
+        if ( !data.ok ) return await dispatch(getStatus({status}));
+
+        await dispatch(postProducto(data))
+        await dispatch(getStatus(data))
     }
 }
 

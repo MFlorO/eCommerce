@@ -6,6 +6,7 @@ import { validacionFormulario } from "~/functions";
 
 import { Grid, Paper, Button, Input, TextField, Typography, Select, MenuItem, IconButton, Stack } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { PostProducto } from "~/redux/slice/admin/thunks";
 
 
 const formData = {
@@ -24,14 +25,12 @@ const formData = {
 const CrearProducto = () => {
 
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
 
-
-
   const { codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria,
-  onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
+  onInputChange, errorFormValid, onResetForm, formValid, formState } = useForm(formData, validacionFormulario)
   
+  console.log(formState)
 
   const categorias = useCategoria()
 
@@ -47,15 +46,10 @@ const CrearProducto = () => {
    )
   })
 
-  
-  const formValid = () => {
-    if (Object.keys(errorFormValid).length > 0) return true
-    return false
-  }
 
   const onSubmit = (event) => {
     event.preventDefault();
-    // dispatch(startLoginWithEmailPassword({ codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria, idColor, idTalle }));
+    dispatch(PostProducto({ codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria}));
     onResetForm();
     navigate(`/dashboard/admin/productos/crearModelo/${codigo}`) 
   }
