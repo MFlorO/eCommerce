@@ -57,8 +57,6 @@ exports.getProductoId = async(req, res) => {
 
     const { codigo } = req.params  //Código del producto
 
-    console.log(codigo)
-
     try {
 
         const productoId = await Producto.findOne({

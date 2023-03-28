@@ -4,12 +4,14 @@
 
 const { Router } = require('express');
 const router = Router();
-const { getModelos, crearModelos } = require('../controllers/modelos');
+const { getModelos, crearModelos, deleteModelo} = require('../controllers/modelos');
 
 
 
 router.get('/', getModelos)
-router.post('/crearModelos', crearModelos );
+router.post('/:productoCodigo', crearModelos );
+
+router.delete('/', deleteModelo);
 
 
 
