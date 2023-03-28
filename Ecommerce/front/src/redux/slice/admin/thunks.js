@@ -1,5 +1,6 @@
 import { getStatus, getCategorias, postCatgoria, updateCatgoria, deleteCategoria, 
-    getProductos, getProducto, postProducto, postModeloProductoId, deleteModelo,
+    getProductos, getProducto, postProducto, postModeloProductoId, deleteProducto,
+    deleteModelo,
     
  } from "./adminSlice"
 
@@ -187,6 +188,32 @@ export const PostModeloProductoId = (body, params) => {
     }
 
 }
+
+
+
+export const DeleteProducto = (body) => {
+
+    const { codigo } = body;
+    
+    return async( body , dispatch ) => {
+
+        const response = await fetch('http://localhost:3001/api/productos', {
+            method: 'DELETE',
+            mode: 'cors', 
+            headers:{ 'Content-Type': 'application/json'  },
+            body: JSON.stringify({
+                codigo: codigo
+              })
+        })
+
+        const data = await response.json()
+
+        if ( !data.ok ) return console.log(data.status);
+
+        await dispatch(deleteProducto(data));  
+    }
+}
+
 
 
 export const DeleteModelo = (body) => {
