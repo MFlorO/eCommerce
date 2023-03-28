@@ -12,7 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 const Categorias = () => {
 
-  const {categorias, status} = useCategoria()
+  const categorias = useCategoria()
   const navigate = useNavigate()
   
   return (
