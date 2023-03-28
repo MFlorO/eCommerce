@@ -153,3 +153,98 @@ exports.crearProducto = async (req, res) => {
     }
 }
 
+
+// ------------ PUT ------------ //
+
+
+// exports.editCategoria = async(req, res) => {
+
+//     const { id, nombre } = req.body
+    
+//     const nombreMinuscula = nombre.toLowerCase()
+
+//     try {
+
+//         const categoriaExistente = await Categoria.findByPk(id)
+//         const nombreRepetido = await Categoria.findOne({ where: {nombre: nombreMinuscula} })
+    
+//         if(categoriaExistente === null) {
+//             return res.status(400).json({
+//                 ok: false,
+//                 status: "No se encontró la categoría",
+//             })
+//         }
+
+//         if(nombreRepetido) {
+//             return res.status(400).json({
+//                 ok: false,
+//                 status: "ya existe una categoría con ese nombre",
+//             })
+//         }
+
+    
+//         await Categoria.update({ 
+//             nombre: nombreMinuscula
+//         },
+//         { where: {id:id}  }
+//         );
+
+
+//          return res.status(201).json({
+//             ok: true,
+//             status: "categoría modificada con éxito",
+//         })
+        
+
+    
+//     } catch (error) {
+
+//         res.status(500).json({
+//             ok: false,
+//             status: "comunicarse con el administrador",
+//         })
+//         console.log(error)
+//     }
+// }
+
+
+
+
+// ------------ DELETE ------------ //
+
+
+
+exports.deleteProducto = async(req, res) => {
+
+    const { codigo } = req.body
+
+    try {
+
+        const productoExistente = await Producto.findByPk(codigo)
+    
+        if(productoExistente === null) {
+            return res.status(400).json({
+                ok: false,
+                status: "No se encontró el producto",
+            })
+        }
+
+        await Producto.destroy( { where: {codigo} } );
+
+
+        return res.status(201).json({
+            ok: true,
+            status: "producto eliminado con éxito",
+        })
+        
+
+    
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+        console.log(error)
+    }
+}

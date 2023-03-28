@@ -21,7 +21,7 @@ const TablaProducto = (p) => {
             {titulo.map ( t => <TableCell key={t}>{t}</TableCell>)}
             <TableCell align="center">Categoría</TableCell>    
             <TableCell align="center">Modelo</TableCell>     
-            <TableCell align="center"><MenuEditarYBorrar /></TableCell>
+            <TableCell align="center"><MenuEditarYBorrar codigo={codigo} nombre={nombre} /></TableCell>
           </TableRow>
         </TableHead>
 

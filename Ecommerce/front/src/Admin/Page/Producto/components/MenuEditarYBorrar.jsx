@@ -1,7 +1,10 @@
-import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { DeleteProducto } from '~/redux/slice/admin/thunks';
+import Swal from 'sweetalert2'
+
 import { styled, alpha } from '@mui/material/styles';
 import { Menu, MenuItem, IconButton } from '@mui/material';
-
 import MenuIcon from '@mui/icons-material/Menu';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
@@ -54,17 +57,36 @@ const StyledMenu = styled((props) => (
 
 
 
-const MenuEditarYBorrar = () => {
+const MenuEditarYBorrar = ({codigo, nombre}) => {
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+  const dispatch = useDispatch()
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => setAnchorEl(event.currentTarget);
   
+  const handleEdit = () => {
+    setAnchorEl(null);
+    // dispatch()
+  }
+  
+  const handleDelete = (codigo) => {
+
+    setAnchorEl(null);
+
+    Swal.fire({
+      title: `Esta seguro que quiere eliminar el producto : "${nombre}" ?`,
+      showCancelButton: true,
+      confirmButtonColor: '#F8BBD0',
+      cancelButtonColor: '#c82719',
+      confirmButtonText: 'Si'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(DeleteProducto({codigo}));
+      }
+    })
+  }
 
   return (
     <div>
@@ -86,10 +108,10 @@ const MenuEditarYBorrar = () => {
         }}
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => setAnchorEl(null)}
       >
-        <MenuItem onClick={handleClose} disableRipple><EditIcon /> Editar </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple><DeleteIcon /> Borrar</MenuItem>
+        <MenuItem onClick={handleEdit} disableRipple><EditIcon /> Editar </MenuItem>
+        <MenuItem onClick={() => handleDelete(codigo)} disableRipple><DeleteIcon /> Borrar</MenuItem>
       </StyledMenu>
     </div>
   );
