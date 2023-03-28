@@ -9,7 +9,7 @@ exports.getModelos = async (req, res) => {
 
     try {
 
-        const productos = await Modelo.findAll({
+        const modelo = await Modelo.findAll({
             order: ['id'],
             include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
                 model: ModeloVariante
@@ -17,15 +17,15 @@ exports.getModelos = async (req, res) => {
             ]
         });
 
-        if (productos) return res.status(201).json({
+        if (modelo) return res.status(201).json({
             ok: true,
-            status: "get Modelo",
-            productos
+            status: "Todos los modelos",
+            modelo
         })
 
         return res.status(400).json({
             ok: false,
-            status: 'No se encontraron los productos'
+            status: 'No se encontraron los modelos'
         });
 
     } catch (error) {
@@ -38,40 +38,6 @@ exports.getModelos = async (req, res) => {
         console.log(error)
     }
 }
-
-
-// exports.getModelos = async(req, res) => {
-
-//     try {
-
-//         const modelos = await Modelo.findAll();
-      
-//         if (modelos.length > 0)  return res.status(201).json({
-//             ok: true,
-//             status: "Todos los modelos",
-//             modelos
-//         })
-        
-//         return res.status(400).json({
-//             ok: false,
-//             status: 'No se encontraron los modelos'
-//         });
-
-
-//     } catch (error){
-
-//         res.status(500).json({
-//             ok: false,
-//             status: "comunicarse con el administrador",
-//         })
-
-//         console.log(error)
-//     }
-// }
-
-
-
-
 
 
 
