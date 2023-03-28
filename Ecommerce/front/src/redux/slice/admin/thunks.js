@@ -1,4 +1,4 @@
-import { getCategorias, postCatgoria, updateCatgoria, deleteCategoria, getProductos } from "./adminSlice"
+import { getCategorias, postCatgoria, updateCatgoria, deleteCategoria, getProductos, getProducto } from "./adminSlice"
 
 
 export const startGetTodasCategorias = () => {
@@ -11,9 +11,9 @@ export const startGetTodasCategorias = () => {
         if ( !ok ) return dispatch( status );
 
         dispatch( getCategorias(categorias) )
-
     }
 }
+
 
 export const PostCategorias = (body) => {
 
@@ -36,9 +36,9 @@ export const PostCategorias = (body) => {
 
         await dispatch(postCatgoria(data))
         await dispatch(startGetTodasCategorias())
-        
     }
 }
+
 
 export const UpdateCategorias = (body) => {
 
@@ -61,8 +61,7 @@ export const UpdateCategorias = (body) => {
         if ( !data.ok ) return console.log(data.status);
 
         await dispatch(updateCatgoria(data))
-        await dispatch(startGetTodasCategorias())
-        
+        await dispatch(startGetTodasCategorias())        
     }
 }
 
@@ -103,6 +102,22 @@ export const startGetTodosProductos= () => {
         if ( !ok ) return dispatch( status );
 
         dispatch( getProductos(productos) )
-
     }
 }
+
+
+export const getProductoID = (codigo) => {
+    return async( dispatch ) => {
+
+        console.log('codigo', codigo)
+
+        const response = await fetch(`http://localhost:3001/api/productos/Productoid/${codigo}`)
+
+        const { ok, status, productoId } = await response.json()
+
+        if ( !ok ) return dispatch( status );
+
+        dispatch( getProducto(productoId) )
+    }
+}
+

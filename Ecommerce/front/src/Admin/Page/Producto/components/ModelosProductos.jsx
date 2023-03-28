@@ -1,4 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductoID } from "~/redux/slice/admin/thunks";
 import { useForm } from "~/Hook";
 import { validacionFormulario } from "~/functions";
 import AdminLayOut from "../../../layout/AdminLayOut";
@@ -21,8 +24,20 @@ const formData = {
 const ModelosProductos = () => {
 
   const { modelo, talle, stock, onInputChange, errorFormValid, onResetForm, formState } = useForm(formData, validacionFormulario)
-
+  
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { producto } = useSelector( state => state.admin)
+  const {id} = useParams()
+
+  
+
+  useEffect(() => {
+    dispatch(getProductoID(id))
+  }, [])
+  
+
+  console.log(producto)
     
   // const formValid = () => {
   //   if (Object.keys(errorFormValid).length > 0) return true
@@ -65,10 +80,22 @@ const ModelosProductos = () => {
       </Stack>
       </form>
 
-      <Typography component='h6' variant="p" mt='1rem'>Modelos creados</Typography>
+      {producto.payload.modelos &&
+      <>
+        <Typography component='h6' variant="p" mt='1rem'>Modelos creados</Typography>
 
-        LISTA DE LOS MODELOS CREADOS
-
+        <ul>
+          {producto.payload.modelos?.map( m => (
+            <div key={m.id}>
+              <Typography>{m.color}</Typography>
+              <Typography>{m.modeloVariantes[0].talle}</Typography>
+              <Typography>{m.modeloVariantes[0].stock}</Typography>
+              <button>eliminar</button>
+            </div>
+          ))}
+        </ul>
+      </>
+     }
       <Button variant="contained" onClick={() => navigate(`/dashboard/admin/productos`)}>FINALIZAR</Button>
 
      </Stack>      

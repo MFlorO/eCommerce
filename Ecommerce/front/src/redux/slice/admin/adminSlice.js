@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   categorias: [],
-  productos: []
+  productos: [],
+  producto: {}
 }
 
 export const adminSlice = createSlice({
@@ -29,10 +30,14 @@ export const adminSlice = createSlice({
 
     getProductos: (state, payload) => {
       state.productos = payload
+    },
+
+    getProducto: (state, payload) => {
+      state.producto = payload
     }
            
   }
 })
 
 // Action creators function  --> Son funciones que se disparan. Ya estan asociadas a las acciones del reducer
-export const { getCategorias, postCatgoria, updateCatgoria, deleteCategoria, getProductos } = adminSlice.actions;
+export const { getCategorias, postCatgoria, updateCatgoria, deleteCategoria, getProductos, getProducto } = adminSlice.actions;
