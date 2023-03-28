@@ -128,7 +128,7 @@ export const getProductoID = (codigo) => {
 
 export const PostProducto = (body) => {
 
-    const {codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria } = body;
+    const {codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria } = body;
     
     return async( body, dispatch ) => {
 
@@ -142,7 +142,7 @@ export const PostProducto = (body) => {
                 precio: precio,
                 descripcion: descripcion,
                 imagen: imagen,
-                fecha: fecha,
+                fechaPublicacion: fechaPublicacion,
                 puntaje: puntaje, 
                 idCategoria: idCategoria
               })

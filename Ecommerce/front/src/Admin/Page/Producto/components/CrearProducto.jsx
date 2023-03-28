@@ -15,7 +15,7 @@ const formData = {
   precio: 0,
   descripcion: '',
   imagen: '',
-  fecha: '',
+  fechaPublicacion: '',
   puntaje: 0,
   idCategoria: []
 }
@@ -27,7 +27,7 @@ const CrearProducto = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria,
+  const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria,
   onInputChange, errorFormValid, onResetForm, formValid, formState } = useForm(formData, validacionFormulario)
   
   console.log(formState)
@@ -49,7 +49,7 @@ const CrearProducto = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(PostProducto({ codigo, nombre , precio, descripcion, imagen, fecha, puntaje, idCategoria}));
+    dispatch(PostProducto({ codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria}));
     onResetForm();
     navigate(`/dashboard/admin/productos/crearModelo/${codigo}`) 
   }
@@ -79,7 +79,7 @@ const CrearProducto = () => {
 
           <Input type='file' label="Imagen" name="imagen" value={imagen} onChange={onInputChange} />
           
-          <TextField type='date' name="fecha" value={fecha} onChange={onInputChange} />
+          <TextField type='date' name="fechaPublicacion" value={fechaPublicacion} onChange={onInputChange} helperText={errorFormValid.fechaPublicacion}/>
 
           <TextField type='number' label="Puntaje" name="puntaje" value={puntaje} onChange={onInputChange} />
 

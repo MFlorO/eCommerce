@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import EditCategoria from "./EditCategoria";
 import { DeleteCategorias } from "~/redux/slice/admin/thunks";
+import Swal from 'sweetalert2'
 
 import { Button, ListItemText, Switch, Stack} from "@mui/material/";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Swal from 'sweetalert2'
 
 
 const ListaCategorias = ({ id, nombre, isActive }) => {
@@ -16,17 +16,18 @@ const ListaCategorias = ({ id, nombre, isActive }) => {
   const dispatch = useDispatch()
 
   const deleteCategoria = (id) =>{
-        Swal.fire({
-          title: `Esta seguro que quiere eliminar la categoria : "${nombre}" ?`,
-          showCancelButton: true,
-          confirmButtonColor: '#F8BBD0',
-          cancelButtonColor: '#c82719',
-          confirmButtonText: 'Si'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            dispatch(DeleteCategorias({id}));
-          }
-        })
+    Swal.fire({
+      title: `Esta seguro que quiere eliminar la categoria : "${nombre}" ?`,
+      showCancelButton: true,
+      confirmButtonColor: '#F8BBD0',
+      cancelButtonColor: '#c82719',
+      confirmButtonText: 'Si'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(DeleteCategorias({id}));
+        setAnchorEl(null);
+      }
+    })
   }
 
   return (

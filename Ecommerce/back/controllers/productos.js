@@ -1,4 +1,4 @@
-const { Producto, Categoria, Modelo, ModeloVariante, Talle } = require("../database/db");
+const { Producto, Categoria, Modelo, ModeloVariante } = require("../database/db");
 
 
 
@@ -105,7 +105,7 @@ exports.getProductoId = async(req, res) => {
 
 exports.crearProducto = async (req, res) => {
 
-    const { codigo, idCategoria, idColor, idTalle } = req.body
+    const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria } = req.body
 
 
     try {
@@ -157,55 +157,83 @@ exports.crearProducto = async (req, res) => {
 // ------------ PUT ------------ //
 
 
-// exports.editCategoria = async(req, res) => {
+exports.editProducto = async(req, res) => {
 
-//     const { id, nombre } = req.body
+    const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria } = req.body
+
+    const nombreMinuscula = nombre.toLowerCase()
+
+    try {
+
+        const producto = await Producto.findByPk(codigo)
+        const nombreRepetido = await Producto.findOne({ where: {nombre: nombreMinuscula} })
     
-//     const nombreMinuscula = nombre.toLowerCase()
+        if(producto === null) {
+            return res.status(400).json({
+                ok: false,
+                status: "No se encontró el producto",
+            })
+        }
 
-//     try {
-
-//         const categoriaExistente = await Categoria.findByPk(id)
-//         const nombreRepetido = await Categoria.findOne({ where: {nombre: nombreMinuscula} })
-    
-//         if(categoriaExistente === null) {
-//             return res.status(400).json({
-//                 ok: false,
-//                 status: "No se encontró la categoría",
-//             })
-//         }
-
-//         if(nombreRepetido) {
-//             return res.status(400).json({
-//                 ok: false,
-//                 status: "ya existe una categoría con ese nombre",
-//             })
-//         }
+        if(nombreRepetido) {
+            return res.status(400).json({
+                ok: false,
+                status: "ya existe un producto con ese nombre",
+            })
+        }
 
     
-//         await Categoria.update({ 
-//             nombre: nombreMinuscula
-//         },
-//         { where: {id:id}  }
-//         );
+        // await Producto.update({ 
+        //     nombre: nombreMinuscula,
+        //     precio,
+        //     descripcion,
+        //     imagen,
+        //     fecha, 
+        //     puntaje
+        // },
+        // { where: {codigo:codigo}  }
+        // );
+    
+        producto.nombre = nombreMinuscula;
+        producto.descripcion = descripcion;
+        producto.precio = precio;
+        producto.imagen = imagen;
+        producto.fechaPublicacion = fechaPublicacion;
+        producto.puntaje = puntaje;
+
+        await producto.save()
+
+        console.log(producto)
+
+ 
+        idCategoria.map(async c => { //UNIR CATEGORIA CON PRODUCTO
+
+            if (c !== null || c !== undefined) {
+
+                const categoria = await Categoria.findByPk(c)
+
+                if (categoria) producto.addCategoria(categoria)
+            }
+
+        })
 
 
-//          return res.status(201).json({
-//             ok: true,
-//             status: "categoría modificada con éxito",
-//         })
+         return res.status(201).json({
+            ok: true,
+            status: "producto modificado con éxito",
+            producto
+        })
         
 
-    
-//     } catch (error) {
+    } catch (error) {
 
-//         res.status(500).json({
-//             ok: false,
-//             status: "comunicarse con el administrador",
-//         })
-//         console.log(error)
-//     }
-// }
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+        console.log(error)
+    }
+}
 
 
 
