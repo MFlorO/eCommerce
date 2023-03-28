@@ -1,23 +1,19 @@
 import TablaProducto from "./TablaProducto";
-
-import { ListItemText, Accordion, AccordionSummary, AccordionDetails, Button, Stack } from "@mui/material/";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-
+import { ListItemText, Accordion, AccordionSummary, AccordionDetails, Stack, IconButton } from "@mui/material/";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const ListaProductos = (p) => {
 
   return (
-    <Accordion sx={{ width: "100%", boxShadow: "none", height:'max-content'}}>
+    <Accordion sx={{ width: "100%", boxShadow: "none", height:'max-content', minHeight:'max-content', gap:2}}>
       <AccordionSummary >
         <ListItemText primary={p.nombre} />
+        <IconButton><KeyboardArrowDownIcon /></IconButton>
       </AccordionSummary>
 
       <AccordionDetails>
-        <Stack flexDirection='row'>
+        <Stack flexDirection='row' alignItems='center' >
           <TablaProducto {...p} />  
-          <Button title='EDITAR PRODUCTO'><EditIcon /></Button>
-          <Button title='ELIMINAR PRODUCTO'><DeleteIcon /></Button>
         </Stack>
       </AccordionDetails>
 
