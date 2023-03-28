@@ -1,5 +1,5 @@
-// import { useDispatch } from 'react-redux';
-// import { UpdateCategorias } from '~/redux/slice/admin/thunks';
+import { useDispatch } from 'react-redux';
+import { UpdateCategorias } from '~/redux/slice/admin/thunks';
 import CategoriaLayOut from "../../../layout/CategoriaLayOut";
 import { validacionFormulario } from "~/functions";
 import { useForm } from "~/Hook";
@@ -27,17 +27,18 @@ const formData = {
   }
   
 
-const EditCategoria = ({modal, setModal}) => {
+const EditCategoria = ({modal, setModal, id}) => {
 
     const { nombre, onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const onSubmit = (event) => {
         event.preventDefault();
-        // dispatch(UpdateCategorias);
+        dispatch(UpdateCategorias({id,nombre}))
         onResetForm();
         setModal(false) 
       }
+
 
     const formValid = () => {
      if (Object.keys(errorFormValid).length > 0) return true

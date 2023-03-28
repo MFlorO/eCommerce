@@ -49,11 +49,12 @@ exports.crearCategoria = async(req, res) => {
 
     const { nombre } = req.body
 
-    const nombreMayuscula = nombre.toUpperCase()
+
+    const nombreMinuscula = nombre.toLowerCase()
 
     try {
 
-        const nombreRepetido = await Categoria.findOne({ where: {nombre: nombreMayuscula} })
+        const nombreRepetido = await Categoria.findOne({ where: {nombre: nombreMinuscula} })
 
 
         if(nombreRepetido) {
@@ -65,7 +66,7 @@ exports.crearCategoria = async(req, res) => {
 
     
         let [categoria, created] = await Categoria.findOrCreate({
-            where: { nombre: nombreMayuscula },
+            where: { nombre: nombreMinuscula },
             // defaults: { nombre }
         });
 
@@ -104,12 +105,12 @@ exports.editCategoria = async(req, res) => {
 
     const { id, nombre } = req.body
     
-    const nombreMayuscula = nombre.toUpperCase()
+    const nombreMinuscula = nombre.toLowerCase()
 
     try {
 
         const categoriaExistente = await Categoria.findByPk(id)
-        const nombreRepetido = await Categoria.findOne({ where: {nombre: nombreMayuscula} })
+        const nombreRepetido = await Categoria.findOne({ where: {nombre: nombreMinuscula} })
     
         if(categoriaExistente === null) {
             return res.status(400).json({
@@ -127,7 +128,7 @@ exports.editCategoria = async(req, res) => {
 
     
         await Categoria.update({ 
-            nombre: nombreMayuscula
+            nombre: nombreMinuscula
         },
         { where: {id:id}  }
         );
@@ -136,6 +137,48 @@ exports.editCategoria = async(req, res) => {
          return res.status(201).json({
             ok: true,
             status: "categoría modificada con éxito",
+        })
+        
+
+    
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+        console.log(error)
+    }
+}
+
+
+
+
+// ------------ DELETE ------------ //
+
+
+
+exports.deleteCategoria = async(req, res) => {
+
+    const { id } = req.body
+
+    try {
+
+        const categoriaExistente = await Categoria.findByPk(id)
+    
+        if(categoriaExistente === null) {
+            return res.status(400).json({
+                ok: false,
+                status: "No se encontró la categoría",
+            })
+        }
+
+        await Categoria.destroy( { where: {id:id} } );
+
+
+        return res.status(201).json({
+            ok: true,
+            status: "categoría eliminada con éxito",
         })
         
 

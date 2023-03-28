@@ -1,11 +1,12 @@
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { AdminLayOut } from "~/Admin/layout"
-import { Grid, Paper, TextField } from "@mui/material";
+import CategoriaLayOut from "../../../layout/CategoriaLayOut";
+import { PostCategorias } from "~/redux/slice/admin/thunks";
 import { useForm } from "~/Hook";
 import { validacionFormulario } from "~/functions";
 
-// import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import CategoriaLayOut from "../../../layout/CategoriaLayOut";
+import { Grid, Paper, TextField } from "@mui/material";
 
 
 
@@ -18,7 +19,7 @@ const formData = {
 
 const CrearCategoria = () => {
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
@@ -34,8 +35,8 @@ const CrearCategoria = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    // dispatch(startLoginWithEmailPassword(nombre.toUpperCase()));
-    onResetForm();
+    dispatch(PostCategorias({nombre}));
+    // onResetForm();
     navigate(`/dashboard/admin/categorias`)
   }
 
