@@ -23,36 +23,30 @@ const style = {
 
   
 const formData = {
-    nombre: ''
-  }
+  nombre: ""
+}
   
 
 const EditCategoria = ({modal, setModal, id}) => {
 
-    const { nombre, onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
-    const dispatch = useDispatch()
+  const { nombre, onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormulario)
+  
+  const dispatch = useDispatch()
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-        dispatch(UpdateCategorias({id,nombre}))
-        onResetForm();
-        setModal(false) 
-      }
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(UpdateCategorias({id,nombre}))
+    onResetForm();
+    setModal(false) 
+  }
 
-
-    const formValid = () => {
-     if (Object.keys(errorFormValid).length > 0) return true
-     return false
-    }
+  const botonDisabled = formValid() || (nombre.length === 0) ? true : false
 
   return (
-    <div>
-      <Modal
-        open={modal}
-        onClose={() => setModal(false)}
-      >
-        <Box sx={style}>
-        <CategoriaLayOut titulo='MODIFICAR CATEGORIA' boton='MODIFICAR' onSubmit={onSubmit}>
+  <div>
+    <Modal open={modal} onClose={() => setModal(false)} >
+    <Box sx={style}>
+      <CategoriaLayOut titulo='MODIFICAR CATEGORIA' boton='MODIFICAR' onSubmit={onSubmit} botonDisabled={botonDisabled} >
          <TextField
             label="Nombre"
             name="nombre" 
@@ -61,10 +55,10 @@ const EditCategoria = ({modal, setModal, id}) => {
             error={formValid()}
             helperText={errorFormValid.nombre}
           />
-        </CategoriaLayOut>
-        </Box>
-      </Modal>
-    </div>
+      </CategoriaLayOut>
+    </Box>
+    </Modal>
+  </div>
   );
 }
 

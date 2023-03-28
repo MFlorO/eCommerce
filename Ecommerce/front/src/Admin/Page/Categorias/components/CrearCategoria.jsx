@@ -20,26 +20,20 @@ const formData = {
 const CrearCategoria = () => {
 
   const dispatch = useDispatch()
-
   const navigate = useNavigate()
 
-  const { nombre, onInputChange, errorFormValid, onResetForm } = useForm(formData, validacionFormulario)
+  const { nombre, onInputChange, errorFormValid, formValid } = useForm(formData, validacionFormulario)
   
-
-  const formValid = () => {
-    if (Object.keys(errorFormValid).length > 0) return true
-
-    return false
-  }
-
 
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(PostCategorias({nombre}));
-    // onResetForm();
     navigate(`/dashboard/admin/categorias`)
   }
 
+
+  const botonDisabled = formValid() || (nombre.length === 0) ? true : false
+ 
 
   return (
     <AdminLayOut>
@@ -48,7 +42,7 @@ const CrearCategoria = () => {
       <Grid item xs={6}>
         <Paper sx={{ p: 2, display: "flex", justifyContent:'center', alignItems:'center'}}>
 
-        <CategoriaLayOut titulo='CREAR UNA CATEGORIA' boton='CREAR' onSubmit={onSubmit}>
+        <CategoriaLayOut titulo='CREAR UNA CATEGORIA' boton='CREAR' onSubmit={onSubmit} botonDisabled={botonDisabled}>
          <TextField
             label="Nombre"
             name="nombre" 

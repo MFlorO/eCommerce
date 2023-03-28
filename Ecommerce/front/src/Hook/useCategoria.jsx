@@ -4,7 +4,7 @@ import { startGetTodasCategorias } from '~/redux/slice/admin/thunks';
 
 const useCategoria = () => {
 
-  const { categorias } = useSelector( state => state.admin)
+  const { categorias, status } = useSelector( state => state.admin)
 
   const dispatch = useDispatch()
 
@@ -12,9 +12,10 @@ const useCategoria = () => {
     dispatch(startGetTodasCategorias(categorias))
   }, [])
 
-  return (
-    categorias
-  )
+  return {
+    categorias,
+    status
+  }
 }
 
 export default useCategoria
