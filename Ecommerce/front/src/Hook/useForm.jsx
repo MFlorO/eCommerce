@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export const useForm = ( initialForm = {}, validate ) => {
   
     const [ formState, setFormState ] = useState( initialForm );
 
-
     const [ errorFormValid, seterrorFormValid ] = useState( {} );
+
+    const formValid = () => (Object.keys(errorFormValid).length > 0) ? true : false
 
     const onInputChange = ({ target }) => {
 
@@ -37,6 +38,7 @@ export const useForm = ( initialForm = {}, validate ) => {
         formState,
         onInputChange,
         errorFormValid,
-        onResetForm
+        onResetForm,
+        formValid
     }
 }   
