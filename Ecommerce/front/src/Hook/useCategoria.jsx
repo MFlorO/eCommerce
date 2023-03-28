@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startGetTodasCategorias } from '~/redux/slice/admin/thunks';
 
+
 const useCategoria = () => {
 
   const { categorias, status } = useSelector( state => state.admin)
@@ -10,12 +11,13 @@ const useCategoria = () => {
 
   useEffect(() => {
     dispatch(startGetTodasCategorias(categorias))
+    // dispatch(GetStatus(status))
   }, [])
 
-  return {
-    categorias,
-    status
-  }
+  // console.log(status)
+
+
+  return categorias
 }
 
 export default useCategoria
