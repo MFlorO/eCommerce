@@ -1,4 +1,4 @@
-import { getCategorias, updateCatgoria } from "./adminSlice"
+import { getCategorias, postCatgoria, updateCatgoria, deleteCategoria, getProductos } from "./adminSlice"
 
 
 export const startGetTodasCategorias = () => {
@@ -15,30 +15,94 @@ export const startGetTodasCategorias = () => {
     }
 }
 
-export const UpdateCategorias = (body) => {
+export const PostCategorias = (body) => {
 
-    console.log( 'body', body )
+    const {nombre} = body;
     
-    return async( body , dispatch ) => {
+    return async( body, dispatch ) => {
 
-        const response = await fetch
-        .put('http://localhost:3001/api/categorias', {
-            method: 'PUT',
+        const response = await fetch('http://localhost:3001/api/categorias', {
+            method: 'POST',
             mode: 'cors', 
-            headers:{
-                'Content-Type': 'application/json'
-              },
-            body: body
+            headers:{ 'Content-Type': 'application/json'  },
+            body: JSON.stringify({
+                nombre: nombre,
+              })
         })
-
-        console.log('body adentro', body)
 
         const data = await response.json()
 
-        // if ( !data.ok ) return console.log(data.status);
+        if ( !data.ok ) return console.log(data.status);
 
-        return dispatch(updateCatgoria(data))
-
+        await dispatch(postCatgoria(data))
+        await dispatch(startGetTodasCategorias())
         
+    }
+}
+
+export const UpdateCategorias = (body) => {
+
+    const {id, nombre} = body;
+    
+    return async( body , dispatch ) => {
+
+        const response = await fetch('http://localhost:3001/api/categorias', {
+            method: 'PUT',
+            mode: 'cors', 
+            headers:{ 'Content-Type': 'application/json'  },
+            body: JSON.stringify({
+                nombre: nombre,
+                id: id
+              })
+        })
+
+        const data = await response.json()
+
+        if ( !data.ok ) return console.log(data.status);
+
+        await dispatch(updateCatgoria(data))
+        await dispatch(startGetTodasCategorias())
+        
+    }
+}
+
+
+export const DeleteCategorias = (body) => {
+
+    const { id } = body;
+    
+    return async( body , dispatch ) => {
+
+        const response = await fetch('http://localhost:3001/api/categorias', {
+            method: 'DELETE',
+            mode: 'cors', 
+            headers:{ 'Content-Type': 'application/json'  },
+            body: JSON.stringify({
+                id: id
+              })
+        })
+
+        const data = await response.json()
+
+        if ( !data.ok ) return console.log(data.status);
+
+        await dispatch(deleteCategoria(data));
+        
+        startGetTodasCategorias(); 
+    }
+}
+
+
+export const startGetTodosProductos= () => {
+    return async( dispatch ) => {
+
+        const response = await fetch('http://localhost:3001/api/productos')
+
+        const { ok, status, productos } = await response.json()
+
+        if ( !ok ) return dispatch( status );
+
+        dispatch( getProductos(productos) )
+
     }
 }
