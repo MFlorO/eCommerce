@@ -50,6 +50,57 @@ exports.getProductos = async (req, res) => {
 
 
 
+//-------- GET MODELOS SEGUN EL ID DEL PRODUCTO --------- //
+
+
+exports.getProductoId = async(req, res) => {
+
+    const { codigo } = req.params  //Código del producto
+
+    console.log(codigo)
+
+    try {
+
+        const productoId = await Producto.findOne({
+            where: { codigo },
+            include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
+                model: Categoria,
+                attributes: ['id', "nombre"],
+                through: { attributes: [] }
+             },
+             {
+                model: Modelo,
+                include: [{model: ModeloVariante}]
+                
+             }
+            ]
+        });
+        console.log(codigo)
+      
+        if (productoId)  return res.status(201).json({
+            ok: true,
+            status: "Producto por id",
+            productoId
+        })
+        
+        return res.status(400).json({
+            ok: false,
+            status: 'No se encontro el producto según el id'
+        });
+
+    } catch (error){
+
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+
+        console.log(error)
+    }
+}
+
+
+
 
 // ------------ POST ------------ //
 
