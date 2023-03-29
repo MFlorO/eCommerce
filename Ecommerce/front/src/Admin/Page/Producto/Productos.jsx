@@ -15,7 +15,7 @@ const Productos = () => {
 
  return (
   <AdminLayOut>
-  <Container maxWidth="lg">
+  <Container>
     <Grid container spacing={3}>
 
     <Grid item xs={12} >

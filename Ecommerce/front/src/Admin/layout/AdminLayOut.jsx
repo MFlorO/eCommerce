@@ -13,15 +13,16 @@ export const heightSidebar = 35
 const AdminLayOut = ({ children }) => {
   
   return (
-    <Grid container  justifyContent= "space-between" minHeight='100vh'height= "max-content" bgcolor='#EBEAEA' >
+    <Grid container justifyContent= "space-between" bgcolor='#EBEAEA' >
       
       <SideBar />
 
       <NavBar />
 
-      <Grid items  mt={{ xs: `${heightNavbar + heightSidebar + 2 }rem`, sm:`${heightNavbar}rem`}} ml={{xs:'none', sm:`${widthSideBar}rem`}} >
-        <Grid items xs={12}>{children}</Grid>
-        <Grid items xs={12}><Footer /></Grid>
+      <Grid items direction='column' justifyContent='space-between' sx={{ minHeight:'100vh ', height:"max-content", width:'100%' }}
+      mt={{ xs: `${heightNavbar + heightSidebar + 2 }rem`, sm:`${heightNavbar}rem`}} ml={{xs:'none', sm:`${widthSideBar}rem`}} >
+        <Grid items >{children}</Grid>
+        <Grid items ><Footer /></Grid>
       </Grid>
 
     </Grid>

@@ -17,10 +17,10 @@ const Categorias = () => {
   
   return (
     <AdminLayOut>
-    <Container sx={{width:'70%', display:'flex', justifyContent:'center' }}>
-      <Grid container spacing={3} >
-  
-      <Grid item xs={12} >
+    <Container>
+    <Grid container spacing={3}>
+
+    <Grid item xs={12} >
        <Paper sx={{ p: 2,display: "flex", flexDirection: "column", height: 'max-content', justifyContent:'center' }}>
 
        <Stack sx={{flexDirection:"row"}}>
@@ -38,9 +38,9 @@ const Categorias = () => {
         </List>
        </Paper>
       </Grid>
-  
-      </Grid>
-      </Container>
+
+    </Grid>
+    </Container>
     </AdminLayOut>
   )
 }
