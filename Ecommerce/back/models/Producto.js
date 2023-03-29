@@ -6,7 +6,6 @@ module.exports = (sequelize) => {
     {
       codigo:{
         type: DataTypes.STRING(10000),
-        allowNull: false,
         primaryKey: true
       },
       nombre: {
@@ -23,20 +22,15 @@ module.exports = (sequelize) => {
       },
       imagen: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       fechaPublicacion: {
         type: DataTypes.STRING(10000),
-        allowNull: true,
-      },
-      puntaje: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        defaultValue: null,
+        allowNull: false,
       },
       oferta: {
         type: DataTypes.FLOAT,
-        allowNull: true,
+        allowNull: false,
       }
 
     },
