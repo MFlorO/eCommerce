@@ -3,7 +3,6 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-
 import OrdenesRecientes from "./OrdenesRecientes";
 import Graficos from "./Graficos";
 
@@ -13,7 +12,7 @@ const Dashboard = () => {
       <Container maxWidth="lg">
         <Grid container spacing={3}>
 
-          {/* Recent Deposits */}
+
           <Grid item xs={12} md={4} >
             <Paper
               sx={{
@@ -23,12 +22,11 @@ const Dashboard = () => {
                 height: 240,
               }}
             >
-              {/* <Deposits /> */}
               DEPOSITS
             </Paper>
           </Grid>
 
-          {/* Recent Deposits */}
+
           <Grid item xs={12} md={4} >
             <Paper
               sx={{
@@ -38,12 +36,12 @@ const Dashboard = () => {
                 height: 240,
               }}
             >
-              {/* <Deposits /> */}
               DEPOSITS
             </Paper>
           </Grid>
 
-          {/* Recent Deposits */}
+
+
           <Grid item xs={12} md={4} lg={4}>
             <Paper
               sx={{
@@ -53,7 +51,6 @@ const Dashboard = () => {
                 height: 240,
               }}
             >
-              {/* <Deposits /> */}
               DEPOSITS
             </Paper>
           </Grid>
