@@ -8,9 +8,9 @@ const titulo = ["Código", "Descripción", "Precio", "Imagen", "Fecha de Publica
 
 const TablaProducto = (p) => {
 
-  const {codigo, nombre, descripcion, precio, imagen, fechaPublicacion, puntaje, oferta} = p
+  const {codigo, nombre, descripcion, precio, imagen, fechaPublicacion, oferta} = p
 
-  const filas = {codigo, descripcion, precio, imagen, fechaPublicacion, puntaje, oferta}
+  const filas = {codigo, descripcion, precio, imagen, fechaPublicacion, oferta}
 
   return (
     <TableContainer  sx={{ width: '100%', overflow: 'hidden', border:'1px solid'}}>
