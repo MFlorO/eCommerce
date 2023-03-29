@@ -2,34 +2,29 @@ import { SideBar } from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
-import Box from "@mui/material/Box";
+import { Grid } from '@mui/material';
 
 
 
 export const heightNavbar = 7
-
+export const widthSideBar = 18
+export const heightSidebar = 35
 
 const AdminLayOut = ({ children }) => {
   
   return (
-    <Box sx={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", background: '#EBEAEA' }}>
-
-      <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", width: '18%', alignItems:'center'}} >
-        <SideBar />
-      </Box>
+    <Grid container  justifyContent= "space-between" minHeight='100vh'height= "max-content" bgcolor='#EBEAEA' >
+      
+      <SideBar />
 
       <NavBar />
 
-      <Box sx={{ minHeight:'100vh', height: "max-content", width: '82%', display: "flex", flexDirection: "column", 
-          justifyContent: 'space-between', mt: `${heightNavbar}rem`, paddingRight:'2rem' }}
-      >
-          <Box>{children}</Box> 
+      <Grid items  mt={{ xs: `${heightNavbar + heightSidebar + 2 }rem`, sm:`${heightNavbar}rem`}} ml={{xs:'none', sm:`${widthSideBar}rem`}} >
+        <Grid items xs={12}>{children}</Grid>
+        <Grid items xs={12}><Footer /></Grid>
+      </Grid>
 
-          <Footer />
-
-      </Box>
-
-    </Box>
+    </Grid>
   );
 }
 
