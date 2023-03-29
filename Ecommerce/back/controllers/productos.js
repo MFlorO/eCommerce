@@ -12,7 +12,7 @@ exports.getProductos = async (req, res) => {
     try {
 
         const productos = await Producto.findAll({
-            order: ['nombre', 'ASC'],
+            order: [['nombre', 'ASC']],
             include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
                 model: Categoria,
                 attributes: ['id', "nombre"],
@@ -104,13 +104,13 @@ exports.getProductoId = async(req, res) => {
 
 function validaciones( nombre , descripcion, precio, imagen, fechaPublicacion ) {
 
-    const patternURL = new RegExp(/[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi);
+    // const patternURL = new RegExp(/[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi);
 
     if (!nombre || nombre === undefined || nombre.length > 300) return false;
     if (!descripcion || descripcion === undefined || descripcion.length > 5200)
         return false;
     if (!precio || precio < 0 || precio === undefined) return false;
-    if (!imagen || imagen === undefined || !patternURL.test(imagen)) return false;
+    if (!imagen || imagen === undefined) return false;
     if (!fechaPublicacion || fechaPublicacion === undefined) return false;
 
     return true;
@@ -119,7 +119,7 @@ function validaciones( nombre , descripcion, precio, imagen, fechaPublicacion ) 
 
 exports.crearProducto = async (req, res) => {
 
-    const { codigo, nombre, descripcion, precio, imagen, fechaPublicacion, idCategoria } = req.body
+    const { codigo, nombre, descripcion, precio, imagen, fechaPublicacion, oferta, idCategoria } = req.body
 
 
     if ( !validaciones( codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria ) )  
@@ -127,7 +127,7 @@ exports.crearProducto = async (req, res) => {
 
 
 
-    
+
     try {
 
         const codigoRepetido = await Producto.findOne({ where: { codigo } })
@@ -146,7 +146,8 @@ exports.crearProducto = async (req, res) => {
             precio,
             descripcion: descripcion.toLowerCase(),
             imagen,
-            fechaPublicacion
+            fechaPublicacion,
+            oferta
         });
 
 
@@ -186,7 +187,7 @@ exports.crearProducto = async (req, res) => {
 
 exports.editProducto = async(req, res) => {
 
-    const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria } = req.body
+    const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, oferta, idCategoria } = req.body
 
     const nombreMinuscula = nombre.toLowerCase()
 
