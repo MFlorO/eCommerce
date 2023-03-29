@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       },
       oferta: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       }
 
     },
