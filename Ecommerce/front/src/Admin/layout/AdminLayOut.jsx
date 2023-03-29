@@ -19,10 +19,11 @@ const AdminLayOut = ({ children }) => {
 
       <NavBar />
 
-      <Grid items direction='column' justifyContent='space-between' sx={{ minHeight:'100vh ', height:"max-content", width:'100%' }}
+      
+      <Grid container direction='column' justifyContent='space-between' sx={{ minHeight:'100vh ', height:"max-content", width:'100%' }}
       mt={{ xs: `${heightNavbar + heightSidebar + 2 }rem`, sm:`${heightNavbar}rem`}} ml={{xs:'none', sm:`${widthSideBar}rem`}} >
-        <Grid items >{children}</Grid>
-        <Grid items ><Footer /></Grid>
+        <Grid>{children}</Grid>
+        <Grid><Footer /></Grid>
       </Grid>
 
     </Grid>
