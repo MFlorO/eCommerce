@@ -96,7 +96,6 @@ const MenuEditarYBorrar = ({codigo, nombre}) => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="contained"
-        disableElevation
         onClick={handleClick}
       ><MenuIcon />
       </IconButton>

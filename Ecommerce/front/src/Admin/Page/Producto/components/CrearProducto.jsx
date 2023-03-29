@@ -28,10 +28,8 @@ const CrearProducto = () => {
   const navigate = useNavigate()
 
   const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria,
-  onInputChange, errorFormValid, onResetForm, formValid, formState } = useForm(formData, validacionFormulario)
+  onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormulario)
   
-  console.log(formState)
-
   const categorias = useCategoria()
 
   const listaCategorias = idCategoria?.map((c, index) => {
