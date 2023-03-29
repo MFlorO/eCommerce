@@ -102,11 +102,32 @@ exports.getProductoId = async(req, res) => {
 // ------------ POST ------------ //
 
 
+function validaciones( nombre , descripcion, precio, imagen, fechaPublicacion ) {
+
+    const patternURL = new RegExp(/[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi);
+
+    if (!nombre || nombre === undefined || nombre.length > 300) return false;
+    if (!descripcion || descripcion === undefined || descripcion.length > 5200)
+        return false;
+    if (!precio || precio < 0 || precio === undefined) return false;
+    if (!imagen || imagen === undefined || !patternURL.test(imagen)) return false;
+    if (!fechaPublicacion || fechaPublicacion === undefined) return false;
+
+    return true;
+}
+
+
 exports.crearProducto = async (req, res) => {
 
-    const { codigo, idCategoria } = req.body
+    const { codigo, nombre, descripcion, precio, imagen, fechaPublicacion, idCategoria } = req.body
 
 
+    if ( !validaciones( codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria ) )  
+    return res.status(400).json({ ok: false, status: "Error con las validaciones" });
+
+
+
+    
     try {
 
         const codigoRepetido = await Producto.findOne({ where: { codigo } })
@@ -119,7 +140,14 @@ exports.crearProducto = async (req, res) => {
             })
         }
 
-        const producto = await Producto.create(req.body);
+        const producto = await Producto.create({
+            codigo: codigo.toUpperCase(),
+            nombre: nombre.toLowerCase(),
+            precio,
+            descripcion: descripcion.toLowerCase(),
+            imagen,
+            fechaPublicacion
+        });
 
 
 
@@ -162,6 +190,10 @@ exports.editProducto = async(req, res) => {
 
     const nombreMinuscula = nombre.toLowerCase()
 
+    if ( !validaciones( codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria ) )  
+    return res.status(400).json({ ok: false, status: "Error con las validaciones" });
+
+    
     try {
 
         const producto = await Producto.findByPk(codigo)
