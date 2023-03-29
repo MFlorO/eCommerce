@@ -9,75 +9,31 @@ import Graficos from "./Graficos";
 const Dashboard = () => {
   return (
     <AdminLayOut>
-      <Container maxWidth="lg">
-        <Grid container spacing={3}>
+    <Container>
+    <Grid container spacing={3}>
 
-
-          <Grid item xs={12} md={4} >
-            <Paper
-              sx={{
-                p: 2,
-                display: "flex",
-                flexDirection: "column",
-                height: 240,
-              }}
-            >
-              DEPOSITS
-            </Paper>
+          <Grid item xs={12} md={4} sx={{width:'100%'}}>
+            <Paper x={{ p: 2, sisplay: "flex", flexDirection: "column", height: 240 }}> DEPOSITS </Paper>
           </Grid>
 
-
           <Grid item xs={12} md={4} >
-            <Paper
-              sx={{
-                p: 2,
-                display: "flex",
-                flexDirection: "column",
-                height: 240,
-              }}
-            >
-              DEPOSITS
-            </Paper>
+            <Paper x={{ p: 2, sisplay: "flex", flexDirection: "column", height: 240 }}> DEPOSITS </Paper>
           </Grid>
 
-
-
-          <Grid item xs={12} md={4} lg={4}>
-            <Paper
-              sx={{
-                p: 2,
-                display: "flex",
-                flexDirection: "column",
-                height: 240,
-              }}
-            >
-              DEPOSITS
-            </Paper>
+          <Grid item xs={12} md={4} >
+            <Paper x={{ p: 2, sisplay: "flex", flexDirection: "column", height: 240 }}> DEPOSITS </Paper>
           </Grid>
 
           <Grid item xs={12} >
-            <Paper
-              sx={{
-                p: 2,
-                display: "flex",
-                flexDirection: "column",
-                height: 240,
-              }}
-            >
-              <Graficos />
-            </Paper>
+            <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240}}><Graficos /></Paper>
           </Grid>
 
           <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-              <OrdenesRecientes />
-            </Paper>
+            <Paper sx={{ p: 2, display: "flex", flexDirection: "column", height: 240}}><OrdenesRecientes /></Paper>
           </Grid>
           
-        </Grid>
-
-        {/* <Copyright sx={{ pt: 4 }} /> */}
-      </Container>
+    </Grid>
+    </Container>
     </AdminLayOut>
   );
 };
