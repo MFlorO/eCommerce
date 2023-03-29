@@ -16,43 +16,43 @@ export const adminSlice = createSlice({
       state.status = payload
     },
     
-    getCategorias : (state, payload) => {
+    getCategorias : (state, {payload}) => {
       state.categorias = payload
     },
 
-    postCatgoria: (state, payload) => {
+    postCatgoria: (state, {payload}) => {
       state.categorias.push(payload)
     },
 
-    updateCatgoria: (state, payload) => {
+    updateCatgoria: (state, {payload}) => {
       state.categorias = payload
     },
 
-    deleteCategoria: (state, payload) => {
+    deleteCategoria: (state, {payload}) => {
       state.categorias = state.categorias.filter(c  => c.id !== payload)
     },
 
-    getProductos: (state, payload) => {
+    getProductos: (state, {payload}) => {
       state.productos = payload
     },
 
-    getProducto: (state, payload) => {
+    getProducto: (state, {payload}) => {
       state.producto = payload
     },
 
-    postProducto: (state, payload) => {
+    postProducto: (state, {payload}) => {
       state.productos.push(payload)
     },
 
-    postModeloProductoId : (state,payload) => {
+    postModeloProductoId : (state,{payload}) => {
       state.producto.modelo.push(payload)
     },
 
-    deleteProducto: (state, payload) => {
+    deleteProducto: (state, {payload}) => {
       state.producto = state.producto.filter(c  => c.codigo !== payload)
     },
 
-    deleteModelo: (state, payload) => {
+    deleteModelo: (state, {payload}) => {
       state.producto.modelo = state.producto.modelo.filter(c  => c.id !== payload)
     }
            

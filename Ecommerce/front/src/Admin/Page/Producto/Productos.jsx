@@ -25,7 +25,7 @@ const Productos = () => {
           <Button onClick={() => navigate(`/dashboard/admin/productos/crearProducto`) }><AddIcon />{""} Crear Producto</Button>
         </Stack>
 
-        {productos?.payload?.map(p => (
+        {productos?.map(p => (
             <Box key={p.codigo}>
               <ListaProductos {...p} />
             </Box>

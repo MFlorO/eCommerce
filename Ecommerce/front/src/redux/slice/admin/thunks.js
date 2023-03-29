@@ -128,7 +128,7 @@ export const getProductoID = (codigo) => {
 
 export const PostProducto = (body) => {
 
-    const {codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria } = body;
+    const {codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, oferta, idCategoria } = body;
     
     return async( body, dispatch ) => {
 
@@ -144,7 +144,8 @@ export const PostProducto = (body) => {
                 imagen: imagen,
                 fechaPublicacion: fechaPublicacion,
                 puntaje: puntaje, 
-                idCategoria: idCategoria
+                oferta: oferta,
+                idCategoria: idCategoria,
               })
         })
 

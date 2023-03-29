@@ -29,7 +29,7 @@ const Categorias = () => {
 
         <List sx={{ width: '100%'}} subheader={<ListSubheader>Lista de Categorías</ListSubheader>} >
 
-          {categorias?.payload?.map(c => (
+          {categorias?.map(c => (
             <ListItem key={c.id}>
               <ListaCategorias {...c} />
             </ListItem>
