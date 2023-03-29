@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
+import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductoID } from "~/redux/slice/admin/thunks";
@@ -33,10 +34,14 @@ const ModelosProductos = () => {
   const {id} = useParams()
 
   
-  useEffect(() => {
-    dispatch(getProductoID(id))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(getProductoID(id))
+  // }, [])
+
+  useMemo(() => dispatch(getProductoID(id)), [id]); // Memorizo el valor porque en un futuro si mi app crece no va a renderizarse 
+                                                    // porque cambie un valor de otro componente que afecte a este
   
+
 
   const deleteIdModelo = (id) => {
     dispatch(DeleteModelo({id}))
@@ -55,14 +60,14 @@ const ModelosProductos = () => {
   return (
 
   <AdminLayOut>
-    <Grid container sx={{width:'90%', display:'flex', justifyContent:'center'}}>
+    <Grid container sx={{width:'90%', display:'flex', justifyContent:'center', alignContent:'items'}} ml={{xs:'20px', sm:'0px'}} >
     <Paper sx={{ p: 2, display: "flex", flexDirection: "column", minHeight:'20rem' }}>
 
     <Stack gap={2}>
       <Typography component="h6" variant="h6" textAlign='center'>ELEGIR LOS MODELOS</Typography>
 
       <form onSubmit={onSubmit}>
-      <Stack flexDirection='row' alignItems='center' gap={1} sx={{width:'30rem'}}>
+      <Stack flexDirection='column' justifyContent='center' alignItems='center' gap={1} width={{xs:'19rem'}}>
       <Stack width={"100%"}>
         <Typography component='h6' variant="p">Color</Typography>
         <Select name="color" value={color ? color : ""} onChange={onInputChange}> {colores.map((c) => <MenuItem value={c} key={c}>{c}</MenuItem>)} </Select>
