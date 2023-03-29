@@ -4,9 +4,11 @@ import { AdminLayOut } from "~/Admin/layout"
 import CategoriaLayOut from "../../../layout/CategoriaLayOut";
 import { PostCategorias } from "~/redux/slice/admin/thunks";
 import { useForm } from "~/Hook";
-import { validacionFormulario } from "~/functions";
+
 
 import { Grid, Paper, TextField } from "@mui/material";
+import { validacionFormularioCategoria } from "~/functions/validacionFormulario";
+
 
 
 
@@ -22,7 +24,7 @@ const CrearCategoria = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { nombre, onInputChange, errorFormValid, formValid } = useForm(formData, validacionFormulario)
+  const { nombre, onInputChange, errorFormValid, formValid } = useForm(formData, validacionFormularioCategoria)
   
 
   const onSubmit = (event) => {

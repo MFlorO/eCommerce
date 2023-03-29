@@ -1,1 +1,1 @@
-export { default as validacionFormulario } from './validacionFormulario';
+export * from './validacionFormulario';

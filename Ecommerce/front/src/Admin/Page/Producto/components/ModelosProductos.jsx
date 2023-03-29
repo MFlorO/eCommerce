@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductoID } from "~/redux/slice/admin/thunks";
 import { useForm } from "~/Hook";
-import { validacionFormulario } from "~/functions";
+import { validacionFormularioModelos } from "~/functions/validacionFormulario";
 import AdminLayOut from "../../../layout/AdminLayOut";
 import { PostModeloProductoId, DeleteModelo } from "~/redux/slice/admin/thunks";
 
@@ -25,7 +25,7 @@ const formData = {
 
 const ModelosProductos = () => {
 
-  const { color, talle, stock, onInputChange, errorFormValid, onResetForm, formValid, formState } = useForm(formData, validacionFormulario)
+  const { color, talle, stock, onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormularioModelos)
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -41,8 +41,6 @@ const ModelosProductos = () => {
   const deleteIdModelo = (id) => {
     dispatch(DeleteModelo({id}))
   }
-  
-  console.log(formState)
 
 
   const onSubmit = (event) => {
@@ -50,6 +48,8 @@ const ModelosProductos = () => {
     dispatch(PostModeloProductoId({color, talle, stock},{id}));
     onResetForm();
   }
+
+  const disableBoton = () => (producto?.modelos?.length < 1) ? true : false
 
 
   return (
@@ -62,7 +62,7 @@ const ModelosProductos = () => {
       <Typography component="h6" variant="h6" textAlign='center'>ELEGIR LOS MODELOS</Typography>
 
       <form onSubmit={onSubmit}>
-      <Stack flexDirection='row' gap={1} sx={{width:'100%'}}>
+      <Stack flexDirection='row' alignItems='center' gap={1} sx={{width:'30rem'}}>
       <Stack width={"100%"}>
         <Typography component='h6' variant="p">Color</Typography>
         <Select name="color" value={color ? color : ""} onChange={onInputChange}> {colores.map((c) => <MenuItem value={c} key={c}>{c}</MenuItem>)} </Select>
@@ -77,16 +77,16 @@ const ModelosProductos = () => {
         <Typography component='h6' variant="p">Stock</Typography>
         <TextField type="number" name="stock" value={stock} onChange={onInputChange} />
       </Stack>     
-      <IconButton type='submit' variant='contained'><AddIcon /></IconButton>
+      <Button type='submit' variant='contained' sx={{mt:'0.5rem', height:'3rem', width:'5rem', borderRadius:'30px'}} disabled={formValid() || color.length< 1 ? true : false}><AddIcon /></Button>
       </Stack>
       </form>
 
-      {producto.payload?.modelos &&
+      {producto?.modelos &&
       <>
         <Typography component='h6' variant="p" mt='1rem'>Modelos creados</Typography>
 
         <ul>
-          {producto.payload.modelos?.map( m => (
+          {producto.modelos?.map( m => (
             <Stack flexDirection='row' alignItems='center' gap={3} key={m.modeloVariantes[0].id}>
               <Typography>{m.color}</Typography>
               <Typography>{m.modeloVariantes[0].talle}</Typography>
@@ -97,7 +97,7 @@ const ModelosProductos = () => {
         </ul>
       </>
      }
-      <Button variant="contained" onClick={() => navigate(`/dashboard/admin/productos`)}>FINALIZAR</Button>
+      <Button variant="contained" onClick={() => navigate(`/dashboard/admin/productos`)} disabled={disableBoton()} >FINALIZAR</Button>
 
      </Stack>      
      </Paper>

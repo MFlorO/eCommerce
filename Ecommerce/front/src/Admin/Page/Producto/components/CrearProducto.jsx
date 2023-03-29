@@ -2,14 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AdminLayOut } from "~/Admin/layout"
 import { useForm, useCategoria } from "~/Hook";
-import { validacionFormulario } from "~/functions";
+
 
 import { Container, Paper, Button, Input, TextField, Typography, Select, MenuItem, IconButton, Stack } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { PostProducto } from "~/redux/slice/admin/thunks";
+import { validacionFormularioProducto } from "~/functions/validacionFormulario";
 
 
-const formData = {
+let formData = {
   codigo: '',
   nombre: '',
   precio: 0,
@@ -17,6 +18,7 @@ const formData = {
   imagen: '',
   fechaPublicacion: '',
   puntaje: 0,
+  oferta: null,
   idCategoria: []
 }
 
@@ -27,19 +29,26 @@ const CrearProducto = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria,
-  onInputChange, errorFormValid, onResetForm, formValid, formState } = useForm(formData, validacionFormulario)
+  const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria, oferta,
+  onInputChange, errorFormValid, onResetForm, formValid, formState, setFormState } = useForm(formData, validacionFormularioProducto)
   
   const categorias = useCategoria()
 
   const listaCategorias = idCategoria?.map((c, index) => {
 
-    let nombre = categorias.payload?.map(categoria => categoria.id === c ? categoria.nombre : null) 
+    let nombre = categorias?.map(categoria => categoria.id === c ? categoria.nombre : null)
+
+
+    const deleteCategoriasSeleccionadas = (c) =>{
+      // let idCategoriaFinal = idCategoria?.filter(categoria => categoria.id !== c ) 
+
+      // setFormState({ ...formState, idCategoria: c  })
+    }
 
     return ( 
     <Stack flexDirection='row' alignItems='center' ml={2} key={index}>
-       <li className="lista">{nombre}</li>
-       <IconButton><DeleteForeverIcon fontSize="small"/></IconButton>
+       <li>{nombre}</li>
+       <IconButton onClick={() => deleteCategoriasSeleccionadas()}><DeleteForeverIcon fontSize="small"/></IconButton>
     </Stack>
    )
   })
@@ -48,7 +57,7 @@ const CrearProducto = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(PostProducto({ codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria }));
+    dispatch(PostProducto({ codigo, nombre , precio, descripcion, imagen, fechaPublicacion, oferta, idCategoria }));
     onResetForm();
     navigate(`/dashboard/admin/productos/crearModelo/${codigo}`) 
   }
@@ -74,20 +83,16 @@ const CrearProducto = () => {
             label="Descripción" name="descripcion" value={descripcion} onChange={onInputChange} error={formValid()} helperText={errorFormValid.descripcion}
           />
           
-          <TextField type='number' label="Precio" name="precio" value={precio} onChange={onInputChange} />
+          <TextField type='number' label="Precio" name="precio" value={precio} onChange={onInputChange} error={formValid()} helperText={errorFormValid.precio}/>
 
           <Input type='file' label="Imagen" name="imagen" value={imagen} onChange={onInputChange} />
           
-          <TextField type='date' name="fechaPublicacion" value={fechaPublicacion} onChange={onInputChange} helperText={errorFormValid.fechaPublicacion}/>
+          <TextField type='date' name="fechaPublicacion" value={fechaPublicacion} onChange={onInputChange} error={formValid()} helperText={errorFormValid.fechaPublicacion}/>
 
           
           <Typography>Categorías</Typography>
-          <Select
-            name="idCategoria" 
-            value={idCategoria.length > 0 ? idCategoria : ""}
-            onChange={onInputChange} 
-          >
-            {categorias?.payload?.map( c => <MenuItem value={c.id} key={c.id}>{c.nombre}</MenuItem>)}
+          <Select name="idCategoria"  value={idCategoria.length > 0 ? idCategoria : ""} onChange={onInputChange} error={formValid()} helperText={errorFormValid.idCategoria}>
+            {categorias?.map( c => <MenuItem value={c.id} key={c.id}>{c.nombre}</MenuItem>)}
           </Select>
 
           {/* LISTA DE CATEGORIAS */}
@@ -95,7 +100,7 @@ const CrearProducto = () => {
             {listaCategorias}
           </ul>
                     
-        <Button variant="contained" type="submit" disabled={formValid()}>SIGUIENTE</Button>
+        <Button variant="contained" type="submit" disabled={formValid() || (codigo.length === 0) ? true : false}>SIGUIENTE</Button>
         </form>
 
         </Paper>

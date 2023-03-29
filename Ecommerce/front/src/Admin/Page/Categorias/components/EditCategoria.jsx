@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { UpdateCategorias } from '~/redux/slice/admin/thunks';
 import CategoriaLayOut from "../../../layout/CategoriaLayOut";
-import { validacionFormulario } from "~/functions";
+import { validacionFormularioCategoria } from "~/functions/validacionFormulario";
 import { useForm } from "~/Hook";
 
 
@@ -29,7 +29,7 @@ const formData = {
 
 const EditCategoria = ({modal, setModal, id}) => {
 
-  const { nombre, onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormulario)
+  const { nombre, onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormularioCategoria)
   
   const dispatch = useDispatch()
 
