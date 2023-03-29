@@ -25,7 +25,7 @@ const formData = {
 
 const ModelosProductos = () => {
 
-  const { color, talle, stock, onInputChange, errorFormValid, onResetForm, formState } = useForm(formData, validacionFormulario)
+  const { color, talle, stock, onInputChange, errorFormValid, onResetForm, formValid, formState } = useForm(formData, validacionFormulario)
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -41,16 +41,13 @@ const ModelosProductos = () => {
   const deleteIdModelo = (id) => {
     dispatch(DeleteModelo({id}))
   }
-    
-  // const formValid = () => {
-  //   if (Object.keys(errorFormValid).length > 0) return true
-  //   return false
-  // }
+  
+  console.log(formState)
 
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(PostModeloProductoId({ color, talle, stock},{id}));
+    dispatch(PostModeloProductoId({color, talle, stock},{id}));
     onResetForm();
   }
 
@@ -90,7 +87,7 @@ const ModelosProductos = () => {
 
         <ul>
           {producto.payload.modelos?.map( m => (
-            <Stack flexDirection='row' alignItems='center' gap={3} key={m.id}>
+            <Stack flexDirection='row' alignItems='center' gap={3} key={m.modeloVariantes[0].id}>
               <Typography>{m.color}</Typography>
               <Typography>{m.modeloVariantes[0].talle}</Typography>
               <Typography>{m.modeloVariantes[0].stock}</Typography>

@@ -73,7 +73,6 @@ exports.getProductoId = async(req, res) => {
              }
             ]
         });
-        console.log(codigo)
       
         if (productoId)  return res.status(201).json({
             ok: true,
