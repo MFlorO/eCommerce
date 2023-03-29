@@ -4,7 +4,7 @@ import { AdminLayOut } from "~/Admin/layout"
 import { useForm, useCategoria } from "~/Hook";
 import { validacionFormulario } from "~/functions";
 
-import { Grid, Paper, Button, Input, TextField, Typography, Select, MenuItem, IconButton, Stack } from "@mui/material";
+import { Container, Paper, Button, Input, TextField, Typography, Select, MenuItem, IconButton, Stack } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { PostProducto } from "~/redux/slice/admin/thunks";
 
@@ -28,7 +28,7 @@ const CrearProducto = () => {
   const navigate = useNavigate()
 
   const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria,
-  onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormulario)
+  onInputChange, errorFormValid, onResetForm, formValid, formState } = useForm(formData, validacionFormulario)
   
   const categorias = useCategoria()
 
@@ -44,6 +44,7 @@ const CrearProducto = () => {
    )
   })
 
+  console.log(formState)
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -54,9 +55,9 @@ const CrearProducto = () => {
 
   return (
     <AdminLayOut>
-      <Grid container justifyContent='center'>
+    <Container maxWidth="md">
   
-      <Grid item xs={6} >
+      <Stack>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column"}}>
 
         <Typography variant='h5' textAlign='center' mb='1rem'>CREAR PRODUCTO</Typography>
@@ -100,8 +101,8 @@ const CrearProducto = () => {
         </form>
 
         </Paper>
-      </Grid>
-      </Grid>
+      </Stack>
+      </Container>
     </AdminLayOut>
   )
 }
