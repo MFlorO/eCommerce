@@ -1,7 +1,7 @@
 import {Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material/";
 import MenuEditarYBorrar from "./MenuEditarYBorrar";
 
-const titulo = ["Código", "Descripción", "Precio", "Imagen", "Fecha de Publicación", "Puntaje", "Oferta"]
+const titulo = ["Código", "Descripción", "Precio", "Imagen", "Fecha de Publicación", "Oferta"]
 
 
 
