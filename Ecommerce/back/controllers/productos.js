@@ -12,7 +12,7 @@ exports.getProductos = async (req, res) => {
     try {
 
         const productos = await Producto.findAll({
-            order: ['codigo'],
+            order: ['nombre', 'ASC'],
             include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
                 model: Categoria,
                 attributes: ['id', "nombre"],
@@ -104,7 +104,7 @@ exports.getProductoId = async(req, res) => {
 
 exports.crearProducto = async (req, res) => {
 
-    const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria } = req.body
+    const { codigo, idCategoria } = req.body
 
 
     try {
@@ -158,7 +158,7 @@ exports.crearProducto = async (req, res) => {
 
 exports.editProducto = async(req, res) => {
 
-    const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, idCategoria } = req.body
+    const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria } = req.body
 
     const nombreMinuscula = nombre.toLowerCase()
 
@@ -198,12 +198,8 @@ exports.editProducto = async(req, res) => {
         producto.precio = precio;
         producto.imagen = imagen;
         producto.fechaPublicacion = fechaPublicacion;
-        producto.puntaje = puntaje;
 
         await producto.save()
-
-        console.log(producto)
-
  
         idCategoria.map(async c => { //UNIR CATEGORIA CON PRODUCTO
 
