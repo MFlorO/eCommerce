@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { heightNavbar } from '../layout/AdminLayOut';
+import { heightNavbar, widthSideBar } from '../layout/AdminLayOut';
 
-import { AppBar, Box, IconButton, Badge, Toolbar } from "@mui/material";
+import { Container, IconButton, Badge, Grid } from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
@@ -22,34 +22,22 @@ const NavBar = () => {
   const color = 'black'
 
 
-
   return (
-    <AppBar sx={{position: 'absolute', width: '81%', boxShadow:'none', background:'none'}}>
-      <Toolbar sx={{height: `${heightNavbar}rem`}} >
-        <Box sx={{display:"flex", width: '100%', flexDirection:"row", justifyContent:"flex-end"}}>
+    <Container sx={{position: 'absolute', width: '90vw', height: `${heightNavbar}rem`, mt:'1rem'}} >
+    <Grid container ml={{xs:'0', sm:`${widthSideBar + 1}rem`}} alignItems='center' justifyContent={{xs:'center', sm:'space-between'}} >
           
-         <Box sx={{display:"flex", width: '80%', flexDirection:"row", alignItems:'center'}}>
-          <IconButton onClick={() => navigate(`/dashboard/admin`)} sx={{color: color}}><HomeIcon /></IconButton>
-          / {pathnameSlice === '' ? 'Dashboard' : nuevoPathname}
-         </Box>
+     <Grid flexDirection='row' alignItems='center'>
+      <IconButton onClick={() => navigate(`/dashboard/admin`)} sx={{color: color}}><HomeIcon /></IconButton>/ {pathnameSlice === '' ? 'Dashboard' : nuevoPathname}
+    </Grid>
 
+    <Grid container direction='row' alignItems='center' justifyContent='center' width={{xs:'none', sm:'20%'}}>
+      <SearchIcon sx={{color: color}}/>
+      <input style={{borderRadius:'10px', height:'2rem', border:'2px solid color', background:'none'}} />
+      <IconButton sx={{color: color}}><Badge badgeContent={4}><NotificationsIcon /></Badge></IconButton>
+    </Grid>
 
-         <Box sx={{display:"flex", width: '20%', flexDirection:"row", justifyContent:"space-between", alignItems:'center'}}>
-          
-           <Box sx={{ display: 'flex', width:'20rem'}}>
-             <SearchIcon sx={{color: color}}/>
-             <input style={{borderRadius:'10px', height:'2rem', border:'2px solid color', background:'none'}}/>
-           </Box>
-
-           <IconButton sx={{color: color}}>
-             <Badge badgeContent={4}><NotificationsIcon /></Badge>
-           </IconButton>
-
-         </Box>
-
-        </Box>
-      </Toolbar>
-    </AppBar>
+    </Grid>
+  </Container>
   );
 };
 
