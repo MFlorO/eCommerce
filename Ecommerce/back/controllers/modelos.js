@@ -10,7 +10,7 @@ exports.getModelos = async (req, res) => {
     try {
 
         const modelo = await Modelo.findAll({
-            order: ['id'],
+            order: [['color', 'ASC']],
             include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
                 model: ModeloVariante
              }
