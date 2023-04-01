@@ -41,6 +41,7 @@ exports.getModelos = async (req, res) => {
 
 
 
+
 // ------------ POST ------------ //
 
 
@@ -98,58 +99,37 @@ exports.crearModelos = async(req, res) => {
 
 
 
+// ------------ PUT ------------ //
 
 
-// ------------ POST ------------ //
+exports.modificarModelo = async(req, res) => {
 
+    const { id, color, idMV, talle, stock} = req.body;   
 
-exports.crearModelos = async(req, res) => {
-
-    const { productoCodigo } = req.params;
-
-    const { color, talle, stock} = req.body;   //productoCodigo -> id del producto que contiene el modelo
-
-    console.log('backParams', productoCodigo)
-    console.log('backBody', { color, talle, stock} )
     
     try {
 
-        const producto = await Producto.findByPk(productoCodigo);
+        await Modelo.update({ 
+            color
+        },
+        { where: {id:id}  }
+        );
 
-        if (!producto) return res.status(404).json({
-            ok: false,
-            status: 'Producto no encontrado'
-        });
-        
-    
-        const modelo = await Modelo.create( {
-            color,
-            productoCodigo
-        });
-
-
-        const modeloVariante = await ModeloVariante.create( {
+       await ModeloVariante.update( {
             talle,
             stock,
-            modeloId: modelo.dataValues.id
-       });
+       },
+       { where: {id:idMV}  }
+       );
 
-
-        if (modeloVariante) await modelo.addModeloVariante(modeloVariante)
-    
-       
-    
-        return res.status(201).json({
+         return res.status(201).json({
             ok: true,
-            status: "Modelo creado con éxito",
-            modelo,
-            modeloVariante
-        });
+            status: "Modelo modificado con éxito",
+        })
         
 
     
     } catch (error) {
-
         res.status(500).json({
             ok: false,
             status: "comunicarse con el administrador",
@@ -157,7 +137,6 @@ exports.crearModelos = async(req, res) => {
         console.log(error)
     }
 }
-
 
 
 // ------------ DELETE ------------ //
