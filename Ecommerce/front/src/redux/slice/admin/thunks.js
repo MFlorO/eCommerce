@@ -242,9 +242,10 @@ export const DeleteModelo = (body) => {
 }
 
 
-export const UpdateModeloID = (body) => {
-
-    const {id, color, idMV, talle, stock} = body;
+export const UpdateModeloID = (body, params) => {
+    
+    const { id, idMV } = params;
+    const { color, talle, stock } = body;
     
     return async( body , dispatch ) => {
 
@@ -258,7 +259,11 @@ export const UpdateModeloID = (body) => {
                 idMV: idMV,
                 talle: talle,
                 stock: stock
-              })
+              }),
+            params: JSON.stringify({
+                id: id, 
+                idMV: idMV
+            })
         })
 
         const data = await response.json()
