@@ -1,6 +1,6 @@
 import { getStatus, getCategorias, postCatgoria, updateCatgoria, deleteCategoria, 
     getProductos, getProducto, postProducto, postModeloProductoId, deleteProducto,
-    deleteModelo,
+    deleteModelo, updateModelo
     
  } from "./adminSlice"
 
@@ -238,5 +238,34 @@ export const DeleteModelo = (body) => {
 
         await dispatch(deleteModelo(data));  
         startGetTodasCategorias(); 
+    }
+}
+
+
+export const UpdateModelo = (body) => {
+
+    const {id, color, idMV, talle, stock} = body;
+    
+    return async( body , dispatch ) => {
+
+        const response = await fetch('http://localhost:3001/api/modelos', {
+            method: 'PUT',
+            mode: 'cors', 
+            headers:{ 'Content-Type': 'application/json'  },
+            body: JSON.stringify({
+                id: id,
+                color: color,
+                idMV: idMV,
+                talle: talle,
+                stock: stock
+              })
+        })
+
+        const data = await response.json()
+
+        if ( !data.ok ) return console.log(data.status);
+
+        await dispatch(updateModelo(data))
+        await dispatch(startGetTodasCategorias())        
     }
 }

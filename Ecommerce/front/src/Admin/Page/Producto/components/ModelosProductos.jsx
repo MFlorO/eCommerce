@@ -16,6 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const talles = ["XXL", "XL", "L", "M", "S", "XS"];
 const colores = ["AZUL", "AMARILLO", "BLANCO", "BORDO", "ROSA", "VERDE"];
 
+
 const formData = {
   color: "",
   talle: "",
@@ -26,26 +27,20 @@ const formData = {
 
 const ModelosProductos = () => {
 
-  const { color, talle, stock, onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormularioModelos)
+  const { color, talle, stock, onInputChange, onResetForm, formValid } = useForm(formData, validacionFormularioModelos)
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { producto } = useSelector( state => state.admin)
   const {id} = useParams()
 
-  
-  // useEffect(() => {
-  //   dispatch(getProductoID(id))
-  // }, [])
+
 
   useMemo(() => dispatch(getProductoID(id)), [id]); // Memorizo el valor porque en un futuro si mi app crece no va a renderizarse 
                                                     // porque cambie un valor de otro componente que afecte a este
   
 
-
-  const deleteIdModelo = (id) => {
-    dispatch(DeleteModelo({id}))
-  }
+  const deleteIdModelo = (id) =>  dispatch(DeleteModelo({id}))
 
 
   const onSubmit = (event) => {

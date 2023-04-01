@@ -1,12 +1,21 @@
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button} from '@mui/material';
 import { Fragment } from 'react';
+import { useDispatch } from 'react-redux';
+import { UpdateModelo, DeleteModelo } from "~/redux/slice/admin/thunks";
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button} from '@mui/material';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+
 
 const titulo = ["Color", "Talle", "Stock"]
 
 
+
 const TablaModelo = ({modelos}) => {
+
+  const dispatch = useDispatch()
+  const deleteIdModelo = (id) =>  dispatch(DeleteModelo({id}))
+  // const editModelo = () => dispatch(updateModelo)
+
   return (
     <TableContainer sx={{ width: 'max-content' , justifyContent:'center', border: "1px solid" }}>
     <Table>
@@ -27,7 +36,7 @@ const TablaModelo = ({modelos}) => {
             <TableCell>{mv.stock}</TableCell> 
             <TableCell>
               <Button><EditIcon  fontSize='small'/></Button>
-              <Button><DeleteIcon fontSize='small'/></Button></TableCell>
+              <Button onClick={ () => deleteIdModelo(m.id)}><DeleteIcon fontSize='small'/></Button></TableCell>
           </Fragment>
         ))}
       </TableRow>
