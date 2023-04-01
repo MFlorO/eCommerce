@@ -5,6 +5,7 @@ import useProductos from '~/Hook/useProductos';
 import { ListaProductos } from './components';
 import { Container, Grid, Paper, Button, Box, Stack } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import { Fragment } from "react";
 
 
 const Productos = () => {
@@ -16,26 +17,17 @@ const Productos = () => {
  return (
   <AdminLayOut>
   <Container>
-    <Grid container spacing={3}>
+  <Grid container spacing={3} sx={{ overflowY: "hidden" }} >
 
-    <Grid item xs={12} >
-       <Paper sx={{ p: 2,display: "flex", flexDirection: "column", height:'max-content', justifyContent:'center' }}>
-        
-        <Stack sx={{flexDirection:"row"}}>
-          <Button onClick={() => navigate(`/dashboard/admin/productos/crearProducto`) }><AddIcon />{""} Crear Producto</Button>
-        </Stack>
+  <Grid item xs={12} >
+    <Paper sx={{ p: 2}}>
+      <Button onClick={() => navigate(`/dashboard/admin/productos/crearProducto`) }><AddIcon />{""} Crear Producto</Button>
+      {productos?.map(p => <Fragment key={p.codigo}><ListaProductos {...p} /></Fragment>)} 
+    </Paper>
+  </Grid>
 
-        {productos?.map(p => (
-            <Box key={p.codigo} sx={{height:'max-content'}}>
-              <ListaProductos {...p} />
-            </Box>
-          ))} 
-
-       </Paper>
-      </Grid>
-
-    </Grid>
-    </Container>
+  </Grid>
+  </Container>
   </AdminLayOut>
 )}
 

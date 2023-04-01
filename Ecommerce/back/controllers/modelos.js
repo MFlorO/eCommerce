@@ -47,13 +47,15 @@ exports.getModelos = async (req, res) => {
 
 exports.crearModelos = async(req, res) => {
 
-    const { productoCodigo } = req.params;
+    const { codigo } = req.params;   //codigo -> id del producto que contiene el modelo
 
-    const { color, talle, stock} = req.body;   //productoCodigo -> id del producto que contiene el modelo
+    console.log(codigo)
+
+    const { color, talle, stock} = req.body;   
     
     try {
 
-        const producto = await Producto.findByPk(productoCodigo);
+        const producto = await Producto.findByPk(codigo);
 
         if (!producto) return res.status(404).json({
             ok: false,
@@ -63,8 +65,10 @@ exports.crearModelos = async(req, res) => {
     
         const modelo = await Modelo.create( {
             color,
-            productoCodigo
+            productoCodigo: codigo
         });
+
+        console.log(modelo)
 
 
         const modeloVariante = await ModeloVariante.create( {

@@ -1,4 +1,4 @@
-import { useCategoria } from "~/Hook";
+import { useCategorias } from "~/Hook";
 import { useNavigate } from "react-router-dom";
 import { ListaCategorias } from './components';
 import { AdminLayOut } from "~/Admin/layout"
@@ -12,7 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 const Categorias = () => {
 
-  const categorias = useCategoria()
+  const categorias = useCategorias()
   const navigate = useNavigate()
   
   return (

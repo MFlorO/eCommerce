@@ -18,8 +18,6 @@ export const validacionFormularioProducto = (input) => {
     if((!input.imagen)) errores.imagen = "Completar el campo imagen";
 
     if((!input.fechaPublicacion)) errores.fechaPublicacion = "Completar el campo fecha de publicacion";
-
-    if((!input.idCategoria.length < 0)) errores.idCategoria = "Elegir mínimo una categoría"
     
     return errores
   }
@@ -30,7 +28,7 @@ export const validacionFormularioProducto = (input) => {
     let errores = {};
 
     if((!input.color)) errores.color = "Completar el campo color";
-  
+
     if((!input.talle)) errores.talle = "Completar el campo talle";
     if((!input.stock)) errores.stock = "Completar el campo stock"
 

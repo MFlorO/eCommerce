@@ -102,14 +102,7 @@ const MenuEditarYBorrar = (p) => {
       ><MenuIcon />
       </IconButton>
 
-      <StyledMenu
-        // id="demo-customized-menu"
-        // MenuListProps={{
-        //   'aria-labelledby': 'demo-customized-button',
-        // }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={() => setAnchorEl(null)}
+      <StyledMenu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}
       >
         <MenuItem onClick={handleEdit} disableRipple><EditIcon />Editar</MenuItem>
         <MenuItem onClick={() => handleDelete(codigo)} disableRipple><DeleteIcon />Borrar</MenuItem>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startGetTodasCategorias } from '~/redux/slice/admin/thunks';
 
 
-const useCategoria = () => {
+const useCategorias = () => {
 
   const { categorias, status } = useSelector( state => state.admin)
 
@@ -20,4 +20,4 @@ const useCategoria = () => {
   return categorias
 }
 
-export default useCategoria
+export default useCategorias

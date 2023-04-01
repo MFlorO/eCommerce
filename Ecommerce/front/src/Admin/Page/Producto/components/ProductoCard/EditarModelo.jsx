@@ -1,8 +1,7 @@
-import { useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import AdminLayOut from "../../../../layout/AdminLayOut";
-import { useForm,useQueryParams } from "~/Hook";
+import { useForm, useQueryParams } from "~/Hook";
 import { validacionFormularioModelos } from "~/functions/validacionFormulario";
 import { UpdateModeloID } from "~/redux/slice/admin/thunks";
 
@@ -25,7 +24,7 @@ const formData = {
 
 const EditarModelo = () => {
 
-  const query = useQueryParams()
+  // const query = useQueryParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -44,14 +43,11 @@ const EditarModelo = () => {
 
 
   const onSubmit = (event) => {
-    console.log('form', {color, talle, stock})
     event.preventDefault();
     dispatch(UpdateModeloID({color, talle, stock},{id, idMV}));
     onResetForm();
     navigate(`/dashboard/admin/productos`)
   }
-  
-  console.log('state', {color, talle, stock})
 
 
   return (

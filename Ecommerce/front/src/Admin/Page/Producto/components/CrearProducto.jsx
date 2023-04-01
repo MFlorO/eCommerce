@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AdminLayOut } from "~/Admin/layout"
-import { useForm, useCategoria } from "~/Hook";
+import { useForm } from "~/Hook";
 
-
-import { Container, Paper, Button, Input, TextField, Typography, Select, MenuItem, IconButton, Stack, Alert } from "@mui/material";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Container, Paper, Button, Input, TextField, Typography, Stack, Alert } from "@mui/material";
 import { PostProducto } from "~/redux/slice/admin/thunks";
 import { validacionFormularioProducto } from "~/functions/validacionFormulario";
 
@@ -17,10 +15,10 @@ let formData = {
   descripcion: '',
   imagen: '',
   fechaPublicacion: '',
-  puntaje: 0,
-  oferta: null,
-  idCategoria: []
+  oferta: null
 }
+
+
 
 
 
@@ -29,34 +27,13 @@ const CrearProducto = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria, oferta, 
+  const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, oferta, 
     onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormularioProducto)
   
-  const categorias = useCategoria()
-
-  const listaCategorias = idCategoria?.map((c, index) => {
-
-    let nombre = categorias?.map(categoria => categoria.id === c ? categoria.nombre : null)
-
-
-    const deleteCategoriasSeleccionadas = (c) =>{
-      // let idCategoriaFinal = idCategoria?.filter(categoria => categoria.id !== c ) 
-
-      // setFormState({ ...formState, idCategoria: c  })
-    }
-
-    return ( 
-    <Stack flexDirection='row' alignItems='center' ml={2} key={index}>
-       <li>{nombre}</li>
-       <IconButton onClick={() => deleteCategoriasSeleccionadas()}><DeleteForeverIcon fontSize="small"/></IconButton>
-    </Stack>
-   )
-  })
-
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(PostProducto({ codigo, nombre , precio, descripcion, imagen, fechaPublicacion, oferta, idCategoria }));
+    dispatch(PostProducto({ codigo, nombre , precio, descripcion, imagen, fechaPublicacion, oferta }));
     onResetForm();
     navigate(`/dashboard/admin/productos/crearModelo/${codigo}`) 
   }
@@ -86,17 +63,8 @@ const CrearProducto = () => {
           <Input type='file' label="Imagen" name="imagen" value={imagen} onChange={onInputChange} />
           
           <TextField type='date' name="fechaPublicacion" value={fechaPublicacion} onChange={onInputChange} error={formValid()} />
-
           
-          <Typography>Categorías</Typography>
-          <Select name="idCategoria"  value={idCategoria.length > 0 ? idCategoria : ""} onChange={onInputChange} error={formValid()} >
-            {categorias?.map( c => <MenuItem value={c.id} key={c.id}>{c.nombre}</MenuItem>)}
-          </Select>
 
-          {/* LISTA DE CATEGORIAS */}
-          <ul>
-            {listaCategorias}
-          </ul>
         {Object.values(errorFormValid).length && <Alert severity="error">Error en el formulario, compruebe que todos los campos esten llenos</Alert>}
         <Button variant="contained" type="submit" disabled={formValid() || (codigo.length === 0) ? true : false}>SIGUIENTE</Button>
         </form>

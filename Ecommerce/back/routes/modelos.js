@@ -9,7 +9,7 @@ const { getModelos, crearModelos, modificarModelo, deleteModelo} = require('../c
 
 
 router.get('/', getModelos)
-router.post('/:productoCodigo', crearModelos );
+router.post('/:codigo', crearModelos );
 router.put('/:id/:idMV', modificarModelo)
 router.delete('/', deleteModelo);
 

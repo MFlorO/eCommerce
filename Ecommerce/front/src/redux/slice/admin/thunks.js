@@ -1,5 +1,5 @@
-import { getStatus, getCategorias, postCatgoria, updateCatgoria, deleteCategoria, 
-    getProductos, getProducto, postProducto, postModeloProductoId, deleteProducto,
+import { getStatus, getCategorias, postCatgorias, updateCatgorias, deleteCategorias, 
+    getProductos, getProducto, postProducto, postModeloProductoId, deleteProducto, 
     deleteModelo, updateModeloID
     
  } from "./adminSlice"
@@ -40,7 +40,7 @@ export const PostCategorias = (body) => {
 
         if ( !data.ok ) return await dispatch(getStatus({status}));
 
-        await dispatch(postCatgoria(data))
+        await dispatch(postCatgorias(data))
         await dispatch(getStatus(data))
     }
 }
@@ -66,7 +66,7 @@ export const UpdateCategorias = (body) => {
 
         if ( !data.ok ) return console.log(data.status);
 
-        await dispatch(updateCatgoria(data))
+        await dispatch(updateCatgorias(data))
         await dispatch(startGetTodasCategorias())        
     }
 }
@@ -91,7 +91,7 @@ export const DeleteCategorias = (body) => {
 
         if ( !data.ok ) return console.log(data.status);
 
-        await dispatch(deleteCategoria(data));
+        await dispatch(deleteCategorias(data));
         
         startGetTodasCategorias(); 
     }
@@ -128,7 +128,7 @@ export const getProductoID = (codigo) => {
 
 export const PostProducto = (body) => {
 
-    const {codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, oferta, idCategoria } = body;
+    const {codigo, nombre , precio, descripcion, imagen, fechaPublicacion, puntaje, oferta } = body;
     
     return async( body, dispatch ) => {
 
@@ -144,8 +144,7 @@ export const PostProducto = (body) => {
                 imagen: imagen,
                 fechaPublicacion: fechaPublicacion,
                 puntaje: puntaje, 
-                oferta: oferta,
-                idCategoria: idCategoria,
+                oferta: oferta
               })
         })
 
@@ -163,12 +162,14 @@ export const PostProducto = (body) => {
 
 export const PostModeloProductoId = (body, params) => {
 
-    const { id } = params  //codigo de producto
+    const { codigo } = params  //codigo de producto
     const { color, talle, stock } = body;
+
+    console.log(codigo)
 
     return async( body, dispatch ) => {
 
-        const response = await fetch(`http://localhost:3001/api/modelos/${id}`, {
+        const response = await fetch(`http://localhost:3001/api/modelos/${codigo}`, {
             method: 'POST',
             mode: 'cors', 
             headers:{ 'Content-Type': 'application/json'  },
@@ -177,7 +178,7 @@ export const PostModeloProductoId = (body, params) => {
                 talle: talle,
                 stock: stock,
               }),
-            params: JSON.stringify({productoCodigo: id})
+            params: JSON.stringify({codigo: codigo})
         })
 
         const data = await response.json()
@@ -244,7 +245,7 @@ export const DeleteModelo = (body) => {
 
 export const UpdateModeloID = (body, params) => {
     
-    const { id, idMV } = params;
+    const { id, idMV } = params;  //id modelo     idMV modelovariante
     const { color, talle, stock } = body;
     
     return async( body , dispatch ) => {

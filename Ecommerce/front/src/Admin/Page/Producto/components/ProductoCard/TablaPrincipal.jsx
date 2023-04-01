@@ -1,4 +1,7 @@
+import MenuEditarYBorrar from './MenuEditarYBorrar';
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material';
+
+
 
 const titulo = ["Código", "Nombre", "Descripción", "Precio", "Imagen", "Fecha de Publicación", "Oferta"]
 
@@ -14,8 +17,8 @@ const TablaPrincipal = ({p}) => {
     <Table>
     <TableHead>
       <TableRow>
-      {titulo.map ( t => <TableCell align="center" style={{ minWidth:'max-content' }} key={t}>{t}</TableCell>)} 
-      {/* <TableCell align="center"><MenuEditarYBorrar {...p}/></TableCell> */}
+      {titulo.map ( t => <TableCell align="center" key={t}>{t}</TableCell>)} 
+      <TableCell align="center"><MenuEditarYBorrar {...p}/></TableCell>
     </TableRow>
     </TableHead>
 

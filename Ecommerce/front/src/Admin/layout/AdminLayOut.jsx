@@ -22,7 +22,7 @@ const AdminLayOut = ({ children }) => {
       
       <Grid container direction='column' justifyContent='space-between' sx={{ minHeight:'100vh ', height:"max-content", width:'100%' }}
       mt={{ xs: `${heightNavbar + heightSidebar + 2 }rem`, sm:`${heightNavbar}rem`}} ml={{xs:'none', sm:`${widthSideBar}rem`}} >
-        <Grid>{children}</Grid>
+        <Grid >{children}</Grid>
         <Grid><Footer /></Grid>
       </Grid>
 

@@ -1,3 +1,4 @@
+export { default as EditarModelo } from './EditarModelo';
 export { default as ListaProductos } from './ListaProductos';
 export { default as MenuEditarYBorrar } from './MenuEditarYBorrar';
 export { default as TablaCategorias } from './TablaCategorias';

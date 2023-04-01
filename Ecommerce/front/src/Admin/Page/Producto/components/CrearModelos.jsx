@@ -1,7 +1,5 @@
-import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getProductoID } from "~/redux/slice/admin/thunks";
+import { useDispatch } from "react-redux";
 import { useForm } from "~/Hook";
 import { validacionFormularioModelos } from "~/functions/validacionFormulario";
 import AdminLayOut from "../../../layout/AdminLayOut";
@@ -10,6 +8,7 @@ import { PostModeloProductoId, DeleteModelo } from "~/redux/slice/admin/thunks";
 import { IconButton, Select, TextField, MenuItem, Stack, Typography, Button , Grid, Paper} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from "@mui/icons-material/Delete";
+import useProducto from "../../../../Hook/useProducto";
 
 
 const talles = ["XXL", "XL", "L", "M", "S", "XS"];
@@ -30,21 +29,17 @@ const CrearModelos = () => {
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { producto } = useSelector( state => state.admin)
-  const {id} = useParams()
+  const { codigo } = useParams()
+  const producto =   useProducto(codigo)
 
 
-
-  useMemo(() => dispatch(getProductoID(id)), [id]); // Memorizo el valor porque en un futuro si mi app crece no va a renderizarse 
-                                                    // porque cambie un valor de otro componente que afecte a este
-  
 
   const deleteIdModelo = (id) =>  dispatch(DeleteModelo({id}))
 
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(PostModeloProductoId({color, talle, stock},{id}));
+    dispatch(PostModeloProductoId({color, talle, stock},{codigo}));
     onResetForm();
   }
 
@@ -97,7 +92,7 @@ const CrearModelos = () => {
         </ul>
       </>
      }
-      <Button variant="contained" onClick={() => navigate(`/dashboard/admin/productos`)} disabled={disableBoton()} >FINALIZAR</Button>
+      <Button variant="contained" onClick={() => navigate(`/dashboard/admin/productos/categorias/${codigo}`)} disabled={disableBoton()}>SIGUIENTE</Button>
 
      </Stack>      
      </Paper>
