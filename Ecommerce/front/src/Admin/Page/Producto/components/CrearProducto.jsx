@@ -4,7 +4,7 @@ import { AdminLayOut } from "~/Admin/layout"
 import { useForm, useCategoria } from "~/Hook";
 
 
-import { Container, Paper, Button, Input, TextField, Typography, Select, MenuItem, IconButton, Stack } from "@mui/material";
+import { Container, Paper, Button, Input, TextField, Typography, Select, MenuItem, IconButton, Stack, Alert } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { PostProducto } from "~/redux/slice/admin/thunks";
 import { validacionFormularioProducto } from "~/functions/validacionFormulario";
@@ -29,8 +29,8 @@ const CrearProducto = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria, oferta,
-  onInputChange, errorFormValid, onResetForm, formValid, formState, setFormState } = useForm(formData, validacionFormularioProducto)
+  const { codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria, oferta, 
+    onInputChange, errorFormValid, onResetForm, formValid } = useForm(formData, validacionFormularioProducto)
   
   const categorias = useCategoria()
 
@@ -53,7 +53,6 @@ const CrearProducto = () => {
    )
   })
 
-  console.log(formState)
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -80,18 +79,17 @@ const CrearProducto = () => {
           <TextField label="Nombre" name="nombre" value={nombre} onChange={onInputChange} error={formValid()} helperText={errorFormValid.nombre} />
 
           <TextField multiline  rows={4}
-            label="Descripción" name="descripcion" value={descripcion} onChange={onInputChange} error={formValid()} helperText={errorFormValid.descripcion}
-          />
+            label="Descripción" name="descripcion" value={descripcion} onChange={onInputChange} error={formValid()} />
           
-          <TextField type='number' label="Precio" name="precio" value={precio} onChange={onInputChange} error={formValid()} helperText={errorFormValid.precio}/>
+          <TextField type='number' label="Precio" name="precio" value={precio} onChange={onInputChange} error={formValid()} />
 
           <Input type='file' label="Imagen" name="imagen" value={imagen} onChange={onInputChange} />
           
-          <TextField type='date' name="fechaPublicacion" value={fechaPublicacion} onChange={onInputChange} error={formValid()} helperText={errorFormValid.fechaPublicacion}/>
+          <TextField type='date' name="fechaPublicacion" value={fechaPublicacion} onChange={onInputChange} error={formValid()} />
 
           
           <Typography>Categorías</Typography>
-          <Select name="idCategoria"  value={idCategoria.length > 0 ? idCategoria : ""} onChange={onInputChange} error={formValid()} helperText={errorFormValid.idCategoria}>
+          <Select name="idCategoria"  value={idCategoria.length > 0 ? idCategoria : ""} onChange={onInputChange} error={formValid()} >
             {categorias?.map( c => <MenuItem value={c.id} key={c.id}>{c.nombre}</MenuItem>)}
           </Select>
 
@@ -99,7 +97,7 @@ const CrearProducto = () => {
           <ul>
             {listaCategorias}
           </ul>
-                    
+        {Object.values(errorFormValid).length && <Alert severity="error">Error en el formulario, compruebe que todos los campos esten llenos</Alert>}
         <Button variant="contained" type="submit" disabled={formValid() || (codigo.length === 0) ? true : false}>SIGUIENTE</Button>
         </form>
 
