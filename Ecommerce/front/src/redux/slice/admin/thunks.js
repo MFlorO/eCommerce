@@ -1,6 +1,6 @@
 import { getStatus, getCategorias, postCatgoria, updateCatgoria, deleteCategoria, 
     getProductos, getProducto, postProducto, postModeloProductoId, deleteProducto,
-    deleteModelo, updateModelo
+    deleteModelo, updateModeloID
     
  } from "./adminSlice"
 
@@ -242,7 +242,7 @@ export const DeleteModelo = (body) => {
 }
 
 
-export const UpdateModelo = (body) => {
+export const UpdateModeloID = (body) => {
 
     const {id, color, idMV, talle, stock} = body;
     
@@ -265,7 +265,7 @@ export const UpdateModelo = (body) => {
 
         if ( !data.ok ) return console.log(data.status);
 
-        await dispatch(updateModelo(data))
+        await dispatch(updateModeloID(data))
         await dispatch(startGetTodasCategorias())        
     }
 }

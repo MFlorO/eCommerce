@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
-import { UpdateModelo, DeleteModelo } from "~/redux/slice/admin/thunks";
+import { UpdateModeloID, DeleteModelo } from "~/redux/slice/admin/thunks";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button} from '@mui/material';
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
