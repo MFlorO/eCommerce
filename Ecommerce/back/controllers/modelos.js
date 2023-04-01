@@ -104,8 +104,10 @@ exports.crearModelos = async(req, res) => {
 
 exports.modificarModelo = async(req, res) => {
 
-    const { id, color, idMV, talle, stock} = req.body;   
+    const { color, talle, stock } = req.body;  
+    const { id, idMV } = req.params 
 
+    console.log( {color, talle, stock, id, idMV} )
     
     try {
 
