@@ -57,7 +57,9 @@ const StyledMenu = styled((props) => (
 
 
 
-const MenuEditarYBorrar = ({codigo, nombre}) => {
+const MenuEditarYBorrar = (p) => {
+
+  const {codigo, nombre, descripcion, precio, imagen, fechaPublicacion, oferta} = p
 
   const dispatch = useDispatch()
 
@@ -71,7 +73,7 @@ const MenuEditarYBorrar = ({codigo, nombre}) => {
     // dispatch()
   }
   
-  const handleDelete = (codigo) => {
+  const handleDelete = () => {
 
     setAnchorEl(null);
 
@@ -89,7 +91,7 @@ const MenuEditarYBorrar = ({codigo, nombre}) => {
   }
 
   return (
-    <div>
+    <>
       <IconButton
         id="demo-customized-button"
         aria-controls={open ? 'demo-customized-menu' : undefined}
@@ -101,18 +103,18 @@ const MenuEditarYBorrar = ({codigo, nombre}) => {
       </IconButton>
 
       <StyledMenu
-        id="demo-customized-menu"
-        MenuListProps={{
-          'aria-labelledby': 'demo-customized-button',
-        }}
+        // id="demo-customized-menu"
+        // MenuListProps={{
+        //   'aria-labelledby': 'demo-customized-button',
+        // }}
         anchorEl={anchorEl}
         open={open}
         onClose={() => setAnchorEl(null)}
       >
-        <MenuItem onClick={handleEdit} disableRipple><EditIcon /> Editar </MenuItem>
-        <MenuItem onClick={() => handleDelete(codigo)} disableRipple><DeleteIcon /> Borrar</MenuItem>
+        <MenuItem onClick={handleEdit} disableRipple><EditIcon />Editar</MenuItem>
+        <MenuItem onClick={() => handleDelete(codigo)} disableRipple><DeleteIcon />Borrar</MenuItem>
       </StyledMenu>
-    </div>
+    </>
   );
 }
 

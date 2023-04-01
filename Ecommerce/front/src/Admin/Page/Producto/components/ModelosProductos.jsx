@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from "@mui/icons-material/Delete";
 
 
-const talles = ["xxl", "xl", "l", "m", "s", "xs"];
+const talles = ["XXL", "XL", "L", "M", "S", "XS"];
 const colores = ["AZUL", "AMARILLO", "BLANCO", "BORDO", "ROSA", "VERDE"];
 
 const formData = {
