@@ -1,3 +1,3 @@
 export { default as CrearProducto } from './CrearProducto';
-export { default as ModelosProductos } from './ModelosProductos';
+export { default as CrearModelos } from './CrearModelos';
 export * from './ProductoCard';
