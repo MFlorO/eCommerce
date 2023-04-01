@@ -26,7 +26,7 @@ const Productos = () => {
         </Stack>
 
         {productos?.map(p => (
-            <Box key={p.codigo}>
+            <Box key={p.codigo} sx={{height:'max-content'}}>
               <ListaProductos {...p} />
             </Box>
           ))} 

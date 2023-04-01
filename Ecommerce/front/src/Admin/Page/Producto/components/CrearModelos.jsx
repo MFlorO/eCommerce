@@ -19,7 +19,7 @@ const colores = ["AZUL", "AMARILLO", "BLANCO", "BORDO", "ROSA", "VERDE"];
 const formData = {
   color: "",
   talle: "",
-  stock: 0
+  stock: ""
 }
 
 
@@ -49,6 +49,7 @@ const CrearModelos = () => {
   }
 
   const disableBoton = () => (producto?.modelos?.length < 1) ? true : false
+
 
 
   return (

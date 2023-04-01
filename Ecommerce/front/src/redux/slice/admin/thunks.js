@@ -249,7 +249,7 @@ export const UpdateModeloID = (body, params) => {
     
     return async( body , dispatch ) => {
 
-        const response = await fetch('http://localhost:3001/api/modelos', {
+        const response = await fetch(`http://localhost:3001/api/modelos/${id}/${idMV}`, {
             method: 'PUT',
             mode: 'cors', 
             headers:{ 'Content-Type': 'application/json'  },

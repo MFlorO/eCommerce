@@ -6,6 +6,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 
 const ListaProductos = (p) => {
+
   return (
     <Accordion sx={{ width: "100%", boxShadow: "none", height: "max-content", gap: 2 }} >
       <AccordionSummary>
@@ -21,12 +22,12 @@ const ListaProductos = (p) => {
               <TablaPrincipal p={p} />
             </Grid>
 
-            <Grid justifyContent="center" item xs={4}>
+            <Grid justifyContent="center" item xs={12} sm={4}>
               <TablaCategorias categoria={p.categoria} />
             </Grid>
 
-            <Grid justifyContent="center" item xs={4}>
-              <TablaModelo modelos={p.modelos} />
+            <Grid justifyContent="center" item xs={12} sm={4}>
+              <TablaModelo modelos={p.modelos} codigo={p.codigo}/>
             </Grid>
           </Grid>
       </AccordionDetails>
