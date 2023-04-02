@@ -5,14 +5,13 @@ import { getProductoID } from '../redux/slice/admin/thunks';
 
 const useProducto = (codigo) => {
 
-  const { producto, status } = useSelector( state => state.admin)
-
   const dispatch = useDispatch()
+  
+  const { producto, status } = useSelector( state => state.admin)
 
   useEffect(() => {
     if(codigo) dispatch(getProductoID(codigo))
-  }, [])
-
+  }, [codigo])
 
   return producto
 }

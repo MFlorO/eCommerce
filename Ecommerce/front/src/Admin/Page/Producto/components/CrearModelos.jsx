@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useForm } from "~/Hook";
+import { useForm, useProducto } from "~/Hook";
 import { validacionFormularioModelos } from "~/functions/validacionFormulario";
 import AdminLayOut from "../../../layout/AdminLayOut";
 import { PostModeloProductoId, DeleteModelo } from "~/redux/slice/admin/thunks";
@@ -8,7 +8,6 @@ import { PostModeloProductoId, DeleteModelo } from "~/redux/slice/admin/thunks";
 import { IconButton, Select, TextField, MenuItem, Stack, Typography, Button , Grid, Paper} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from "@mui/icons-material/Delete";
-import useProducto from "../../../../Hook/useProducto";
 
 
 const talles = ["XXL", "XL", "L", "M", "S", "XS"];
@@ -30,9 +29,7 @@ const CrearModelos = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { codigo } = useParams()
-  const producto =   useProducto(codigo)
-
-
+  const producto = useProducto(codigo)
 
   const deleteIdModelo = (id) =>  dispatch(DeleteModelo({id}))
 
@@ -46,11 +43,10 @@ const CrearModelos = () => {
   const disableBoton = () => (producto?.modelos?.length < 1) ? true : false
 
 
-
   return (
 
   <AdminLayOut>
-    <Grid container sx={{width:'90%', display:'flex', justifyContent:'center', alignContent:'items'}} ml={{xs:'20px', sm:'0px'}} >
+    <Grid container sx={{width:'100%', display:'flex', justifyContent:'center', alignContent:'items'}} ml={{xs:'20px', sm:'0px'}} >
     <Paper sx={{ p: 2, display: "flex", flexDirection: "column", minHeight:'20rem' }}>
 
     <Stack gap={2}>

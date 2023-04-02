@@ -13,7 +13,7 @@ const AdminProductoRoutes = () => {
       <Route path="/crearProducto" element={<CrearProducto />}/>
       <Route path="/crearModelo/:codigo" element={<CrearModelos />}/>
       <Route path="/modificarModelo/:id/:idMV" element={<EditarModelo />}/>
-      <Route path="/categoria/:codigo" element={<AgregarCategoria /> }/>
+      <Route path="/categorias/:codigo" element={<AgregarCategoria /> }/>
       
       {/* Ruta defecto */}
       <Route path="/" element={<Navigate to="/dashboard/admin/productos" />}/>

@@ -20,7 +20,7 @@ const Productos = () => {
   <Grid container spacing={3} sx={{ overflowY: "hidden" }} >
 
   <Grid item xs={12} >
-    <Paper sx={{ p: 2}}>
+    <Paper sx={{ p: 2, minHeight:'40rem' }}>
       <Button onClick={() => navigate(`/dashboard/admin/productos/crearProducto`) }><AddIcon />{""} Crear Producto</Button>
       {productos?.map(p => <Fragment key={p.codigo}><ListaProductos {...p} /></Fragment>)} 
     </Paper>
