@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { Detalle, Home, LandingPage, Search } from "../page";
+import { Detalle, Home, LandingPage, Search, Contacto, ComoComprar, Devoluciones, Talles } from "../page";
 import EcommerceLayout from "../layout/EcommerceLayout";
+
 
 
 
@@ -13,6 +14,11 @@ const EcommerceRoutes = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/detalle" element={<Detalle /> } />
       <Route path="/search" element={<Search />} />
+    
+      <Route path="/talles" element={<Talles />} />
+      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/comocomprar" element={<ComoComprar />} />
+      <Route path="/devoluciones" element={<Devoluciones />} />
 
       {/* Ruta defecto */}
       <Route path="/" element={<Navigate to="/" />} />
