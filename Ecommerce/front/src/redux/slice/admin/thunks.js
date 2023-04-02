@@ -1,4 +1,4 @@
-import { getStatus, getCategorias, postCatgorias, updateCatgorias, deleteCategorias, 
+import { getStatus, getCategorias, postCatgorias, updateCatgorias, deleteCategorias, postCategoriaProductoId, putCategoriaProductoId,
     getProductos, getProducto, postProducto, postModeloProductoId, deleteProducto, 
     deleteModelo, updateModeloID
     
@@ -98,6 +98,59 @@ export const DeleteCategorias = (body) => {
 }
 
 
+export const PostCategoriaProductoId = (body, params) => {
+
+    const { codigo } = params  //codigo de producto
+    const { id } = body;
+
+    return async( body, dispatch ) => {
+
+        const response = await fetch(`http://localhost:3001/api/categorias/${codigo.toUpperCase()}`, {
+            method: 'POST',
+            mode: 'cors', 
+            headers:{ 'Content-Type': 'application/json'  },
+            body: JSON.stringify({
+                id: id
+              }),
+            params: JSON.stringify({codigo: codigo})
+        })
+
+        const data = await response.json()
+
+        if ( !data.ok ) return console.log(data.status);
+
+        await dispatch(postCategoriaProductoId(data))
+    }
+}
+
+export const UpdateCategoriaProductoId = (body, params) => {
+
+    const { codigo } = params  //codigo de producto
+    const { id } = body;
+
+    console.log(id)
+
+    return async( body, dispatch ) => {
+
+        const response = await fetch(`http://localhost:3001/api/categorias/${codigo.toUpperCase()}`, {
+            method: 'PUT',
+            mode: 'cors', 
+            headers:{ 'Content-Type': 'application/json'  },
+            body: JSON.stringify({
+                id: id
+              }),
+            params: JSON.stringify({codigo: codigo})
+        })
+
+        const data = await response.json()
+
+        if ( !data.ok ) return console.log(data.status);
+
+        await dispatch(putCategoriaProductoId(data))
+    }
+}
+
+
 export const startGetTodosProductos= () => {
     return async( dispatch ) => {
 
@@ -165,11 +218,10 @@ export const PostModeloProductoId = (body, params) => {
     const { codigo } = params  //codigo de producto
     const { color, talle, stock } = body;
 
-    console.log(codigo)
 
     return async( body, dispatch ) => {
 
-        const response = await fetch(`http://localhost:3001/api/modelos/${codigo}`, {
+        const response = await fetch(`http://localhost:3001/api/modelos/${codigo.toUpperCase()}`, {
             method: 'POST',
             mode: 'cors', 
             headers:{ 'Content-Type': 'application/json'  },
@@ -275,3 +327,5 @@ export const UpdateModeloID = (body, params) => {
         await dispatch(startGetTodasCategorias())        
     }
 }
+
+

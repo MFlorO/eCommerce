@@ -58,13 +58,21 @@ export const adminSlice = createSlice({
 
     deleteModelo: (state, {payload}) => {
       state.producto.modelo = state.producto.modelo.filter(c  => c.id !== payload)
-    }
+    },
+
+    postCategoriaProductoId : (state,{payload}) => {
+      state.producto.categoria.push(payload)
+    },
+
+    putCategoriaProductoId : (state,{payload}) => {
+      state.producto.categoria = payload
+    },
 
   }
 })
 
 // Action creators function  --> Son funciones que se disparan. Ya estan asociadas a las acciones del reducer
-export const { getStatus,getCategorias, postCatgorias, updateCatgorias, deleteCategorias, 
+export const { getStatus,getCategorias, postCatgorias, updateCatgorias, deleteCategorias, postCategoriaProductoId, putCategoriaProductoId,
   getProductos, getProducto, postProducto, postModeloProductoId, deleteProducto, 
   deleteModelo, updateModeloID
   
