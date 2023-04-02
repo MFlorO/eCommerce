@@ -119,10 +119,10 @@ function validaciones( nombre , descripcion, precio, imagen, fechaPublicacion ) 
 
 exports.crearProducto = async (req, res) => {
 
-    const { codigo, nombre, descripcion, precio, imagen, fechaPublicacion, oferta, idCategoria } = req.body
+    const { codigo, nombre, descripcion, precio, imagen, fechaPublicacion, oferta } = req.body
 
 
-    if ( !validaciones( codigo, nombre , precio, descripcion, imagen, fechaPublicacion, idCategoria ) )  
+    if ( !validaciones( codigo, nombre , precio, descripcion, imagen, fechaPublicacion ) )  
     return res.status(400).json({ ok: false, status: "Error con las validaciones" });
 
 
@@ -153,16 +153,16 @@ exports.crearProducto = async (req, res) => {
 
 
     
-        idCategoria.map(async c => { //UNIR CATEGORIA CON PRODUCTO
+        // idCategoria.map(async c => { //UNIR CATEGORIA CON PRODUCTO
 
-            if (c !== null || c !== undefined) {
+        //     if (c !== null || c !== undefined) {
 
-                const categoria = await Categoria.findByPk(c)
+        //         const categoria = await Categoria.findByPk(c)
 
-                if (categoria) producto.addCategoria(categoria)
-            }
+        //         if (categoria) producto.addCategoria(categoria)
+        //     }
 
-        })
+        // })
 
         return res.status(201).json({
             ok: true,
@@ -231,6 +231,7 @@ exports.editProducto = async(req, res) => {
         producto.precio = precio;
         producto.imagen = imagen;
         producto.fechaPublicacion = fechaPublicacion;
+        producto.oferta = oferta
 
         await producto.save()
  

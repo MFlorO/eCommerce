@@ -4,8 +4,7 @@
 
 const { Router } = require('express');
 const router = Router();
-const { crearProducto, getProductos, getProductoId, editProducto, deleteProducto} = require('../controllers/productos');
-// const {check} = require('express-validator');
+const { crearProducto, getProductos, getProductoId, editProducto, deleteProducto } = require('../controllers/productos');
 
 
 

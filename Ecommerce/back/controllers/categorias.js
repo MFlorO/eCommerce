@@ -192,3 +192,130 @@ exports.deleteCategoria = async(req, res) => {
         console.log(error)
     }
 }
+
+
+
+
+// ----- POST CATEGORIA ID PRODUCTO ------- //    AGREGAR CATEOGRIAS A CADA PRODUCTO
+
+exports.postCategoria = async(req, res) => {
+
+    const { codigo } = req.params
+
+    const { id } = req.body
+
+    try {
+
+        const productoExistente = await Producto.findOne({ 
+            where: { codigo },
+            order: [['nombre', 'ASC']],
+            include: [{   
+                model: Categoria,
+                order: [['nombre', 'ASC']],
+                through: { attributes: [] }
+             },
+            ]
+        });
+
+    
+        if(productoExistente === null) {
+            return res.status(400).json({
+                ok: false,
+                status: "No se encontró el producto",
+            })
+        }
+
+
+        id.map(async c => { //UNIR CATEGORIA CON PRODUCTO
+
+                if (c !== null || c !== undefined) {
+    
+                    const categoria = await Categoria.findByPk(c)
+    
+                    if (categoria) productoExistente.addCategoria(categoria)
+                }
+    
+            })
+            
+
+
+        return res.status(201).json({
+            ok: true,
+            status: "categoría agregada con éxito al producto",
+        })
+        
+
+    
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+        console.log(error)
+    }
+}
+
+
+
+// ------- PUT CATEGORIA ID PRODUCTO--------------//
+
+
+
+exports.putCategoria = async(req, res) => {
+
+    const { codigo } = req.params
+
+    const { id } = req.body
+
+    try {
+
+        const productoExistente = await Producto.findOne({ 
+            where: { codigo },
+            order: [['nombre', 'ASC']],
+            include: [{   
+                model: Categoria,
+                order: [['nombre', 'ASC']],
+                through: { attributes: [] }
+             },
+            ]
+        });
+
+    
+        if(productoExistente === null) {
+            return res.status(400).json({
+                ok: false,
+                status: "No se encontró el producto",
+            })
+        }
+
+
+        id.map(async c => { //UNIR CATEGORIA CON PRODUCTO
+
+                if (c !== null || c !== undefined) {
+    
+                    const categoria = await Categoria.findByPk(c)
+    
+                    if (categoria) productoExistente.removeCategoria(categoria)
+                }
+    
+            })
+            
+
+
+        return res.status(201).json({
+            ok: true,
+            status: "categoría agregada con éxito al producto",
+        })
+        
+
+    
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+        console.log(error)
+    }
+}
