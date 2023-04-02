@@ -3,16 +3,20 @@ import { Footer, NavBar } from "../components";
 
 
 
-export const heightNavbar = 3
-
+export const heightNavbar = 6
+export const heightFooter = 10
 
 
 const EcommerceLayout = ({children}) => {
   return (
-    <Grid container paddingLeft={3} paddingRight={3} justifyContent="space-between" sx={{minHeight:'100vh', height:'max-content'}}>
+    <Grid container sx={{minHeight:'100vh', height:'max-content'}}>
       <NavBar />
-      {children}
-      <Footer />
+      <Grid container paddingLeft={3} paddingRight={3} justifyContent="space-around" alignItems='center' 
+      sx={{minHeight:'20rem', height:'max-content'}} mt={`${heightNavbar}rem `}
+      >
+        {children}
+      </Grid>
+      <Footer /> 
     </Grid>  
   )
 }

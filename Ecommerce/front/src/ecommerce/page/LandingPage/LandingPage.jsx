@@ -1,4 +1,3 @@
-import React from 'react'
 import { EcommerceLayout } from '../../layout'
 
 const LandingPage = () => {
@@ -9,4 +8,4 @@ const LandingPage = () => {
   )
 }
 
-export default LandingPage
+export default LandingPage;
