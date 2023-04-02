@@ -39,9 +39,9 @@ const CrearCategoria = () => {
 
   return (
     <AdminLayOut>
-      <Grid container sx={{height:'70vh',alignItems:'center', justifyContent: 'center'}}>
+      <Grid container sx={{minHeight:'70vh',alignItems:'center', justifyContent: 'center'}}>
   
-      <Grid item xs={6}>
+      <Grid item xs={10} sm={4}>
         <Paper sx={{ p: 2, display: "flex", justifyContent:'center', alignItems:'center'}}>
 
         <CategoriaLayOut titulo='CREAR UNA CATEGORIA' boton='CREAR' onSubmit={onSubmit} botonDisabled={botonDisabled}>

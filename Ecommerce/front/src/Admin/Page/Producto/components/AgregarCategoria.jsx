@@ -25,8 +25,6 @@ const AgregarCategoria = () => {
   const { idCategoria, onInputChange, onResetForm, formValid } = useForm(formData, validacionFormularioProducto)
   
 
-  console.log('idCategoria', idCategoria)
-
   const listaCategorias = idCategoria?.map((c, index) => {
 
     let nombre = categorias?.map(categoria => categoria.id === c ? categoria.nombre : null)
@@ -56,7 +54,7 @@ const AgregarCategoria = () => {
 
   return (
     <AdminLayOut>
-    <Grid container sx={{width:'100%', display:'flex', justifyContent:'center', alignContent:'items'}} ml={{xs:'20px', sm:'0px'}} >
+    <Grid container sx={{width:'100%', display:'flex', justifyContent:'center', alignContent:'items'}} ml={{xs:'1px', sm:'0px'}} >
     <Paper sx={{ p: 2, display: "flex", flexDirection: "column", minHeight:'20rem' }}>
   
 

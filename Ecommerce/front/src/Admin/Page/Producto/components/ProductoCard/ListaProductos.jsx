@@ -17,16 +17,16 @@ const ListaProductos = (p) => {
       </AccordionSummary>
 
       <AccordionDetails>
-          <Grid container spacing={2} sx={{ width: "100%" }} >
-            <Grid item xs={12}>
+          <Grid container spacing={2} boxShadow={'rgba(107, 107, 107, 0.5) 2px 2px 6px 2px inset'}>
+            <Grid item xs={12} sm={12} >
               <TablaPrincipal p={p} />
             </Grid>
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={4} >
               <TablaCategorias categoria={p.categoria} codigo={p.codigo} />
             </Grid>
 
-            <Grid sx={{ width: "100%", overflow: "hidden" }} item xs={12} sm={4}>
+            <Grid item xs={12} sm={4} >
               <TablaModelo modelos={p.modelos} codigo={p.codigo}/>
             </Grid>
           </Grid>

@@ -13,7 +13,7 @@ export const heightSidebar = 35
 const AdminLayOut = ({ children }) => {
   
   return (
-    <Grid container justifyContent= "space-between" bgcolor='#EBEAEA' >
+    <Grid container justifyContent="space-between" bgcolor='#EBEAEA' >
       
       <SideBar />
 

@@ -36,7 +36,7 @@ const TablaCategorias = ({ codigo, categoria }) => {
 
 
   return (
-    <TableContainer sx={{ width: 'max-content', justifyContent:'center', border:"1px solid"}}>
+    <TableContainer sx={{ justifyContent:'center', border:"1px solid"}}>
     <Table>
     <TableHead>
     <TableRow>
@@ -49,7 +49,7 @@ const TablaCategorias = ({ codigo, categoria }) => {
       {categoria?.map((c) => (
       <TableRow key={c.id}>
         <TableCell>{c.nombre}</TableCell>
-        <TableCell><Button onClick={ () => deleteCategoria(c.id)}><DeleteIcon fontSize='small'/></Button></TableCell>
+        <TableCell align='right'><Button onClick={ () => deleteCategoria(c.id)}><DeleteIcon fontSize='small'/></Button></TableCell>
       </TableRow> ) )
       }
     </TableBody>

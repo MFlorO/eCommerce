@@ -22,12 +22,12 @@ const TablaModelo = ({ modelos, codigo }) => {
 
 
   return (
-    <TableContainer sx={{ width: 'max-content' , justifyContent:'center', border: "1px solid" }}>
+    <TableContainer sx={{ justifyContent:'center', border: "1px solid" }}>
     <Table>
-    <TableHead sx={{width:'min-content'}}>
+    <TableHead>
     <TableRow>
     {titulo.map ( t => <TableCell align="center" key={t}>{t}</TableCell>)} 
-    <TableCell align='right'><IconButton onClick={() => navigate(`/dashboard/admin/productos/crearModelo/${codigo}`)}><AddIcon/></IconButton></TableCell>
+    <TableCell align='center'><IconButton onClick={() => navigate(`/dashboard/admin/productos/crearModelo/${codigo}`)}><AddIcon/></IconButton></TableCell>
     </TableRow>
     </TableHead>
 

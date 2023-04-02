@@ -3,7 +3,7 @@ import { AdminLayOut } from "~/Admin/layout"
 import useProductos from '~/Hook/useProductos';
 
 import { ListaProductos } from './components';
-import { Container, Grid, Paper, Button, Box, Stack } from "@mui/material";
+import { Container, Grid, Paper, Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Fragment } from "react";
 
@@ -17,10 +17,10 @@ const Productos = () => {
  return (
   <AdminLayOut>
   <Container>
-  <Grid container spacing={3} sx={{ overflowY: "hidden" }} >
+  <Grid container spacing={3} >
 
-  <Grid item xs={12} >
-    <Paper sx={{ p: 2, minHeight:'40rem' }}>
+  <Grid item xs={12} width={{xs:'5rem', sm:'max-content'}} >
+    <Paper sx={{ p: 2 }} minHeight={{xs:'5rem', sm:'20rem'}}>
       <Button onClick={() => navigate(`/dashboard/admin/productos/crearProducto`) }><AddIcon />{""} Crear Producto</Button>
       {productos?.map(p => <Fragment key={p.codigo}><ListaProductos {...p} /></Fragment>)} 
     </Paper>

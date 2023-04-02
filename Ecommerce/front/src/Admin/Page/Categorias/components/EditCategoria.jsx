@@ -5,7 +5,7 @@ import { validacionFormularioCategoria } from "~/functions/validacionFormulario"
 import { useForm } from "~/Hook";
 
 
-import { Box, TextField, Modal} from '@mui/material';
+import { Box, TextField, Modal, Stack } from '@mui/material';
 
 
 
@@ -14,7 +14,6 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -43,9 +42,8 @@ const EditCategoria = ({modal, setModal, id}) => {
   const botonDisabled = formValid() || (nombre.length === 0) ? true : false
 
   return (
-  <div>
     <Modal open={modal} onClose={() => setModal(false)} >
-    <Box sx={style}>
+    <Box sx={style} width={{xs:300 , sm: 400}}>
       <CategoriaLayOut titulo='MODIFICAR CATEGORIA' boton='MODIFICAR' onSubmit={onSubmit} botonDisabled={botonDisabled} >
          <TextField
             label="Nombre"
@@ -58,7 +56,6 @@ const EditCategoria = ({modal, setModal, id}) => {
       </CategoriaLayOut>
     </Box>
     </Modal>
-  </div>
   );
 }
 

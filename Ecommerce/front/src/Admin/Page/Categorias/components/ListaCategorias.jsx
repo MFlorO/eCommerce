@@ -35,14 +35,7 @@ const ListaCategorias = ({ id, nombre, isActive }) => {
         <ListItemText primary={nombre} />
 
         <Stack flexDirection='row'>
-          <Switch
-          
-          //   onChange={handleToggle('wifi')}
-          //   checked={checked.indexOf('wifi') !== -1}
-          //   inputProps={{
-          //     'aria-labelledby': 'switch-list-label-wifi',
-          //   }}
-        />
+          <Switch       />
 
         <Button onClick={() => setModal(true)}><EditIcon /></Button>
         <EditCategoria modal={modal} setModal={setModal} id={id} />

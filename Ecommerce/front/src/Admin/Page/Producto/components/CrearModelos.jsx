@@ -46,10 +46,9 @@ const CrearModelos = () => {
   return (
 
   <AdminLayOut>
-    <Grid container sx={{width:'100%', display:'flex', justifyContent:'center', alignContent:'items'}} ml={{xs:'20px', sm:'0px'}} >
-    <Paper sx={{ p: 2, display: "flex", flexDirection: "column", minHeight:'20rem' }}>
+    <Grid container xs={12} justifyContent='center'>
+    <Paper sx={{ p: 2, display: "flex", flexDirection: "column", minHeight:'10rem'}} width={{xs:'1rem'}}>
 
-    <Stack gap={2}>
       <Typography component="h6" variant="h6" textAlign='center'>ELEGIR LOS MODELOS</Typography>
 
       <form onSubmit={onSubmit}>
@@ -90,7 +89,6 @@ const CrearModelos = () => {
      }
       <Button variant="contained" onClick={() => navigate(`/dashboard/admin/productos/categorias/${codigo}`)} disabled={disableBoton()}>SIGUIENTE</Button>
 
-     </Stack>      
      </Paper>
      </Grid>
     </AdminLayOut>
