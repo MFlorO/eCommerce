@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material"
-import { Footer, NavBar } from "../components";
+import { Banner, Footer, NavBar } from "../components";
 
 
 
@@ -11,6 +11,7 @@ const EcommerceLayout = ({children}) => {
   return (
     <Grid container sx={{minHeight:'100vh', height:'max-content'}}>
       <NavBar />
+      <Banner />
       <Grid container paddingLeft={3} paddingRight={3} justifyContent="space-around" alignItems='center' 
       sx={{minHeight:'20rem', height:'max-content'}} mt={`${heightNavbar}rem `}
       >
