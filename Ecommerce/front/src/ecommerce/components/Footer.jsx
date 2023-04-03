@@ -4,7 +4,7 @@ import { heightFooter } from "../layout/EcommerceLayout"
 
 const Footer = () => {
   return (
-    <Grid container alignItems='center' alignSelf='end' sx={{backgroundColor:'red', height:`${heightFooter}rem`}}>
+    <Grid container alignItems='center' justifyContent='center' alignSelf='end' sx={{backgroundColor:'#DBDBDB', height:`${heightFooter}rem`}} mt='3rem'>
       <Grid item>
         FOOTER
       </Grid>
