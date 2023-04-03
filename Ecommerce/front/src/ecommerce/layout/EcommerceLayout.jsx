@@ -9,10 +9,11 @@ export const heightFooter = 10
 
 const EcommerceLayout = ({children}) => {
   return (
-    <Grid container sx={{minHeight:'100vh', height:'max-content'}}>
+    <Grid container sx={{minHeight:'100vh', height:'max-content', maxWidth:'100vw'}}>
+      <Grid container sx={{height:'100%'}}></Grid>
       <NavBar />
       <Banner />
-      <Grid container paddingLeft={3} paddingRight={3} justifyContent="space-around" alignItems='center' 
+      <Grid container paddingLeft={25} paddingRight={25} justifyContent="space-around" alignItems='center' 
       sx={{minHeight:'20rem', height:'max-content'}} mt={`${heightNavbar}rem `}
       >
         {children}
