@@ -22,10 +22,11 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 
-const Menu = () => {
+const MenuDesktop = () => {
 
   return (
     <Grid container direction='row' justifyContent='center' alignItems='center' gap={2}>
+      
       {/* <MenuItems /> */}
       <Grid><StyledLink component={RouterLink} to={'/talles'}>TALLES</StyledLink></Grid>
       <Grid><StyledLink component={RouterLink} to={'/comocomprar'}>CÓMO COMPRAR</StyledLink></Grid>
@@ -36,4 +37,4 @@ const Menu = () => {
   )
 }
 
-export default Menu;
+export default MenuDesktop;

@@ -1,9 +1,15 @@
-import { useState, useEffect, useRef   } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Iconos } from "./Iconos";
-import { Menu } from "./Menu";
+import { MenuDesktop } from "./MenuDesktop";
+import { MenuMobile } from "./MenuMobile";
 import { heightNavbar } from "../../layout/EcommerceLayout";
 import logo from "/img/logo.jpg"
+import Search from "./Search";
+
 import { Grid } from "@mui/material";
+
+
+
 
 
 const NavBar = () => {
@@ -41,21 +47,30 @@ const NavBar = () => {
 
 
   return (
-   <Grid container alignItems='center' position='fixed' sx={{ height:`${heightNavbar}rem`, width:`100%` }} 
-   component='header' zIndex={100} ref={menuRef} style={menuStyles}
+   <Grid container alignItems='center' position='fixed' sx={{ minHeight:`${heightNavbar}rem`, height:'max-content', width:`100vw`, maxWidth:'100vw' }} 
+   zIndex={100} ref={menuRef} style={menuStyles} gap={{xs:2, sm:0}} p={2} component='header' 
    >
-      <Grid item xs={2}>
-        <img src={logo} alt={logo} style={{width:'5rem', height:'3rem', marginLeft:'2rem'}}/>
+      <Grid item xs={5} sm={1.5} justifyContent='center' alignItems='center' paddingLeft={{xs:'1rem', sm:'2rem'}} order={{xs:0}} >
+        <img src={logo} alt={logo} style={{width:'5rem', height:'3rem'}}/>
       </Grid>
 
-      <Grid item xs={8} component='nav'>
-        <Menu />
+      {/* Menu para Desktop */}
+      <Grid item xs={7} display={{xs:'none', sm:'block'}} component='nav' order={{xs:0, sm:1}} >
+        <MenuDesktop />
+      </Grid>
+      
+      {/* Menu para movile */}
+      <Grid item xs={2} display={{xs:'block', sm:'none'}} order={{xs:3}} component='nav'>
+        <MenuMobile />
       </Grid>
 
-      <Grid item xs={2}>
-      <Iconos />
+      <Grid item xs={0} sm={1} order={{xs:1, sm:3}} >
+        <Iconos />
       </Grid>
-
+     
+       <Grid item xs={12} sm={2} alignSelf={{xs:'end', sm:'center'}} order={{xs:5, sm:2}} justifyContent='center'>
+        <Search />
+      </Grid>
    </Grid>
   );
 };
