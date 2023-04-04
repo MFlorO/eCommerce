@@ -2,7 +2,7 @@ import { useState, useEffect, useRef   } from "react";
 import { Iconos } from "./Iconos";
 import { Menu } from "./Menu";
 import { heightNavbar } from "../../layout/EcommerceLayout";
-import logo from "../../../../public/img/logo.jpg"
+import logo from "/img/logo.jpg"
 import { Grid } from "@mui/material";
 
 
@@ -23,10 +23,9 @@ const NavBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const menuPosition = menuRef.current.getBoundingClientRect().top;
       const scrollPosition = window.scrollY;
 
-      if (scrollPosition > menuPosition) {
+      if (scrollPosition > 200) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);

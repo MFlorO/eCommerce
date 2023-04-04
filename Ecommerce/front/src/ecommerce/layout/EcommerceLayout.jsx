@@ -4,7 +4,7 @@ import { Banner, Footer, NavBar } from "../components";
 
 
 export const heightNavbar = 6
-export const heightFooter = 10
+export const heightFooter = 11
 
 
 const EcommerceLayout = ({children}) => {
@@ -13,7 +13,7 @@ const EcommerceLayout = ({children}) => {
       <Grid container sx={{height:'100%'}}></Grid>
       <NavBar />
       <Banner />
-      <Grid container paddingLeft={25} paddingRight={25} justifyContent="space-around" alignItems='center' 
+      <Grid container paddingLeft={20} paddingRight={20} justifyContent="space-around" alignItems='center' 
       sx={{minHeight:'20rem', height:'max-content'}} mt={`${heightNavbar}rem `}
       >
         {children}
