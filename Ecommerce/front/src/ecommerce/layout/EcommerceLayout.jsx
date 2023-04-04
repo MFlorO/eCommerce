@@ -13,7 +13,7 @@ const EcommerceLayout = ({children}) => {
       <Grid container sx={{height:'100%'}}></Grid>
       <NavBar />
       <Banner />
-      <Grid container paddingLeft={20} paddingRight={20} justifyContent="space-around" alignItems='center' 
+      <Grid container paddingLeft={{xs:1.5, sm:20}} paddingRight={{xs:1.5, sm:20}} justifyContent="space-around" alignItems='center' 
       sx={{minHeight:'20rem', height:'max-content'}} mt={`${heightNavbar}rem `}
       >
         {children}
