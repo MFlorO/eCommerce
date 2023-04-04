@@ -17,7 +17,6 @@ const MenuMobile = () => {
     setOpenDrawer(!openDrawer);
    };
 
-   console.log(openDrawer)
 
 
    const drawerItems = [
@@ -31,7 +30,6 @@ const MenuMobile = () => {
   return (
     <>
     <IconButton sx={{color:'black'}} onClick={() => setOpenDrawer(!openDrawer)} ><MenuIcon /></IconButton>
-
 
     <Drawer 
      display={{xs:'block', sm:'none'}}
