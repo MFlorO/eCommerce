@@ -11,6 +11,26 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 
 
+import { styled } from '@mui/material/styles';
+
+
+const StyledTypographyLink = styled(Typography)(({ theme }) => ({
+  color: 'white',
+  fontFamily: theme.typography.h4.fontFamily,
+  fontWeight: 200,
+  fontSize: theme.typography.h4.fontSize
+}));
+
+
+const StyledTypographyTitle = styled(Typography)(({ theme }) => ({
+  color: 'white',
+  fontFamily: theme.typography.h2.fontFamily,
+  fontWeight: 400,
+  fontSize: theme.typography.h2.fontSize,
+}));
+
+
+
 const stylePagos = {
   width: '40px',
   height: '45px'
@@ -20,19 +40,19 @@ const stylePagos = {
 
 const Footer = () => {
   return (
-    <Grid container paddingTop='2rem' justifyContent='center' mt='5rem' alignSelf='end' gap={5} sx={{backgroundColor:'#DBDBDB', height:`${heightFooter}rem`}}>
-      <Grid item xs={2}>
-        <Typography variant='h2'>NAVEGACION</Typography>
+    <Grid container paddingTop='2rem' paddingBottom='2rem' paddingLeft={{xs:'2rem', sm:'0px'}} justifyContent='center' mt='5rem' alignSelf='end' gap={5} sx={{backgroundColor:'black', minHeight:`${heightFooter}rem`, height:'max-content'}}>
+      <Grid item xs={12} sm={2}>
+        <StyledTypographyTitle>NAVEGACION</StyledTypographyTitle>
         <Grid mt='5px'>
-          <Grid><Typography variant="h4" >TIENDA</Typography></Grid>
-          <Grid><Typography variant="h4" >TALLES</Typography></Grid>
-          <Grid><Typography variant="h4" >CÓMO COMPRAR</Typography></Grid>
-          <Grid><Typography variant="h4" >DEVOLUCIONES</Typography></Grid>
+          <Grid><StyledTypographyLink>TIENDA</StyledTypographyLink></Grid>
+          <Grid><StyledTypographyLink>TALLES</StyledTypographyLink></Grid>
+          <Grid><StyledTypographyLink>CÓMO COMPRAR</StyledTypographyLink></Grid>
+          <Grid><StyledTypographyLink>DEVOLUCIONES</StyledTypographyLink></Grid>
         </Grid>
       </Grid>
 
-      <Grid item xs={2}>
-        <Typography variant='h2'>MEDIOS DE PAGO</Typography>
+      <Grid item xs={12} sm={2}>
+        <StyledTypographyTitle>MEDIOS DE PAGO</StyledTypographyTitle>
         <Grid mt='5px'>
               {/* todas las tarjetas que se acepten */}
           <img src={visa} alt={visa} style={stylePagos}/>
@@ -42,20 +62,32 @@ const Footer = () => {
         </Grid>
       </Grid>
 
-      <Grid item  xs={2}>
-        <Typography variant='h2'>FORMAS DE ENVIO</Typography>
+      <Grid item xs={12} sm={2}>
+        <StyledTypographyTitle>FORMAS DE ENVIO</StyledTypographyTitle>
         <Grid mt='5px'>
               {/* todas las tarjetas que se acepten */}
               <img src={visa} alt={visa} style={stylePagos}/>
         </Grid>
       </Grid>
 
-      <Grid item xs={2}>
-        <Typography variant='h2'>CONTACTO</Typography>
-        <Grid container direction='column' mt='5px'>
-          <Icon><InstagramIcon /></Icon>
-          <Icon><WhatsAppIcon /></Icon>
-          <Icon><EmailIcon /></Icon>
+      <Grid item xs={12} sm={2}>
+        <StyledTypographyTitle>CONTACTO</StyledTypographyTitle>
+        <Grid container direction='column' mt='5px' gap={0.5}>
+          <Grid container direction='row'gap={1}>
+          <Icon sx={{color:"white"}}><InstagramIcon /></Icon>
+          <StyledTypographyLink color='white'>ropadeportiva</StyledTypographyLink>
+          </Grid>
+
+          <Grid container direction='row'gap={1}>
+          <Icon sx={{color:"white"}}><WhatsAppIcon /></Icon>
+          <StyledTypographyLink color='white'>+5493512466003</StyledTypographyLink>
+          </Grid>
+
+          <Grid container direction='row'gap={1}>
+          <Icon sx={{color:"white"}}><EmailIcon /></Icon>
+          <StyledTypographyLink color='white'>ropadeportiva@ecommerce.com</StyledTypographyLink>
+          </Grid>
+
         </Grid>
       </Grid>
 
