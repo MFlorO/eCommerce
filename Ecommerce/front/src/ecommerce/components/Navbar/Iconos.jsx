@@ -9,7 +9,7 @@ export const Iconos = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));  //Capto el breakpoints
 
   return (
-    <Grid container direction='row' gap={1} alignItems='center'>
+    <Grid container alignItems='center'>
       <Grid>
         <IconButton sx={{color:'black'}}><PersonIcon fontSize={isSmallScreen ? 'medium' : 'large'}/></IconButton>
       </Grid>
