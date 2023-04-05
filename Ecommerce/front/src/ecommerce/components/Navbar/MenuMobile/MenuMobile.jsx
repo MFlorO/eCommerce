@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { IconButton, Drawer, List, ListItem, ListItemText, Grid } from "@mui/material";
+import { IconButton, Drawer, List, ListItem, ListItemText, Grid, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -29,11 +29,14 @@ const MenuMobile = () => {
 
   return (
     <>
-    <IconButton sx={{color:'black'}} onClick={() => setOpenDrawer(!openDrawer)} ><MenuIcon /></IconButton>
+    <IconButton sx={{color:'black'}} onClick={() => setOpenDrawer(!openDrawer)}>
+      <MenuIcon />
+      <Typography variant="h4">Menu</Typography>
+    </IconButton>
 
     <Drawer 
      display={{xs:'block', sm:'none'}}
-     anchor='right' variant='temporary' 
+     anchor='left' variant='temporary' 
      open={openDrawer} onClose={toggleDrawer}
     >
     <Grid paddingTop='1rem'>
