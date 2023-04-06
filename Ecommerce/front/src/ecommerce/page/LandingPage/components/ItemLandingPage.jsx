@@ -1,5 +1,4 @@
-import { Stack, IconButton, Typography } from "@mui/material"
-import { useTheme, useMediaQuery } from '@mui/material';
+import { Stack, IconButton, Typography, useTheme, useMediaQuery } from "@mui/material"
 
 
 const ItemLandingPage = ({ icono, titulo, subtitulo }) => {
@@ -8,13 +7,13 @@ const ItemLandingPage = ({ icono, titulo, subtitulo }) => {
    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));  //Capto el breakpoints
 
 return(
-<Stack flexDirection='row' alignItems='center' gap={2} sx={{width: "100%" }}>
-  <Stack backgroundColor='#DBDBDB' borderRadius='90px' alignItems='start' >
+<Stack flexDirection='row' alignItems='center' gap={2} width={{xs:'90%', sm:'100%'}}>
+  <Stack backgroundColor='#DBDBDB' borderRadius='90px' alignItems='start'>
      <IconButton>{icono}</IconButton>
   </Stack>
   <Stack>
-     <Typography variant={isSmallScreen? 'h2':'h1'}>{titulo}</Typography>
-     <Typography variant="p">{subtitulo}</Typography>
+     <Typography variant={isSmallScreen? 'h4':'h1'}>{titulo}</Typography>
+     <Typography variant="p" fontSize={isSmallScreen? '10px':'15px'}>{subtitulo}</Typography>
   </Stack>
  </Stack>
 )

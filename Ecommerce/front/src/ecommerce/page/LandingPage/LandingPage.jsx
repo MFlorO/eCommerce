@@ -14,7 +14,7 @@ const LandingPage = () => {
   return (
     <EcommerceLayout>
       <LandingPageFooter margin={true}/>
-      <Grid container justifyContent="space-around" sx={{ width: "100%" }} gap={25} pt={{xs:'4rem', sm:'6rem'}} pb={{xs:'8rem', sm:'12rem'}}  >
+      <Grid container justifyContent="space-around" sx={{ width: "100%" }} gap={23} pt={{xs:'4rem', sm:'6rem'}} pb={{xs:'8rem', sm:'12rem'}}  >
         <NewArrivals />
         <Carousell tipo='autoplay' elementos={productos}/>
         <Sale />
