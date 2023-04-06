@@ -21,7 +21,7 @@ const Categorias = () => {
     <Grid container spacing={3}>
 
     <Grid item xs={12} >
-       <Paper sx={{ display: "flex", flexDirection: "column", height: 'max-content', justifyContent:'center' }} p={{xs:'1', sm:'2'}}>
+       <Paper sx={{ p: 2 ,display: "flex", flexDirection: "column", height: 'max-content', justifyContent:'center' }}>
 
        <Stack sx={{flexDirection:"row"}}>
           <Button onClick={() => navigate(`/dashboard/admin/categorias/crearCategoria`) }><AddIcon />Crear Categoria</Button>
