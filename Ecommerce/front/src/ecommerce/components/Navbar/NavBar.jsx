@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect, useRef } from "react";
 import { Iconos } from "./Iconos";
 import { MenuDesktop } from "./MenuDesktop";
@@ -7,7 +9,7 @@ import logo from "/img/logo.jpg"
 import Search from "./Search";
 
 import { Grid } from "@mui/material";
-
+import { useTheme, useMediaQuery } from '@mui/material';
 
 
 
@@ -17,27 +19,17 @@ const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef(null);
 
-  const menuStyles = {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    backgroundColor: !isScrolled ? 'none' : '#fff',
-    boxShadow: ' rgba(50, 50, 93, 0.25) 0px 2px 8px -3px' ,
-    transition: 'background-color 0.3s ease',
-  };
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
 
-      if (scrollPosition > 200) {
+      if (scrollPosition > 100) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -46,31 +38,46 @@ const NavBar = () => {
   }, []);
 
 
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));  //Capto el breakpoints
+
+
+  const menuStyles = {
+    position:'fixed',
+    top: 0,
+    transition: 'background-color 0.3s ease',
+    backgroundColor: isSmallScreen ? '#FFF' : !isScrolled ? 'none' : '#fff', 
+    boxShadow: isScrolled ? 'rgba(50, 50, 93, 0.25) 0px 2px 8px -3px' :'none'
+  };
+
+
+
   return (
-   <Grid container alignItems='center' position='fixed' sx={{ minHeight:`${heightNavbar}rem`, height:'max-content', width:`100vw`, maxWidth:'100vw' }} 
-   zIndex={100} ref={menuRef} style={menuStyles} gap={{xs:2, sm:0}} p={2} component='header' 
+   <Grid container sx={{ width: '100vw', minHeight:`${heightNavbar}rem`, height:'max-content'}} gap={{xs:'0px 17px', sm:0}} pl={{xs:0,sm:15}} pr={{xs:0,sm:15}} pt={2} pb={2}
+   alignItems='center' zIndex={100} ref={menuRef} component='header' style={menuStyles} 
    >
-      <Grid item xs={5} sm={1.5} justifyContent='center' alignItems='center' paddingLeft={{xs:'1rem', sm:'2rem'}} order={{xs:0}} >
-        <img src={logo} alt={logo} style={{width:'5rem', height:'3rem'}}/>
-      </Grid>
+    <Grid item xs={4} sm={2} order={{xs:1 , sm:0}} width={{xs:'0px', sm:'0rem'}} height={{xs:'1rem', sm:'4rem'}}>
+      <img src={logo} alt={logo} style={{width:'100%', height:'100%'}}/>
+    </Grid>
 
-      {/* Menu para Desktop */}
-      <Grid item xs={7} display={{xs:'none', sm:'block'}} component='nav' order={{xs:0, sm:1}} >
-        <MenuDesktop />
-      </Grid>
+    {/* Menu para Desktop */}
+    <Grid item xs={0} sm={7} display={{xs:'none', sm:'flex'}} component='nav' order={{xs:0, sm:1}}>
+      <MenuDesktop />
+    </Grid>
       
-      {/* Menu para movile */}
-      <Grid item xs={2} display={{xs:'block', sm:'none'}} order={{xs:3}} component='nav'>
-        <MenuMobile />
-      </Grid>
+    {/* Menu para movile */}
+    <Grid item xs={3} display={{xs:'flex', sm:'none'}} order={{xs:0}} component='nav'>
+      <MenuMobile />
+    </Grid>
 
-      <Grid item xs={0} sm={1} order={{xs:1, sm:3}} >
-        <Iconos />
-      </Grid>
+    <Grid item xs={0} sm={0} order={{xs:2, sm:3}}>
+      <Iconos />
+    </Grid>
      
-       <Grid item xs={12} sm={2} alignSelf={{xs:'end', sm:'center'}} order={{xs:5, sm:2}} justifyContent='center'>
-        <Search />
-      </Grid>
+    <Grid item xs={0} sm={2} alignSelf={{xs:'end', sm:'center'}} order={{xs:5, sm:2}} pl={{xs:3, sm:0}}>
+      <Search />
+    </Grid>
    </Grid>
   );
 };

@@ -3,7 +3,7 @@ import useProductos from "~/Hook/useProductos";
 import { Button, Grid, Stack, Typography } from '@mui/material'
 
 
-const PublicidadView = ({ titulo }) => {
+const Sale = () => {
 
   const productos = useProductos();
 
@@ -26,27 +26,26 @@ const PublicidadView = ({ titulo }) => {
 
     <Grid container justifyContent='center' alignItems='center' sx={{minHeight:'max-content'}} gap={{xs:2, sm:0}}>
       <Grid alignItems='center' item sx={{borderBottom: 'solid 2px #DBDBDB' }} xs={12} sm={4}></Grid>
-      <Grid textAlign='center' alignSelf='center'item xs={12} sm={2}><Typography variant='h1'>{titulo}</Typography></Grid>
+      <Grid textAlign='center' alignSelf='center'item xs={12} sm={2}><Typography variant='h1'>SALE</Typography></Grid>
       <Grid alignItems='center' item sx={{borderBottom: 'solid 2px #DBDBDB' }} xs={12} sm={4}> </Grid>
     </Grid>
 
-    <Grid mt={5} alignItems='center' paddingLeft={{xs:0,sm:2}} paddingRight={{xs:0,sm:2}} 
-    display='grid' gridTemplateColumns={{xs:'repeat(2, auto)',sm:'repeat(4, auto)'}} gap={{ xs:'20px 10px', sm:'30px 40px'}}
-
-    >
+    <Grid mt={5} alignItems='center' display='grid' gridTemplateColumns={{xs:'repeat(2, auto)',sm:'repeat(4, auto)'}} gap={{ xs:'20px 10px', sm:'50px 60px'}}>
       {productosSale?.map( p => (
-        <Stack key={p.codigo} sx={{ backgroundColor:'#DBDBDB'}} >
-        <img src={p.imagen} alt='imagen' style={{width:'100%'}}/>
-        <Typography>{p.nombre}</Typography>
-        <Typography>$ {p.precio}</Typography>
+        <Stack key={p.codigo} sx={{ backgroundColor:'#DBDBDB'}} width={{xs:'9rem', sm:'20rem'}} height={{xs: '100%', sm: '100%'}} >
+          <img src={p.imagen} alt={p.codigo}  style={{width:'100%', height:'100%', objectFit:'cover'}} />
+          <Typography>{p.nombre}</Typography>
+          <Typography>$ {p.precio}</Typography>
        </Stack>
       ))
       }
     </Grid>
 
-    {titulo === 'SALE' && <Grid item textAlign='center' xs={12} ><Button variant='outlined' onClick={onMostrar}>MOSTRAR</Button></Grid>}
+    <Grid item textAlign='center' xs={12} marginTop='2rem'>
+      <Button variant='contained' onClick={onMostrar} size='large'>MOSTRAR TODOS LOS PRODUCTOS</Button>
+    </Grid>
   </Grid>
   )
 }
 
-export default PublicidadView;
+export default Sale;

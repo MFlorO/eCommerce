@@ -1,18 +1,25 @@
 import { EcommerceLayout } from "../../layout";
-import { PublicidadView } from "./view";
+import { Carousell, NewArrivals, Sale } from "./view";
 import { Grid } from "@mui/material";
 import { LandingPageFooter } from "./components";
+import useProductos from "~/Hook/useProductos";
+
+
+
+
 
 const LandingPage = () => {
-
+  const productos = useProductos()
 
   return (
     <EcommerceLayout>
-      <Grid container justifyContent="space-around" sx={{ width: "100%" }} gap={5} paddingBottom={{xs:'8rem', sm:'12rem'}}  >
-        <PublicidadView titulo={"NEW ARRIVALS"} />
-        <PublicidadView titulo="SALE" />
+      <LandingPageFooter margin={true}/>
+      <Grid container justifyContent="space-around" sx={{ width: "100%" }} gap={25} pt={{xs:'4rem', sm:'6rem'}} pb={{xs:'8rem', sm:'12rem'}}  >
+        <NewArrivals />
+        <Carousell tipo='autoplay' elementos={productos}/>
+        <Sale />
       </Grid>
-      <LandingPageFooter />
+      <LandingPageFooter margin={false}/>
     </EcommerceLayout>
   );
 };
