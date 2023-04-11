@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Grid, Button, Stack, useTheme, useMediaQuery } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import CircleIcon from '@mui/icons-material/Circle';
+// import CircleIcon from '@mui/icons-material/Circle';
 
 
 
@@ -15,9 +15,9 @@ const style = {
   transition: 'opacity 0.5s ease-in-out'
 }
 
-const fadeOut = {
-  opacity: 0
-};  
+// const fadeOut = {
+//   opacity: 0
+// };  
 
 
 
@@ -27,7 +27,7 @@ const Carousell = ({ tipo, elementos }) => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));  //Capto el breakpoints
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const [selectedImage, setSelectedImage] = useState(elementos[0]?.imagen);
+    // const [selectedImage, setSelectedImage] = useState(elementos[0]?.imagen);
 
     const cantidadSegunResponsive = isSmallScreen? 1 : 6
 
@@ -40,7 +40,7 @@ const Carousell = ({ tipo, elementos }) => {
         if (tipo === "autoplay") {
           interval = setInterval(() => {
             siguiente();
-          }, 7000);
+          }, 5000);
         }
         return () => clearInterval(interval);
       }, [tipo, selectedIndex]);
@@ -50,13 +50,13 @@ const Carousell = ({ tipo, elementos }) => {
         
 
     return (
-        <Grid container direction='row' sx={{width:'100%', height:'20rem'}} justifyContent='center'>
+        <Grid container direction='row' sx={{width:'100%', height:'15rem'}} justifyContent='center' alignItems='center' >
 
         <Button onClick={anterior} size={isSmallScreen? 'small' : 'large'}><KeyboardArrowLeft/></Button>
 
-        <Stack width={{xs:'60%', sm:'90%'}} height='100%' display='flex' flexDirection='row' flexWrap='wrap' justifyContent='center' gap={{xs:'0px', sm:'0px 20px'}}>
+        <Stack width={{xs:'60%', sm:'90%'}} height='100%' display='flex' flexDirection='row' alignItems='center' justifyContent='center' flexWrap='wrap' gap={{xs:'0px', sm:'0px 10px'}}>
         {slicedElements?.map( e => ( 
-            <Stack key={e.codigo} display='flex' flexDirection='row' alignItems='center' width={{xs: '100%', sm: '15%'}}  height={{xs: '100%', sm: '100%'}}>
+            <Stack key={e.codigo} display='flex' flexDirection='row' width={{xs: '100%', sm: '15%'}}  height={{xs: '100%', sm: '80%'}}>
                 <img src={e.imagen} alt={e.codigo}  style={style} />
             </Stack>
         ))}

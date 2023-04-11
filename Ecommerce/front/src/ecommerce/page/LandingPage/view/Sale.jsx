@@ -32,7 +32,7 @@ const Sale = () => {
 
     <Grid mt={5} alignItems='center' display='grid' gridTemplateColumns={{xs:'repeat(2, auto)',sm:'repeat(4, auto)'}} gap={{ xs:'20px 10px', sm:'50px 60px'}}>
       {productosSale?.map( p => (
-        <Stack key={p.codigo} sx={{ backgroundColor:'#DBDBDB'}} width={{xs:'9rem', sm:'20rem'}} height={{xs: '100%', sm: '100%'}} >
+        <Stack key={p.codigo} sx={{ backgroundColor:'#DBDBDB'}} width={{xs:'9rem', sm:'15rem'}} height={{xs: '100%', sm: '100%'}} >
           <img src={p.imagen} alt={p.codigo}  style={{width:'100%', height:'100%', objectFit:'cover'}} />
           <Typography>{p.nombre}</Typography>
           <Typography>$ {p.precio}</Typography>

@@ -11,7 +11,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
   color: 'black',
   fontFamily: theme.typography.h3.fontFamily,
   fontWeight: 400,
-  fontSize: theme.typography.h3.fontSize,
+  fontSize: theme.typography.h4.fontSize,
 
   '&:hover': {
     color: '#eae6e6',

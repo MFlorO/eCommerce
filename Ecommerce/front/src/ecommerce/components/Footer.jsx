@@ -18,7 +18,7 @@ const StyledTypographyLink = styled(Typography)(({ theme }) => ({
   color: 'white',
   fontFamily: theme.typography.h4.fontFamily,
   fontWeight: 200,
-  fontSize: theme.typography.h4.fontSize
+  fontSize: theme.typography.h5.fontSize
 }));
 
 
@@ -26,7 +26,7 @@ const StyledTypographyTitle = styled(Typography)(({ theme }) => ({
   color: 'white',
   fontFamily: theme.typography.h2.fontFamily,
   fontWeight: 400,
-  fontSize: theme.typography.h2.fontSize,
+  fontSize: theme.typography.h3.fontSize,
 }));
 
 
@@ -41,7 +41,7 @@ const stylePagos = {
 const Footer = () => {
   return (
     <Grid container paddingTop='2rem' paddingBottom='2rem' paddingLeft={{xs:'2rem', sm:'0px'}} justifyContent='center' mt='5rem' alignSelf='end' gap={5} sx={{backgroundColor:'black', minHeight:`${heightFooter}rem`, height:'max-content'}}>
-      <Grid item xs={12} sm={2}>
+      <Grid item xs={11} sm={2}>
         <StyledTypographyTitle>NAVEGACION</StyledTypographyTitle>
         <Grid mt='5px'>
           <Grid><StyledTypographyLink>TIENDA</StyledTypographyLink></Grid>
@@ -51,7 +51,7 @@ const Footer = () => {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm={2}>
+      <Grid item xs={11} sm={2}>
         <StyledTypographyTitle>MEDIOS DE PAGO</StyledTypographyTitle>
         <Grid mt='5px'>
               {/* todas las tarjetas que se acepten */}
@@ -62,7 +62,7 @@ const Footer = () => {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm={2}>
+      <Grid item xs={11} sm={2}>
         <StyledTypographyTitle>FORMAS DE ENVIO</StyledTypographyTitle>
         <Grid mt='5px'>
               {/* todas las tarjetas que se acepten */}
@@ -70,7 +70,7 @@ const Footer = () => {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm={2}>
+      <Grid item xs={11} sm={2.3}>
         <StyledTypographyTitle>CONTACTO</StyledTypographyTitle>
         <Grid container direction='column' mt='5px' gap={0.5}>
           <Grid container direction='row'gap={1}>
