@@ -1,14 +1,14 @@
 
-
 import { useState, useEffect, useRef } from "react";
 import { Iconos } from "./Iconos";
 import { MenuDesktop } from "./MenuDesktop";
 import { MenuMobile } from "./MenuMobile";
 import { heightNavbar } from "../../layout/EcommerceLayout";
 import logo from "/img/logo.jpg"
+import { Link as LinkMUI, useLocation } from 'react-router-dom'
 import Search from "./Search";
 
-import { Grid } from "@mui/material";
+import { Grid, Link } from "@mui/material";
 import { useTheme, useMediaQuery } from '@mui/material';
 
 
@@ -18,6 +18,8 @@ const NavBar = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef(null);
+
+  const { pathname } = useLocation()
 
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const NavBar = () => {
 
 
   const menuStyles = {
-    position:'fixed',
+    position:`${pathname === "/" ? 'fixed' : 'absolute'}`,
     top: 0,
     transition: 'background-color 0.3s ease',
     backgroundColor: isSmallScreen ? '#FFF' : !isScrolled ? 'none' : '#fff', 
@@ -58,7 +60,18 @@ const NavBar = () => {
    alignItems='center' zIndex={100} ref={menuRef} component='header' style={menuStyles} 
    >
     <Grid item xs={4} sm={2} order={{xs:1 , sm:0}} width={{xs:'0px', sm:'0rem'}} height={{xs:'1rem', sm:'4rem'}}>
-      <img src={logo} alt={logo} style={{width:'100%', height:'100%'}}/>
+      <Link component={LinkMUI} to={'/'}>
+        <img src={logo} alt={logo} style={{width:'100%', height:'100%'}}/>
+      </Link>
+
+      {/* VER STYLE */}
+      
+      {/* <Link component={LinkMUI} sx={{width:'100%', height:'100%', cursor:'pointer'}} to={'/tienda'}>
+      <Grid sx={{backgroundImage: 'url(/img/newArrivals.jpg)', backgroundSize:'cover', backgroundPosition:'center',
+        width:'100%', height:'100%'}} >
+      </Grid>
+      </Link> */}
+
     </Grid>
 
     {/* Menu para Desktop */}

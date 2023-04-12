@@ -3,9 +3,9 @@ import visa from "/img/visa.png"
 import americanExpress from "/img/americanExpress.png"
 import masterCard from "/img/masterCard.png"
 import mercadoPago from "/img/mercadoPago.png"
+import { Link as LinkMUI } from 'react-router-dom'
 
-
-import { Grid, Icon, Typography } from "@mui/material"
+import { Grid, Icon, Typography, Link } from "@mui/material"
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
@@ -18,7 +18,7 @@ const StyledTypographyLink = styled(Typography)(({ theme }) => ({
   color: 'white',
   fontFamily: theme.typography.h4.fontFamily,
   fontWeight: 200,
-  fontSize: theme.typography.h5.fontSize
+  fontSize: '12px'
 }));
 
 
@@ -26,7 +26,7 @@ const StyledTypographyTitle = styled(Typography)(({ theme }) => ({
   color: 'white',
   fontFamily: theme.typography.h2.fontFamily,
   fontWeight: 400,
-  fontSize: theme.typography.h3.fontSize,
+  fontSize: theme.typography.h4.fontSize,
 }));
 
 
@@ -44,7 +44,7 @@ const Footer = () => {
       <Grid item xs={11} sm={2}>
         <StyledTypographyTitle>NAVEGACION</StyledTypographyTitle>
         <Grid mt='5px'>
-          <Grid><StyledTypographyLink>TIENDA</StyledTypographyLink></Grid>
+          <Grid><Link component={LinkMUI} to={'/tienda'}><StyledTypographyLink>TIENDA</StyledTypographyLink></Link></Grid>
           <Grid><StyledTypographyLink>TALLES</StyledTypographyLink></Grid>
           <Grid><StyledTypographyLink>CÓMO COMPRAR</StyledTypographyLink></Grid>
           <Grid><StyledTypographyLink>DEVOLUCIONES</StyledTypographyLink></Grid>
@@ -73,17 +73,17 @@ const Footer = () => {
       <Grid item xs={11} sm={2.3}>
         <StyledTypographyTitle>CONTACTO</StyledTypographyTitle>
         <Grid container direction='column' mt='5px' gap={0.5}>
-          <Grid container direction='row'gap={1}>
+          <Grid container direction='row'gap={1} alignItems='center'>
           <Icon sx={{color:"white"}}><InstagramIcon /></Icon>
           <StyledTypographyLink color='white'>ropadeportiva</StyledTypographyLink>
           </Grid>
 
-          <Grid container direction='row'gap={1}>
+          <Grid container direction='row'gap={1} alignItems='center'>
           <Icon sx={{color:"white"}}><WhatsAppIcon /></Icon>
           <StyledTypographyLink color='white'>+5493512466003</StyledTypographyLink>
           </Grid>
 
-          <Grid container direction='row'gap={1}>
+          <Grid container direction='row'gap={1} alignItems='center'>
           <Icon sx={{color:"white"}}><EmailIcon /></Icon>
           <StyledTypographyLink color='white'>ropadeportiva@ecommerce.com</StyledTypographyLink>
           </Grid>
