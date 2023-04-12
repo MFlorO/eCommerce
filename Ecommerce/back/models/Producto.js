@@ -31,6 +31,10 @@ module.exports = (sequelize) => {
       oferta: {
         type: DataTypes.FLOAT,
         allowNull: true,
+      },
+      activo:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
       }
 
     },

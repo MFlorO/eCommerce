@@ -49,7 +49,6 @@ exports.crearModelos = async(req, res) => {
 
     const { codigo } = req.params;   //codigo -> id del producto que contiene el modelo
 
-    console.log(codigo)
 
     const { color, talle, stock} = req.body;   
     
@@ -110,8 +109,6 @@ exports.modificarModelo = async(req, res) => {
 
     const { color, talle, stock } = req.body;  
     const { id, idMV } = req.params 
-
-    console.log( {color, talle, stock, id, idMV} )
     
     try {
 

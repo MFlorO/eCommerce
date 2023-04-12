@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Producto, Categoria, Modelo, ModeloVariante } = require("../database/db");
 
 
@@ -9,33 +10,85 @@ const { Producto, Categoria, Modelo, ModeloVariante } = require("../database/db"
 
 exports.getProductos = async (req, res) => {
 
+    const { codigo, nombre } = req.query;
+
     try {
+        
+        if (codigo || nombre) {
 
-        const productos = await Producto.findAll({
-            order: [['nombre', 'ASC']],
-            include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
-                model: Categoria,
-                attributes: ['id', "nombre"],
-                through: { attributes: [] }
-             },
-             {
-                model: Modelo,
-                include: [{model: ModeloVariante}]
-                
-             }
-            ]
-        });
+            const productos = await Producto.findAll({
+                order: [['nombre', 'ASC']],
+                where: {
+                    [Op.and]: {
+                      activo: true,
+                      [Op.or]: [
+                        {
+                          nombre: {
+                            [Op.iLike]: `%${nombre}%`
+                          }
+                        },
+                        {
+                          codigo: {
+                            [Op.iLike]: `%${codigo}%`
+                          }
+                        }
+                      ]
+                    }
+                  },
+                include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
+                    model: Categoria,
+                    attributes: ['id', "nombre"],
+                    through: { attributes: [] }
+                 },
+                 {
+                    model: Modelo,
+                    include: [{model: ModeloVariante}]              
+                 }
+                ]
+            })
 
-        if (productos) return res.status(201).json({
-            ok: true,
-            status: "getProducto",
-            productos
-        })
 
-        return res.status(400).json({
-            ok: false,
-            status: 'No se encontraron los productos'
-        });
+            if (productos.length > 0) return res.status(201).json({
+                ok: true,
+                status: "getProducto",
+                productos
+            })
+    
+            return res.status(400).json({
+                ok: false,
+                status: 'No se encontraron los productos con esos filtros'
+            });
+
+
+        } else {
+
+            const productos = await Producto.findAll({
+                order: [['nombre', 'ASC']],
+                include: [{          //##### UNIR LAS DIFERENTES TABLAS #####
+                    model: Categoria,
+                    attributes: ['id', "nombre"],
+                    through: { attributes: [] }
+                 },
+                 {
+                    model: Modelo,
+                    include: [{model: ModeloVariante}]              
+                 }
+                ]
+            });
+    
+            if (productos) return res.status(201).json({
+                ok: true,
+                status: "getProducto",
+                productos
+            })
+    
+            return res.status(400).json({
+                ok: false,
+                status: 'No se encontraron los productos'
+            });
+
+        }
+
 
     } catch (error) {
 
@@ -47,6 +100,7 @@ exports.getProductos = async (req, res) => {
         console.log(error)
     }
 }
+
 
 
 
@@ -98,13 +152,57 @@ exports.getProductoId = async(req, res) => {
 
 
 
+// --------- GET FILTRO --------- //
+
+
+
+exports.getProductosByFilter = async (req, res) => {
+
+    const { idcategoria, idMV } = req.query
+
+    try {
+
+        const productos = await Producto.findAll({
+            order: [['nombre', 'ASC']],
+
+            include: [Categoria, Modelo],
+            where: {
+                [Op.or]: [
+                    { "$categoria.id$": Number(idcategoria) },
+                    { "$modelos.id$": Number(idMV) },  
+                ],
+            },
+        });
+
+        console.log(productos)
+
+        if (productos) return res.status(201).json({
+            ok: true,
+            status: "getProducto",
+            productos
+        })
+
+        return res.status(400).json({
+            ok: false,
+            status: 'No se encontraron los productos'
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            status: "comunicarse con el administrador",
+        })
+
+        console.log(error)
+    }
+}
+
 
 // ------------ POST ------------ //
 
 
 function validaciones( nombre , descripcion, precio, imagen, fechaPublicacion ) {
-
-    // const patternURL = new RegExp(/[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi);
 
     if (!nombre || nombre === undefined || nombre.length > 300) return false;
     if (!descripcion || descripcion === undefined || descripcion.length > 5200)
@@ -149,20 +247,6 @@ exports.crearProducto = async (req, res) => {
             fechaPublicacion,
             oferta
         });
-
-
-
-    
-        // idCategoria.map(async c => { //UNIR CATEGORIA CON PRODUCTO
-
-        //     if (c !== null || c !== undefined) {
-
-        //         const categoria = await Categoria.findByPk(c)
-
-        //         if (categoria) producto.addCategoria(categoria)
-        //     }
-
-        // })
 
         return res.status(201).json({
             ok: true,
@@ -214,17 +298,6 @@ exports.editProducto = async(req, res) => {
             })
         }
 
-    
-        // await Producto.update({ 
-        //     nombre: nombreMinuscula,
-        //     precio,
-        //     descripcion,
-        //     imagen,
-        //     fecha, 
-        //     puntaje
-        // },
-        // { where: {codigo:codigo}  }
-        // );
     
         producto.nombre = nombreMinuscula;
         producto.descripcion = descripcion;

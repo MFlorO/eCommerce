@@ -4,7 +4,7 @@
 
 const { Router } = require('express');
 const router = Router();
-const { crearProducto, getProductos, getProductoId, editProducto, deleteProducto } = require('../controllers/productos');
+const { crearProducto, getProductos, getProductoId, editProducto, deleteProducto, getProductosByFilter } = require('../controllers/productos');
 
 
 
@@ -13,6 +13,7 @@ router.post('/', crearProducto);
 router.put('/', editProducto)
 router.delete('/', deleteProducto)
 router.get('/ProductoId/:codigo', getProductoId);
+router.get('/filtros', getProductosByFilter)
 
 
 
