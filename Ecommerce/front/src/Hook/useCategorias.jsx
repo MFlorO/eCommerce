@@ -11,10 +11,7 @@ const useCategorias = () => {
 
   useEffect(() => {
     dispatch(startGetTodasCategorias(categorias))
-    // dispatch(GetStatus(status))
   }, [])
-
-  // console.log(status)
 
 
   return categorias

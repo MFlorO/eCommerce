@@ -1,9 +1,10 @@
 import { EcommerceLayout } from "../../layout";
 import { Filtros, Ordenamientos, Paginado, Productos, Search, Ubicacion } from "./components/"
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+
+
 
 const Tienda = () => {
-
 
   return (
     <>
@@ -15,7 +16,6 @@ const Tienda = () => {
           justifyContent="space-between"
           pt={{ xs: "4rem", sm: "6rem" }}
           gap={{xs:8, sm:0}}
-          // minHeight='20rem'
         >
 
           <Grid item xs={12} sm={3.5} justifyContent='space-around' border='2px solid black' height='max-content'>

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useForm, useProducto } from "~/Hook";
 import { validacionFormularioModelos } from "~/functions/validacionFormulario";
 import AdminLayOut from "../../../layout/AdminLayOut";
-import { PostModeloProductoId, DeleteModelo } from "~/redux/slice/admin/thunks";
+import { PostModeloProductoId, DeleteModelo, getProductoID } from "~/redux/slice/admin/thunks";
 
 import { IconButton, Select, TextField, MenuItem, Stack, Typography, Button , Grid, Paper} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
@@ -46,7 +46,7 @@ const CrearModelos = () => {
   return (
 
   <AdminLayOut>
-    <Grid container xs={12} justifyContent='center'>
+    <Grid container justifyContent='center'>
     <Paper sx={{ p: 2, display: "flex", flexDirection: "column", minHeight:'10rem'}} width={{xs:'1rem'}}>
 
       <Typography component="h6" variant="h6" textAlign='center'>ELEGIR LOS MODELOS</Typography>
