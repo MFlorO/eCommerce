@@ -10,11 +10,13 @@ const { Producto, Categoria, Modelo, ModeloVariante } = require("../database/db"
 
 exports.getProductos = async (req, res) => {
 
-    const { codigo, nombre } = req.query;
+    const { q } = req.query;
+
+    console.log(q.length)
 
     try {
         
-        if (codigo || nombre) {
+        if (q.length > 2) {
 
             const productos = await Producto.findAll({
                 order: [['nombre', 'ASC']],
@@ -24,12 +26,12 @@ exports.getProductos = async (req, res) => {
                       [Op.or]: [
                         {
                           nombre: {
-                            [Op.iLike]: `%${nombre}%`
+                            [Op.iLike]: `%${q}%`
                           }
                         },
                         {
                           codigo: {
-                            [Op.iLike]: `%${codigo}%`
+                            [Op.iLike]: `%${q}%`
                           }
                         }
                       ]
