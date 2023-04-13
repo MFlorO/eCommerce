@@ -5,21 +5,18 @@ import { Button, Grid, Stack, Typography } from '@mui/material'
 
 const Sale = () => {
 
-  const productos = useProductos();
-
-  const [productosCopia, setProductosCopia] = useState(productos)
+  const { productosCopia } = useProductos();
 
   const productos8 = productosCopia.slice(0,8)
 
   const [productosSale, setProductosSale] = useState(productosCopia)
 
   useEffect(() => {
-    setProductosCopia(productos)
-    setProductosSale(productos8)
-  }, [productosCopia, productos])
+  setProductosSale(productos8)
+  }, [productosCopia])
 
 
-  const onMostrar = () => setProductosSale(productosCopia)
+  const onMostrar = () => productosSale.length <= 8 ? setProductosSale(productosCopia) : setProductosSale(productos8)
    
   return (
     <Grid container mt='6rem' mb='2rem' justifyContent='center' gap={{xs:4, sm:6}} sx={{minHeight:'20rem', heigh:'max-content'}} >
@@ -42,7 +39,7 @@ const Sale = () => {
     </Grid>
 
     <Grid item textAlign='center' xs={12} marginTop='2rem'>
-      <Button variant='contained' onClick={onMostrar} size='large'>MOSTRAR TODOS LOS PRODUCTOS</Button>
+      <Button variant='contained' onClick={onMostrar} size='large'>{productosSale.length <=  8 ? 'MOSTRAR TODOS LOS PRODUCTOS' : 'MOSTRAR MENOS'}</Button>
     </Grid>
   </Grid>
   )

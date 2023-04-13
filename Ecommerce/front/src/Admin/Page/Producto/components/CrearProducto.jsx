@@ -45,7 +45,7 @@ const CrearProducto = () => {
       <Stack>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column"}}>
 
-        <Typography variant='h5' textAlign='center' mb='1rem'>CREAR PRODUCTO</Typography>
+        <Typography variant='h4' textAlign='center' mb='1rem'>CREAR PRODUCTO</Typography>
        
         
         <form style={{ p: 2, display: "flex", flexDirection: "column", justifyContent:'center',  gap:'1rem'}} onSubmit={onSubmit}>

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Grid, Button, Stack, useTheme, useMediaQuery } from '@mui/material';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-// import CircleIcon from '@mui/icons-material/Circle';
 
 
 
@@ -15,11 +14,6 @@ const style = {
   transition: 'opacity 0.5s ease-in-out'
 }
 
-// const fadeOut = {
-//   opacity: 0
-// };  
-
-
 
 const Carousell = ({ tipo, elementos }) => {
 
@@ -27,7 +21,6 @@ const Carousell = ({ tipo, elementos }) => {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));  //Capto el breakpoints
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    // const [selectedImage, setSelectedImage] = useState(elementos[0]?.imagen);
 
     const cantidadSegunResponsive = isSmallScreen? 1 : 6
 

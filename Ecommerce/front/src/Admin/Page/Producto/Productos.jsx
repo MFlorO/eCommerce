@@ -10,7 +10,7 @@ import { Fragment } from "react";
 
 const Productos = () => {
 
- const productos = useProductos()
+ const { productos, productosCopia } = useProductos()
 
  const navigate = useNavigate()
 

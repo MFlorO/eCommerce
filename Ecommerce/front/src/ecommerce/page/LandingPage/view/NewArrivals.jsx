@@ -7,7 +7,7 @@ import { Link , Grid } from '@mui/material'
 
 const NewArrivals = () => {
     
-  const productos = useProductos()
+  const { productos } = useProductos()
 
   return (  
     <>
