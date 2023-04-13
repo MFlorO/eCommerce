@@ -19,8 +19,9 @@ const Search = () => {
 
   return (
     <Grid container alignItems='center'>
-    <form styles={{width:'250px'}} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Input 
+        sx={{width:'250px'}} 
         value={search}
         placeholder="Buscar por nombre o codigo"
         onChange={onSearchChange}
