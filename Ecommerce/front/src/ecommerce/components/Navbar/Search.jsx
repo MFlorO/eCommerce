@@ -1,18 +1,32 @@
-import { Grid, InputAdornment, FormControl, Input } from "@mui/material"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Grid, InputAdornment, Input } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 
 
-
 const Search = () => {
+  
+  const navigate = useNavigate()
+  const [search, setSearch] = useState("");
+
+  const onSearchChange = (event) => setSearch(event.target.value);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSearch("");
+    navigate(`/tienda?q=${search}`)
+  };
 
   return (
     <Grid container alignItems='center'>
-    <FormControl sx={{ m: 1, width: '250px' }} >
+    <form styles={{width:'250px'}} onSubmit={handleSubmit}>
       <Input 
-        placeholder="Buscar"
+        value={search}
+        placeholder="Buscar por nombre o codigo"
+        onChange={onSearchChange}
         endAdornment={<InputAdornment position="end"><SearchIcon sx={{color:'black'}} fontSize='medium'/></InputAdornment>}
       />
-    </FormControl>
+    </form>
     </Grid>
   )
 }

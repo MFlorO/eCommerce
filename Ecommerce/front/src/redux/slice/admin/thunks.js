@@ -151,10 +151,13 @@ export const UpdateCategoriaProductoId = (body, params) => {
 }
 
 
-export const startGetTodosProductos= () => {
+export const startGetTodosProductos= (query) => {
+
+    const { q } = query
+
     return async( dispatch ) => {
 
-        const response = await fetch('http://localhost:3001/api/productos')
+        const response = await fetch(`http://localhost:3001/api/productos?q=${q}`)
 
         const { ok, status, productos } = await response.json()
 
@@ -162,6 +165,7 @@ export const startGetTodosProductos= () => {
 
         dispatch( getProductos(productos) )
     }
+
 }
 
 

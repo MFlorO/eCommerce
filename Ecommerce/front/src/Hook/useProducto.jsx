@@ -10,7 +10,6 @@ const useProducto = (codigo) => {
   const { producto, status } = useSelector( state => state.admin)
 
   useEffect(() => {
-    producto
     if(codigo) dispatch(getProductoID(codigo))
   }, [ codigo, dispatch ])
 

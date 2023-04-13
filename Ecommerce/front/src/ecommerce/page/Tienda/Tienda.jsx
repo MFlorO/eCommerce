@@ -1,5 +1,5 @@
 import { EcommerceLayout } from "../../layout";
-import { Filtros, Ordenamientos, Paginado, Productos, Search, Ubicacion } from "./components/"
+import { Filtros, Ordenamientos, Paginado, Productos, Buscador, Ubicacion } from "./components/"
 import { Grid, Typography } from "@mui/material";
 
 
@@ -19,7 +19,7 @@ const Tienda = () => {
         >
 
           <Grid item xs={12} sm={3.5} justifyContent='space-around' border='2px solid black' height='max-content'>
-            <Search />
+            <Buscador />
             <Filtros />
           </Grid>
 
