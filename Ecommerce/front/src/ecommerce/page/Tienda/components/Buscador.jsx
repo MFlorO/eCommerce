@@ -23,18 +23,17 @@ const Buscador = () => {
 
 
   return (
-    <Grid container direction="column" height="6rem" p={2} justifyContent="center" gap={1} sx={{ width: "100%" }} >
       <form onSubmit={handleSubmit}>
         <TextField
           label="Buscar por nombre o codigo"
           variant="outlined"
           type="text"
+          fullWidth
           name={search}
           value={search}
           onChange={onSearchChange}
         />
       </form>
-    </Grid>
   );
 };
 

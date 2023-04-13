@@ -18,7 +18,7 @@ const Filtros = () => {
 
 
   return (
-    <Grid container minHeight='4rem' p={2} direction='column' gap={2}>
+    <Grid container minHeight='4rem' pt={2} direction='column' gap={2}>
 
     { isSmallScreen ? 
 

@@ -1,44 +1,36 @@
 import { EcommerceLayout } from "../../layout";
 import { Filtros, Ordenamientos, Paginado, Productos, Buscador, Ubicacion } from "./components/"
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useTheme, useMediaQuery,  } from "@mui/material";
 
 
 
 const Tienda = () => {
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));  //Capto el breakpoints
+
   return (
-    <>
+    <EcommerceLayout>
       <Ubicacion />
-      <EcommerceLayout>
-
-        <Grid
-          container
-          justifyContent="space-between"
-          pt={{ xs: "4rem", sm: "6rem" }}
-          gap={{xs:8, sm:0}}
-        >
-
-          <Grid item xs={12} sm={3.5} justifyContent='space-around' border='2px solid black' height='max-content'>
+      <Grid container justifyContent="space-between">
+          <Grid item xs={12} sm={3.5} justifyContent='space-around' border={!isSmallScreen && '2px solid #cdcdcd'} height='max-content' p={2}>
             <Buscador />
             <Filtros />
           </Grid>
 
           <Grid item xs={12} sm={8}>
             <Grid container justifyContent='space-between'>
-              <Typography>Cantidad de productos</Typography>
               <Ordenamientos />
               <Paginado />
             </Grid>
 
-            {/* LISTADO DE PRODUCTOS */}
             <Grid item xs={12} sm={12} >
+              <Typography>Cantidad de productos</Typography>
               <Productos />
             </Grid>
           </Grid>
-        </Grid>
-
-      </EcommerceLayout>
-    </>
+      </Grid> 
+    </EcommerceLayout>
   );
 };
 
