@@ -46,7 +46,7 @@ const NavBar = () => {
 
 
   const menuStyles = {
-    position:`${pathname === "/" ? 'fixed' : 'absolute'}`,
+    position:`${pathname === "/" ? 'fixed' : 'relative'}`,
     top: 0,
     transition: 'background-color 0.3s ease',
     backgroundColor: isSmallScreen ? '#FFF' : !isScrolled ? 'none' : '#fff', 
@@ -56,7 +56,7 @@ const NavBar = () => {
 
 
   return (
-   <Grid container sx={{ width: '100vw', minHeight:`${heightNavbar}rem`, height:'max-content'}} gap={{xs:'0px 17px', sm:0}} pl={{xs:0,sm:15}} pr={{xs:0,sm:15}} pt={2} pb={2}
+   <Grid container sx={{ width: '100vw', minHeight:`${heightNavbar}rem`}} gap={'0px 17px'} pl={{xs:0,sm:15}} pb={2} 
    alignItems='center' zIndex={100} ref={menuRef} component='header' style={menuStyles} 
    >
     <Grid item xs={4} sm={2} order={{xs:1 , sm:0}} width={{xs:'0px', sm:'0rem'}} height={{xs:'1rem', sm:'4rem'}}>
@@ -64,18 +64,10 @@ const NavBar = () => {
         <img src={logo} alt={logo} style={{width:'100%', height:'100%'}}/>
       </Link>
 
-      {/* VER STYLE */}
-      
-      {/* <Link component={LinkMUI} sx={{width:'100%', height:'100%', cursor:'pointer'}} to={'/tienda'}>
-      <Grid sx={{backgroundImage: 'url(/img/newArrivals.jpg)', backgroundSize:'cover', backgroundPosition:'center',
-        width:'100%', height:'100%'}} >
-      </Grid>
-      </Link> */}
-
     </Grid>
 
     {/* Menu para Desktop */}
-    <Grid item xs={0} sm={7} display={{xs:'none', sm:'flex'}} component='nav' order={{xs:0, sm:1}}>
+    <Grid item xs={0} sm={6} display={{xs:'none', sm:'flex'}} component='nav' order={{xs:0, sm:1}}>
       <MenuDesktop />
     </Grid>
       
