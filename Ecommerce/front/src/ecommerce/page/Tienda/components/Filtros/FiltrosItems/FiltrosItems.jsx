@@ -1,11 +1,13 @@
+import FiltrosPorCategoria from "./FiltrosPorCategoria"
 import { Typography } from '@mui/material'
-import React from 'react'
+
+
 
 const FiltrosItems = () => {
   return (
     <form>
 
-     <Typography>Por categoria</Typography>
+     <FiltrosPorCategoria />
 
 
      <Typography>Por Color</Typography>

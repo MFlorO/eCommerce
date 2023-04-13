@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useTheme, useMediaQuery, Typography, Grid, Button } from '@mui/material';
 import FiltrosMobile from './FiltrosMobile';
-import FiltrosItems from './FiltrosItems';
+import FiltrosItems from './FiltrosItems/FiltrosItems';
 
 
 

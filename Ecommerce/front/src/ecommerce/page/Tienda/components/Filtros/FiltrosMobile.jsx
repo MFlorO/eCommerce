@@ -1,6 +1,6 @@
 import { Drawer, Grid, IconButton, List } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
-import FiltrosItems from './FiltrosItems';
+import FiltrosItems from './FiltrosItems/FiltrosItems';
 
 
 
