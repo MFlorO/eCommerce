@@ -19,7 +19,7 @@ const Sale = () => {
   const onMostrar = () => productosSale.length <= 8 ? setProductosSale(productosCopia) : setProductosSale(productos8)
    
   return (
-    <Grid container mt='6rem' mb='2rem' justifyContent='center' gap={{xs:4, sm:6}} sx={{minHeight:'20rem', heigh:'max-content'}} >
+    <Grid container  justifyContent='center' gap={{xs:4, sm:6}} sx={{minHeight:'20rem', heigh:'max-content'}} >
 
     <Grid container justifyContent='center' alignItems='center' sx={{minHeight:'max-content'}} gap={{xs:2, sm:0}}>
       <Grid alignItems='center' item sx={{borderBottom: 'solid 2px #DBDBDB' }} xs={12} sm={4}></Grid>

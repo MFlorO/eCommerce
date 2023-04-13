@@ -15,8 +15,8 @@ const LandingPage = () => {
           justifyContent="space-around"
           sx={{ width: "100%" }}
           gap={5}
-          pt={{ xs: "4rem", sm: "6rem" }}
-          pb={{ xs: "8rem", sm: "10rem" }}
+          mt={{ xs: "4rem", sm: "10rem" }}
+          mb={{ xs: "8rem", sm: "6rem" }}
         >
           <NewArrivals />
         </Grid>
