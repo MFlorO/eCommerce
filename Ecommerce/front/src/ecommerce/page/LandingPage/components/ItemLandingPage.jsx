@@ -9,7 +9,7 @@ const ItemLandingPage = ({ icono, titulo, subtitulo }) => {
 return(
 <Stack flexDirection='row' alignItems='center' gap={2} width={{xs:'90%', sm:'90%'}}>
   <Stack backgroundColor='#DBDBDB' borderRadius='90px' alignItems='start'>
-     <IconButton>{icono}</IconButton>
+     <IconButton style={{cursor:'initial', pointerEvents:'none'}} >{icono}</IconButton>
   </Stack>
   <Stack>
      <Typography variant={isSmallScreen? 'h4':'h2'}>{titulo}</Typography>
