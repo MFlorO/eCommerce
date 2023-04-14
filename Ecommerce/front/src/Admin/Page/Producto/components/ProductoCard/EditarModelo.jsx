@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import AdminLayOut from "../../../../layout/AdminLayOut";
-import { useForm, useQueryParams } from "~/Hook";
+import { useForm } from "~/Hook";
 import { validacionFormularioModelos } from "~/functions/validacionFormulario";
 import { UpdateModeloID } from "~/redux/slice/admin/thunks";
 
@@ -32,14 +32,6 @@ const EditarModelo = () => {
 
 
   let { color, talle, stock, onInputChange, onResetForm, formState, setFormState } = useForm(formData, validacionFormularioModelos)
-
-
-  // useEffect(() => {
-
-  //   setFormState({ ...formState, color: query?.color, talle: query?.talle, stock: query?.stock})
-    
-  // }, [ query ])
-  
 
 
   const onSubmit = (event) => {
