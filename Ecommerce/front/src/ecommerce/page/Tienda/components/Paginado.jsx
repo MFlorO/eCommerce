@@ -1,11 +1,11 @@
-import { Grid } from "@mui/material"
+import { Stack, Pagination } from "@mui/material"
 
 
 const Paginado = () => {
   return (
-    <Grid>
-      Paginado
-    </Grid>
+    <Stack spacing={2}>
+      <Pagination count={10} variant="outlined" />
+    </Stack>
   )
 }
 

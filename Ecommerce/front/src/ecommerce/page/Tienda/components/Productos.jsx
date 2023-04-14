@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material"
+import { Grid, Typography } from "@mui/material"
 import useProductos from "~/Hook/useProductos";
 import { Fragment } from "react";
 
@@ -6,14 +6,16 @@ import { Fragment } from "react";
 
 const Productos = () => {
 
-
   const { productosCopia } = useProductos()
 
-
+  const cantidadProductos = productosCopia.length
   
   return (
-    <Grid mt='3rem' p={2} border='2px solid #DBDBDB' >
+    <Grid backgroundColor='white'>
+
+    <Typography variant="h4">{cantidadProductos} productos</Typography>
       
+      <Grid height='15rem'>
       { 
       productosCopia?.map( p => (
         <Fragment  key={p.codigo}>
@@ -22,6 +24,7 @@ const Productos = () => {
       ))
       
       }
+      </Grid>
 
     </Grid>
   )

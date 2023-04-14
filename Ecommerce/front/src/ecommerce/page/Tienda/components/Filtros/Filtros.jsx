@@ -18,7 +18,8 @@ const Filtros = () => {
 
 
   return (
-    <Grid container minHeight='4rem' pt={2} direction='column' gap={2}>
+    <Grid container minHeight='4rem' p={{xs:0,sm:2}} direction='column' border={{xs:'none', sm:'2px solid #cdcdcd'}} 
+    mt='1rem' backgroundColor={{xs:'none', sm:'white'}}>
 
     { isSmallScreen ? 
 

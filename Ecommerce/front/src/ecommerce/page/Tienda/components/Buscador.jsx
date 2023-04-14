@@ -23,8 +23,10 @@ const Buscador = () => {
 
 
   return (
+    <Grid sx={{width:'100%'}}>
       <form onSubmit={handleSubmit}>
         <TextField
+          sx={{backgroundColor:'white'}}
           label="Buscar por nombre o codigo"
           variant="outlined"
           type="text"
@@ -34,6 +36,7 @@ const Buscador = () => {
           onChange={onSearchChange}
         />
       </form>
+    </Grid>
   );
 };
 
