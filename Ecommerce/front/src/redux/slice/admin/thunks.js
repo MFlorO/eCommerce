@@ -67,7 +67,6 @@ export const UpdateCategorias = (body) => {
         if ( !data.ok ) return console.log(data.status);
 
         await dispatch(updateCatgorias(data))
-        await dispatch(startGetTodasCategorias())        
     }
 }
 
@@ -92,8 +91,6 @@ export const DeleteCategorias = (body) => {
         if ( !data.ok ) return console.log(data.status);
 
         await dispatch(deleteCategorias(data));
-        
-        startGetTodasCategorias(); 
     }
 }
 
@@ -242,7 +239,6 @@ export const PostModeloProductoId = (body, params) => {
         if ( !data.ok ) return console.log(data.status);
 
         await dispatch(postModeloProductoId(data))
-        startGetTodasCategorias()
     }
 
 }
@@ -294,7 +290,6 @@ export const DeleteModelo = (body) => {
         if ( !data.ok ) return console.log(data.status);
 
         await dispatch(deleteModelo(data));  
-        startGetTodasCategorias(); 
     }
 }
 
@@ -327,8 +322,7 @@ export const UpdateModeloID = (body, params) => {
 
         if ( !data.ok ) return console.log(data.status);
 
-        await dispatch(updateModeloID(data))
-        await dispatch(startGetTodasCategorias())        
+        await dispatch(updateModeloID(data))       
     }
 }
 
