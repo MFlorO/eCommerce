@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminLayOut } from "~/Admin/layout"
 import CategoriaLayOut from "../../../layout/CategoriaLayOut";
 import { PostCategorias } from "~/redux/slice/admin/thunks";
-import { useForm } from "~/Hook";
+import { useForm } from "../../../Hook";
 
 
 import { Grid, Paper, TextField } from "@mui/material";

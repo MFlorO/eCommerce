@@ -1,6 +1,6 @@
 import { Link as LinkMUI } from 'react-router-dom'
 import Carousell from './Carousel'
-import useProductos from "~/Hook/useProductos";
+import useProductos from '../../../Hook/useProductos'
 import { Link , Grid } from '@mui/material'
 
 

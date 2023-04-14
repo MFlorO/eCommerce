@@ -1,9 +1,7 @@
-import { useCategorias } from "~/Hook";
+import { useCategorias } from "../../Hook";
 import { useNavigate } from "react-router-dom";
 import { ListaCategorias } from './components';
 import { AdminLayOut } from "~/Admin/layout"
-
-
 import { Container, Grid, Paper, Button, List, ListSubheader, ListItem, Stack } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 

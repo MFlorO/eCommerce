@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { AdminLayOut } from "~/Admin/layout"
-import useProductos from '~/Hook/useProductos';
-
+import useProductos from "../../Hook/useProductos";
 import { ListaProductos } from './components';
 import { Container, Grid, Paper, Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';

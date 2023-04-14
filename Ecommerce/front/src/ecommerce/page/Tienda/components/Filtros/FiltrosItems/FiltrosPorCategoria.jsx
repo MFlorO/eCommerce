@@ -1,12 +1,12 @@
 import { Fragment, useState, useEffect } from 'react'
-import useCategorias from '~/Hook/useCategorias'
+import useCategorias from '../../../../../Hook/useCategorias'
 import { Button, Grid, Typography } from '@mui/material'
+
 
 
 const FiltrosPorCategoria = () => {
 
   const categorias = useCategorias()
-
   const [categoriaCopia, setcategoriaCopia] = useState(categorias)
   const categoria6 = categoriaCopia.slice(0,6)
   const [verMas, setVerMas] = useState(categoriaCopia)
@@ -16,13 +16,10 @@ const FiltrosPorCategoria = () => {
     setVerMas(categoria6)
   }, [ categoriaCopia, categorias ])
 
-
   const onMostrar = () => verMas.length <= 6 ? setVerMas(categoriaCopia) : setVerMas(categoria6)
-  
 
   return (
     <Grid>
-
       {verMas?.map( c => (
       <Fragment key={c.id}>
         <Typography>{c.nombre}</Typography>

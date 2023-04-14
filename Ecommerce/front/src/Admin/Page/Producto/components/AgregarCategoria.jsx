@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useForm, useCategorias } from "~/Hook";
+import { useForm, useCategorias } from "../../../Hook";
 import { PostCategoriaProductoId } from "~/redux/slice/admin/thunks";
 import AdminLayOut from "../../../layout/AdminLayOut";
 import { validacionFormularioProducto } from "~/functions/validacionFormulario";

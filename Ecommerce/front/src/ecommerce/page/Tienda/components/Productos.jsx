@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material"
-import useProductos from "~/Hook/useProductos";
+import useProductos from '../../../Hook/useProductos'
 import { Fragment } from "react";
 
 

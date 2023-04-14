@@ -2,10 +2,10 @@ import { useDispatch } from 'react-redux';
 import { UpdateCategorias } from '~/redux/slice/admin/thunks';
 import CategoriaLayOut from "../../../layout/CategoriaLayOut";
 import { validacionFormularioCategoria } from "~/functions/validacionFormulario";
-import { useForm } from "~/Hook";
+import { useForm } from "../../../Hook";
 
 
-import { Box, TextField, Modal, Stack } from '@mui/material';
+import { Box, TextField, Modal } from '@mui/material';
 
 
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import useProductos from "~/Hook/useProductos";
+import useProductos from '../../../Hook/useProductos'
 import { Button, Grid, Stack, Typography } from '@mui/material'
 
 

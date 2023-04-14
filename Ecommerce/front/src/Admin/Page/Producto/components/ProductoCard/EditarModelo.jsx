@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import AdminLayOut from "../../../../layout/AdminLayOut";
-import { useForm } from "~/Hook";
+import { useForm } from '../../../../Hook/';
 import { validacionFormularioModelos } from "~/functions/validacionFormulario";
 import { UpdateModeloID } from "~/redux/slice/admin/thunks";
 
@@ -24,7 +24,6 @@ const formData = {
 
 const EditarModelo = () => {
 
-  // const query = useQueryParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

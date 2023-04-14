@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AdminLayOut } from "~/Admin/layout"
-import { useForm } from "~/Hook";
+import { useForm } from "../../../Hook";
 
 import { Container, Paper, Button, Input, TextField, Typography, Stack, Alert } from "@mui/material";
 import { PostProducto } from "~/redux/slice/admin/thunks";

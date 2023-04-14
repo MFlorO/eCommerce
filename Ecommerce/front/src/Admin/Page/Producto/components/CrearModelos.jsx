@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useForm, useProducto } from "~/Hook";
+import { useForm, useProducto } from "../../../Hook"
 import { validacionFormularioModelos } from "~/functions/validacionFormulario";
 import AdminLayOut from "../../../layout/AdminLayOut";
-import { PostModeloProductoId, DeleteModelo, getProductoID } from "~/redux/slice/admin/thunks";
+import { PostModeloProductoId, DeleteModelo } from "~/redux/slice/admin/thunks";
 
 import { IconButton, Select, TextField, MenuItem, Stack, Typography, Button , Grid, Paper} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';

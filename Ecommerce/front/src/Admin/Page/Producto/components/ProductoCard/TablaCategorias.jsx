@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { useProducto } from '~/Hook';
+import { useProducto } from '../../../../Hook/';
 import { UpdateCategoriaProductoId } from "~/redux/slice/admin/thunks";
-
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from "@mui/icons-material/Delete";
